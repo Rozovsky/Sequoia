@@ -1,9 +1,35 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageProjectUrl></PackageProjectUrl>
+    <Description>Kernel for creating microservices on CQRS and Clean Architecture</Description>
+    <RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
+    <PackageTags>cqrs;clean-architecture;ddd;identity;web-client;</PackageTags>
+    <Authors>Rozovsky</Authors>
+	<Version>1.0.0</Version>
+	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+	<None Include="..\..\..\LICENSE.txt">
+	  <Pack>True</Pack>
+	  <PackagePath>\</PackagePath>
+	</None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sequoia.Kernel\Sequoia.Kernel.csproj" />
+  </ItemGroup>
 
 </Project>
