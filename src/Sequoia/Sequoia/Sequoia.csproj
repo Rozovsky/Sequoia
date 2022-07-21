@@ -11,7 +11,15 @@
     <Authors>Rozovsky</Authors>
 	<Version>0.0.1</Version>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<PackageIcon>logo_128_128.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\assets\logo_128_128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Sequoia.Kernel\Sequoia.Kernel.csproj" />

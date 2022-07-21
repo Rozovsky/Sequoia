@@ -10,6 +10,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A2F8888B-8E53-4356-A5C8-EC217FD288EA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{C1406766-34C6-407C-B643-ED26AFC33E94}"
+	ProjectSection(SolutionItems) = preProject
+		assets\logo_128_128.png = assets\logo_128_128.png
+		assets\logo_128_128_w.png = assets\logo_128_128_w.png
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sequoia", "Sequoia", "{DBD55618-6949-42AA-9A35-0AFFDE714910}"
 EndProject
@@ -95,65 +99,65 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rabbit", "Rabbit", "{84268E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Complex", "Complex", "{9B3BB34F-1A97-4DCE-825A-0DE18B686CD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Authentication.Basic.Api", "samples\Authentication\Basic\Samples.Authentication.Basic.Api\Samples.Authentication.Basic.Api.csproj", "{9F2D340D-6A0E-4691-9441-5B1145DE6027}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Authentication.Basic.Api", "samples\Authentication\Basic\Samples.Authentication.Basic.Api\Samples.Authentication.Basic.Api.csproj", "{9F2D340D-6A0E-4691-9441-5B1145DE6027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Authentication.Basic.Core", "samples\Authentication\Basic\Samples.Authentication.Basic.Core\Samples.Authentication.Basic.Core.csproj", "{F3C97E12-480C-41A9-9F54-3E7F6EA9AACB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Authentication.Basic.Core", "samples\Authentication\Basic\Samples.Authentication.Basic.Core\Samples.Authentication.Basic.Core.csproj", "{F3C97E12-480C-41A9-9F54-3E7F6EA9AACB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Authentication.Basic.Tests", "samples\Authentication\Basic\Samples.Authentication.Basic.Tests\Samples.Authentication.Basic.Tests.csproj", "{92AB2561-AE9E-427A-96FF-FB304C0D867F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Authentication.Basic.Tests", "samples\Authentication\Basic\Samples.Authentication.Basic.Tests\Samples.Authentication.Basic.Tests.csproj", "{92AB2561-AE9E-427A-96FF-FB304C0D867F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Authentication.Bearer.Api", "samples\Authentication\Bearer\Samples.Authentication.Bearer.Api\Samples.Authentication.Bearer.Api.csproj", "{1A574745-6829-4E10-A657-5210CCCBC185}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Authentication.Bearer.Api", "samples\Authentication\Bearer\Samples.Authentication.Bearer.Api\Samples.Authentication.Bearer.Api.csproj", "{1A574745-6829-4E10-A657-5210CCCBC185}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Authentication.Bearer.Core", "samples\Authentication\Bearer\Samples.Authentication.Bearer.Core\Samples.Authentication.Bearer.Core.csproj", "{DCEB346C-808B-410C-845F-AB31728A4B23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Authentication.Bearer.Core", "samples\Authentication\Bearer\Samples.Authentication.Bearer.Core\Samples.Authentication.Bearer.Core.csproj", "{DCEB346C-808B-410C-845F-AB31728A4B23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Authentication.Bearer.Tests", "samples\Authentication\Bearer\Samples.Authentication.Bearer.Tests\Samples.Authentication.Bearer.Tests.csproj", "{4650D371-AA0D-4ED7-9F4E-DF85C7C42DC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Authentication.Bearer.Tests", "samples\Authentication\Bearer\Samples.Authentication.Bearer.Tests\Samples.Authentication.Bearer.Tests.csproj", "{4650D371-AA0D-4ED7-9F4E-DF85C7C42DC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.Dapper.Api", "samples\Data\Dapper\Samples.Data.Dapper.Api\Samples.Data.Dapper.Api.csproj", "{A276B296-F6EB-4892-8B53-D7998829123B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.Dapper.Api", "samples\Data\Dapper\Samples.Data.Dapper.Api\Samples.Data.Dapper.Api.csproj", "{A276B296-F6EB-4892-8B53-D7998829123B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.Dapper.Core", "samples\Data\Dapper\Samples.Data.Dapper.Core\Samples.Data.Dapper.Core.csproj", "{E0C97B9F-8918-4913-971B-582941809ED3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.Dapper.Core", "samples\Data\Dapper\Samples.Data.Dapper.Core\Samples.Data.Dapper.Core.csproj", "{E0C97B9F-8918-4913-971B-582941809ED3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.Dapper.Tests", "samples\Data\Dapper\Samples.Data.Dapper.Tests\Samples.Data.Dapper.Tests.csproj", "{E009B531-8805-4FBA-96B2-FB89B0797206}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.Dapper.Tests", "samples\Data\Dapper\Samples.Data.Dapper.Tests\Samples.Data.Dapper.Tests.csproj", "{E009B531-8805-4FBA-96B2-FB89B0797206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.Mongo.Api", "samples\Data\Mongo\Samples.Data.Mongo.Api\Samples.Data.Mongo.Api.csproj", "{62106918-B773-4F7E-97A3-D33820C16C10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.Mongo.Api", "samples\Data\Mongo\Samples.Data.Mongo.Api\Samples.Data.Mongo.Api.csproj", "{62106918-B773-4F7E-97A3-D33820C16C10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.Mongo.Core", "samples\Data\Mongo\Samples.Data.Mongo.Core\Samples.Data.Mongo.Core.csproj", "{823C672B-2494-4199-B00D-4984FF653CA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.Mongo.Core", "samples\Data\Mongo\Samples.Data.Mongo.Core\Samples.Data.Mongo.Core.csproj", "{823C672B-2494-4199-B00D-4984FF653CA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.Mongo.Tests", "samples\Data\Mongo\Samples.Data.Mongo.Tests\Samples.Data.Mongo.Tests.csproj", "{BF31E8BA-795E-4BE7-88AE-F69A8E5CFFEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.Mongo.Tests", "samples\Data\Mongo\Samples.Data.Mongo.Tests\Samples.Data.Mongo.Tests.csproj", "{BF31E8BA-795E-4BE7-88AE-F69A8E5CFFEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.Postgresql.Api", "samples\Data\Postgresql\Samples.Data.Postgresql.Api\Samples.Data.Postgresql.Api.csproj", "{82B366EE-8731-45CD-A114-E09DA5C760D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.Postgresql.Api", "samples\Data\Postgresql\Samples.Data.Postgresql.Api\Samples.Data.Postgresql.Api.csproj", "{82B366EE-8731-45CD-A114-E09DA5C760D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.Postgresql.Core", "samples\Data\Postgresql\Samples.Data.Postgresql.Core\Samples.Data.Postgresql.Core.csproj", "{62830107-8282-4302-BC45-1D3939BFC3C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.Postgresql.Core", "samples\Data\Postgresql\Samples.Data.Postgresql.Core\Samples.Data.Postgresql.Core.csproj", "{62830107-8282-4302-BC45-1D3939BFC3C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.Postgresql.Tests", "samples\Data\Postgresql\Samples.Data.Postgresql.Tests\Samples.Data.Postgresql.Tests.csproj", "{CB83EF0B-D201-4D8E-8622-BDD8397BBB79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.Postgresql.Tests", "samples\Data\Postgresql\Samples.Data.Postgresql.Tests\Samples.Data.Postgresql.Tests.csproj", "{CB83EF0B-D201-4D8E-8622-BDD8397BBB79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.WebClient.Api", "samples\Data\WebClient\Samples.Data.WebClient.Api\Samples.Data.WebClient.Api.csproj", "{BF8A08E3-58ED-40DB-ACAE-B71FA58879EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.WebClient.Api", "samples\Data\WebClient\Samples.Data.WebClient.Api\Samples.Data.WebClient.Api.csproj", "{BF8A08E3-58ED-40DB-ACAE-B71FA58879EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.WebClient.Core", "samples\Data\WebClient\Samples.Data.WebClient.Core\Samples.Data.WebClient.Core.csproj", "{00DBAD1F-4BEC-4E53-B7EE-2F78DDA5E0A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.WebClient.Core", "samples\Data\WebClient\Samples.Data.WebClient.Core\Samples.Data.WebClient.Core.csproj", "{00DBAD1F-4BEC-4E53-B7EE-2F78DDA5E0A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.WebClient.Tests", "samples\Data\WebClient\Samples.Data.WebClient.Tests\Samples.Data.WebClient.Tests.csproj", "{68DD5C10-EA31-4F72-AA4C-E1D0C8AB71B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.WebClient.Tests", "samples\Data\WebClient\Samples.Data.WebClient.Tests\Samples.Data.WebClient.Tests.csproj", "{68DD5C10-EA31-4F72-AA4C-E1D0C8AB71B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Jobs.Quartz.Api", "samples\Jobs\Quartz\Samples.Jobs.Quartz.Api\Samples.Jobs.Quartz.Api.csproj", "{371EDDAE-2809-46A3-A2F8-05A73C776492}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Jobs.Quartz.Api", "samples\Jobs\Quartz\Samples.Jobs.Quartz.Api\Samples.Jobs.Quartz.Api.csproj", "{371EDDAE-2809-46A3-A2F8-05A73C776492}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Jobs.Quartz.Core", "samples\Jobs\Quartz\Samples.Jobs.Quartz.Core\Samples.Jobs.Quartz.Core.csproj", "{FCCE7193-BF3D-47E2-95CF-A4D71B5A1DDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Jobs.Quartz.Core", "samples\Jobs\Quartz\Samples.Jobs.Quartz.Core\Samples.Jobs.Quartz.Core.csproj", "{FCCE7193-BF3D-47E2-95CF-A4D71B5A1DDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Jobs.Quartz.Tests", "samples\Jobs\Quartz\Samples.Jobs.Quartz.Tests\Samples.Jobs.Quartz.Tests.csproj", "{61F521EB-302E-482D-AB88-4B2B5CEB01F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Jobs.Quartz.Tests", "samples\Jobs\Quartz\Samples.Jobs.Quartz.Tests\Samples.Jobs.Quartz.Tests.csproj", "{61F521EB-302E-482D-AB88-4B2B5CEB01F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Logging.Serilog.Api", "samples\Logging\Serilog\Samples.Logging.Serilog.Api\Samples.Logging.Serilog.Api.csproj", "{A948482A-B906-41A8-9BC4-16ABC6897919}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Logging.Serilog.Api", "samples\Logging\Serilog\Samples.Logging.Serilog.Api\Samples.Logging.Serilog.Api.csproj", "{A948482A-B906-41A8-9BC4-16ABC6897919}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Logging.Serilog.Core", "samples\Logging\Serilog\Samples.Logging.Serilog.Core\Samples.Logging.Serilog.Core.csproj", "{24A54DB0-9637-4563-B3F7-8230F53C8151}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Logging.Serilog.Core", "samples\Logging\Serilog\Samples.Logging.Serilog.Core\Samples.Logging.Serilog.Core.csproj", "{24A54DB0-9637-4563-B3F7-8230F53C8151}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Logging.Serilog.Tests", "samples\Logging\Serilog\Samples.Logging.Serilog.Tests\Samples.Logging.Serilog.Tests.csproj", "{A14C98D1-8F0B-4E52-874E-7D5744E9E8D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Logging.Serilog.Tests", "samples\Logging\Serilog\Samples.Logging.Serilog.Tests\Samples.Logging.Serilog.Tests.csproj", "{A14C98D1-8F0B-4E52-874E-7D5744E9E8D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.MessageBroker.Rabbit.Api", "samples\MessageBroker\Rabbit\Samples.MessageBroker.Rabbit.Api\Samples.MessageBroker.Rabbit.Api.csproj", "{64BA228F-1EF6-4543-9E3F-ED21AF6BC692}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.MessageBroker.Rabbit.Api", "samples\MessageBroker\Rabbit\Samples.MessageBroker.Rabbit.Api\Samples.MessageBroker.Rabbit.Api.csproj", "{64BA228F-1EF6-4543-9E3F-ED21AF6BC692}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.MessageBroker.Rabbit.Core", "samples\MessageBroker\Rabbit\Samples.MessageBroker.Rabbit.Core\Samples.MessageBroker.Rabbit.Core.csproj", "{4F011DC2-AA49-46F7-ABDB-50012E978103}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.MessageBroker.Rabbit.Core", "samples\MessageBroker\Rabbit\Samples.MessageBroker.Rabbit.Core\Samples.MessageBroker.Rabbit.Core.csproj", "{4F011DC2-AA49-46F7-ABDB-50012E978103}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.MessageBroker.Rabbit.Tests", "samples\MessageBroker\Rabbit\Samples.MessageBroker.Rabbit.Tests\Samples.MessageBroker.Rabbit.Tests.csproj", "{7F221ECE-DEDB-4043-B78C-215770F2F15B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.MessageBroker.Rabbit.Tests", "samples\MessageBroker\Rabbit\Samples.MessageBroker.Rabbit.Tests\Samples.MessageBroker.Rabbit.Tests.csproj", "{7F221ECE-DEDB-4043-B78C-215770F2F15B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Sequoia.Complex.Api", "samples\Sequoia\Complex\Samples.Sequoia.Complex.Api\Samples.Sequoia.Complex.Api.csproj", "{87170565-FC77-41E8-9F54-8EB34504C443}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Sequoia.Complex.Api", "samples\Sequoia\Complex\Samples.Sequoia.Complex.Api\Samples.Sequoia.Complex.Api.csproj", "{87170565-FC77-41E8-9F54-8EB34504C443}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Sequoia.Complex.Core", "samples\Sequoia\Complex\Samples.Sequoia.Complex.Core\Samples.Sequoia.Complex.Core.csproj", "{834BE2DE-E7EA-48F3-9796-6AB34211746A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Sequoia.Complex.Core", "samples\Sequoia\Complex\Samples.Sequoia.Complex.Core\Samples.Sequoia.Complex.Core.csproj", "{834BE2DE-E7EA-48F3-9796-6AB34211746A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Sequoia.Complex.Tests", "samples\Sequoia\Complex\Samples.Sequoia.Complex.Tests\Samples.Sequoia.Complex.Tests.csproj", "{9CEA4C0B-794C-4F78-A0FF-1C550C885255}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Sequoia.Complex.Tests", "samples\Sequoia\Complex\Samples.Sequoia.Complex.Tests\Samples.Sequoia.Complex.Tests.csproj", "{9CEA4C0B-794C-4F78-A0FF-1C550C885255}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
