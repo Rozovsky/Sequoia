@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sequoia.Authentication\Sequoia.Authentication.csproj" />
+  </ItemGroup>
+
 </Project>

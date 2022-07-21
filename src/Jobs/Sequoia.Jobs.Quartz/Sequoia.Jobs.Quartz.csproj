@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sequoia.Jobs\Sequoia.Jobs.csproj" />
+  </ItemGroup>
+
 </Project>

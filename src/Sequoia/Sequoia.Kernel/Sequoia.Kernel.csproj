@@ -1,11 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<TargetFramework>net6.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+	<PackageProjectUrl></PackageProjectUrl>
+	<Description>Kernel for creating microservices on CQRS and Clean Architecture</Description>
+	<RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
+	<PackageTags>cqrs;clean-architecture;ddd;identity;web-client;</PackageTags>
+	<Authors>Rozovsky</Authors>
+	<Version>0.0.1</Version>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
-
+	
   <ItemGroup>
 	<FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
