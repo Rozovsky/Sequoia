@@ -9,20 +9,27 @@
     <RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
     <PackageTags>cqrs;clean-architecture;ddd;identity;web-client;</PackageTags>
     <Authors>Rozovsky</Authors>
-	<Version>0.0.1</Version>
+	<Version>0.0.2</Version>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<PackageIcon>logo_128_128.png</PackageIcon>
+	<PackageIcon>logo_128_128_w.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\assets\logo_128_128.png">
+    <None Include="..\..\..\assets\logo_128_128_w.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sequoia.Kernel\Sequoia.Kernel.csproj" />
+	<FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+	<ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>

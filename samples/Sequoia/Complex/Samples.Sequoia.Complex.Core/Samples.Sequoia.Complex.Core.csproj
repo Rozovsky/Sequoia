@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Data\Sequoia.Data.Postgresql\Sequoia.Data.Postgresql.csproj" />
     <ProjectReference Include="..\..\..\..\src\Sequoia\Sequoia\Sequoia.csproj" />
   </ItemGroup>
 
@@ -20,7 +21,6 @@
     <Folder Include="Domain\Options\" />
     <Folder Include="Infrastructure\Configurations\" />
     <Folder Include="Infrastructure\Migrations\" />
-    <Folder Include="Infrastructure\Repositories\" />
   </ItemGroup>
 
 </Project>

@@ -159,6 +159,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Sequoia.Complex.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Sequoia.Complex.Tests", "samples\Sequoia\Complex\Samples.Sequoia.Complex.Tests\Samples.Sequoia.Complex.Tests.csproj", "{9CEA4C0B-794C-4F78-A0FF-1C550C885255}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{21BC6AC4-F202-495E-AB57-8734BC71B870}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -353,6 +355,10 @@ Global
 		{9CEA4C0B-794C-4F78-A0FF-1C550C885255}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CEA4C0B-794C-4F78-A0FF-1C550C885255}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CEA4C0B-794C-4F78-A0FF-1C550C885255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21BC6AC4-F202-495E-AB57-8734BC71B870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21BC6AC4-F202-495E-AB57-8734BC71B870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21BC6AC4-F202-495E-AB57-8734BC71B870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21BC6AC4-F202-495E-AB57-8734BC71B870}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

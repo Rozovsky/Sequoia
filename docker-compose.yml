@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  samples.sequoia.complex.api:
+    image: ${DOCKER_REGISTRY-}samplessequoiacomplexapi
+    build:
+      context: .
+      dockerfile: samples/Sequoia/Complex/Samples.Sequoia.Complex.Api/Dockerfile

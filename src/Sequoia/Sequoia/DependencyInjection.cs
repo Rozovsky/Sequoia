@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Sequoia.Kernel;
 using System.Reflection;
 
 namespace Sequoia
@@ -9,8 +10,10 @@ namespace Sequoia
     {
         public static IServiceCollection AddSequoia(this IServiceCollection services, Assembly executingAssembly, IConfiguration configuration)
         {
-            // add required modules
-            services.AddKernel(executingAssembly, configuration);
+            // register common components
+            services.AddAutoMapper(executingAssembly, Assembly.GetExecutingAssembly());
+            services.AddValidatorsFromAssembly(executingAssembly);
+            services.AddMediatR(executingAssembly, Assembly.GetExecutingAssembly());
 
             return services;
         }
