@@ -1,8 +1,45 @@
 version: '3.4'
 
 services:
+
+  postgres-db:
+    image: postgres:14.4
+    container_name: postgres-db
+    restart: always
+    ports:
+      - "10000:5432"
+    environment:
+      POSTGRES_PASSWORD: 777888
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+  pg-admin:
+    container_name: postgres-admin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dev@sequoia.ua
+      PGADMIN_DEFAULT_PASSWORD: 777888
+    ports:
+      - "10001:80"
+
   samples.sequoia.complex.api:
-    image: ${DOCKER_REGISTRY-}samplessequoiacomplexapi
+    image: ${DOCKER_REGISTRY-}samples-sequoia-complex-api
     build:
       context: .
       dockerfile: samples/Sequoia/Complex/Samples.Sequoia.Complex.Api/Dockerfile
+    container_name: samples-sequoia-complex-api
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - TZ=Europe/Kiev
+    ports:
+      - "20000:80"
+      - "20001:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

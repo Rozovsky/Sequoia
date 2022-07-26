@@ -2,6 +2,7 @@
 using MediatR;
 using Samples.Sequoia.Complex.Core.Application.Common.Interfaces;
 using Samples.Sequoia.Complex.Core.Application.Common.ViewModels;
+using Sequoia.Exceptions;
 using CoffeeEntity = Samples.Sequoia.Complex.Core.Domain.Entities.Coffee;
 
 namespace Samples.Sequoia.Complex.Core.Application.Coffee.Commands.CreateCoffee
@@ -21,6 +22,8 @@ namespace Samples.Sequoia.Complex.Core.Application.Coffee.Commands.CreateCoffee
 
         public async Task<CoffeeVm> Handle(CreateCoffeeCommand request, CancellationToken cancellationToken)
         {
+            throw new NotFoundException();
+
             var coffee = _mapper.Map<CoffeeEntity>(request.Dto);
 
             // TODO: add to DB

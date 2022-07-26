@@ -1,7 +1,9 @@
 ﻿using FluentValidation;
 using MediatR;
+using MediatR.Pipeline;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Sequoia.Behaviours;
 using System.Reflection;
 
 namespace Sequoia
@@ -14,6 +16,10 @@ namespace Sequoia
             services.AddAutoMapper(executingAssembly, Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(executingAssembly);
             services.AddMediatR(executingAssembly, Assembly.GetExecutingAssembly());
+
+            // register behaviours
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(ExceptionHandlingBehaviour<,,>));
 
             return services;
         }
