@@ -8,6 +8,9 @@ namespace Sequoia.Extensions
 {
     public static class ExceptionMiddlewareExtensions
     {
+        /// <summary>
+        /// Write IKernelExceptions to response
+        /// </summary>
         public static void UseSequoiaExceptionHandler(this IApplicationBuilder app)
         {
             app.UseExceptionHandler(appError =>

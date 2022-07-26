@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Data\Sequoia.Data.Postgresql\Sequoia.Data.Postgresql.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Logging\Sequoia.Logging.Microsoft\Sequoia.Logging.Microsoft.csproj" />
     <ProjectReference Include="..\..\..\..\src\Sequoia\Sequoia\Sequoia.csproj" />
   </ItemGroup>
 

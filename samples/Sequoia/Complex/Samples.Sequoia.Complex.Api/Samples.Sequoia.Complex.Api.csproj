@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\Logging\Sequoia.Logging.Microsoft\Sequoia.Logging.Microsoft.csproj" />
     <ProjectReference Include="..\Samples.Sequoia.Complex.Core\Samples.Sequoia.Complex.Core.csproj" />
   </ItemGroup>
 

@@ -33,8 +33,8 @@ namespace Sequoia.Logging.Microsoft.Behaviours
             var requestJson = JsonConvert.SerializeObject(request);
             var responseJson = JsonConvert.SerializeObject(kernelException);
 
-            _logger.LogError("Sequoia.Logging.Microsoft: {@path} {@request} / {@response}",
-                _httpContext.Request.Path, requestJson, responseJson);
+            _logger.LogError("Sequoia.Logging.Microsoft: {@method} {@path} {@request} / {@response}",
+                _httpContext.Request.Method, _httpContext.Request.Path, requestJson, responseJson);
 
             state.SetHandled(default);
         }

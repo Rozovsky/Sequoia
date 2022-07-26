@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using MediatR;
-using MediatR.Pipeline;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sequoia.Behaviours;
@@ -21,9 +20,6 @@ namespace Sequoia
 
             // register cross cutting concerns
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
-            //services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(ExceptionHandlingBehaviour<,,>));
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuditBehaviour<,>));
-
 
             return services;
         }
