@@ -2,11 +2,7 @@
 using MediatR.Pipeline;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Sequoia.Exceptions;
-using Sequoia.Helpers;
-using Sequoia.Interfaces;
-using Sequoia.Models;
 
 namespace Sequoia.Behaviours
 {

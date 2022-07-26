@@ -22,13 +22,7 @@ namespace Sequoia.Extensions
                         context.Response.StatusCode = kernelException.Code;
                         context.Response.ContentType = "application/json";
 
-                        var json = JsonConvert.SerializeObject(new
-                        {
-                            Code = kernelException.Code,
-                            Type = kernelException.Type,
-                            Description = kernelException.Description,
-                            Details = kernelException.Details,
-                        });
+                        var json = JsonConvert.SerializeObject(kernelException);
 
                         await context.Response.WriteAsync(json);
                     }
