@@ -1,4 +1,5 @@
 ﻿using Sequoia.Constants;
+using Sequoia.Interfaces;
 using System.Net;
 
 namespace Sequoia.Exceptions

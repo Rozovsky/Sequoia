@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using Sequoia.Exceptions;
 
 namespace Sequoia.Behaviours
 {
@@ -28,7 +29,7 @@ namespace Sequoia.Behaviours
                     .ToList();
 
                 if (failures.Count != 0)
-                    throw new ValidationException(failures);
+                    throw new KernelValidationException(failures);
             }
 
             return await next();

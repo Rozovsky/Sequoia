@@ -1,20 +1,22 @@
 ﻿using Sequoia.Constants;
+using Sequoia.Interfaces;
 
 namespace Sequoia.Exceptions
 {
-    public class KernelException : Exception
+    public abstract class KernelException : Exception, IKernelException
     {
         public int Code { get; private set; }
-        public new string Message { get; private set; }
         public string Type { get; private set; }
-        public new dynamic Data { get; set; }
+        public string Description { get; private set; }
+        public dynamic Details { get; set; }
 
-        public KernelException(int code, string message, string type = DefaultExceptionType.KernelError, dynamic data = null)
+        public KernelException(
+            int code, string description, string type = DefaultExceptionType.KernelError, dynamic details = null)
         {
             Code = code;
-            Message = message;
             Type = type;
-            Data = data;
+            Description = description ?? base.Message;
+            Details = details;
         }
     }
 }

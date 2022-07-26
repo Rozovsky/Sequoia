@@ -28,7 +28,9 @@ namespace Sequoia.Logging.Serilog.Behaviours
             RequestExceptionHandlerState<TResponse> state,
             CancellationToken cancellationToken)
         {
-            var json = JsonConvert.SerializeObject(new
+            var requestJson = JsonConvert.SerializeObject(request);
+
+            var responseJson = JsonConvert.SerializeObject(new
             {
                 Code = exception.Code,
                 Message = exception.Message,
@@ -36,7 +38,8 @@ namespace Sequoia.Logging.Serilog.Behaviours
                 Data = exception.Data
             });
 
-            _logger.Error("{@path}: {@data}", _httpContext.Request.Path, json);
+            _logger.Error("{@path}: {@request} / {@response}",
+                _httpContext.Request.Path, requestJson, responseJson);
 
             state.SetHandled(default);
         }

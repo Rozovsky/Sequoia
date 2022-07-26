@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Sequoia.Exceptions;
+using Sequoia.Interfaces;
 
 namespace Sequoia.Behaviours
 {
@@ -26,23 +27,11 @@ namespace Sequoia.Behaviours
             RequestExceptionHandlerState<TResponse> state,
             CancellationToken cancellationToken)
         {
-            var responseJson = JsonConvert.SerializeObject(new
-            {
-                Code = exception.Code,
-                Message = exception.Message,
-                Type = exception.Type,
-                Data = exception.Data
-            });
-
+            var kernelException = exception as IKernelException;
+            var responseJson = JsonConvert.SerializeObject(kernelException);
             var requestJson = JsonConvert.SerializeObject(request);
 
             //Console.WriteLine(request);
-
-            //_httpContext.Response.ContentType = "application/json";
-            //_httpContext.Response.StatusCode = exception.Code;
-
-            //await _httpContext.Response.WriteAsync(
-            //    JsonConvert.SerializeObject(exception), cancellationToken: cancellationToken);
 
             _logger.LogError("{@path}: {@request} / {@response}", 
                 _httpContext.Request.Path, requestJson, responseJson);
