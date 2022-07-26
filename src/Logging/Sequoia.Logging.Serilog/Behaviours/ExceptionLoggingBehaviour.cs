@@ -3,6 +3,7 @@ using MediatR.Pipeline;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Sequoia.Exceptions;
+using Sequoia.Interfaces;
 using Serilog;
 
 namespace Sequoia.Logging.Serilog.Behaviours
@@ -28,18 +29,12 @@ namespace Sequoia.Logging.Serilog.Behaviours
             RequestExceptionHandlerState<TResponse> state,
             CancellationToken cancellationToken)
         {
+            var kernelException = exception as IKernelException;
             var requestJson = JsonConvert.SerializeObject(request);
+            var responseJson = JsonConvert.SerializeObject(kernelException);
 
-            var responseJson = JsonConvert.SerializeObject(new
-            {
-                Code = exception.Code,
-                Message = exception.Message,
-                Type = exception.Type,
-                Data = exception.Data
-            });
-
-            _logger.Error("{@path}: {@request} / {@response}",
-                _httpContext.Request.Path, requestJson, responseJson);
+            _logger.Error("Sequoia.Logging.Serilog: {@method} {@path} {@request} / {@response}",
+                _httpContext.Request.Method, _httpContext.Request.Path, requestJson, responseJson);
 
             state.SetHandled(default);
         }

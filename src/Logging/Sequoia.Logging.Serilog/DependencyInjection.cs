@@ -1,11 +1,14 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Sequoia.Logging.Enums;
+using Sequoia.Logging.Options;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.Elasticsearch;
 
 namespace Sequoia.Logging.Serilog
 {
-    /*public static class DependencyInjection
+    public static class DependencyInjection
     {
         public static IHostBuilder AddSerilogLogging(this IHostBuilder builder, string indexFormat = null)
         {
@@ -24,42 +27,42 @@ namespace Sequoia.Logging.Serilog
             // set log level
             switch (loggingOptions.LogLevel.Default)
             {
-                case Enums.LogLevel.Verbose:
+                case LoggingLevel.Verbose:
                     configuration = configuration
                         .MinimumLevel.Verbose()
                         .MinimumLevel.Override("Microsoft", (LogEventLevel)loggingOptions.LogLevel.Microsoft)
                         .MinimumLevel.Override("System", (LogEventLevel)loggingOptions.LogLevel.System);
                     break;
 
-                case Enums.LogLevel.Debug:
+                case LoggingLevel.Debug:
                     configuration = configuration
                         .MinimumLevel.Debug()
                         .MinimumLevel.Override("Microsoft", (LogEventLevel)loggingOptions.LogLevel.Microsoft)
                         .MinimumLevel.Override("System", (LogEventLevel)loggingOptions.LogLevel.System);
                     break;
 
-                case Enums.LogLevel.Information:
+                case LoggingLevel.Information:
                     configuration = configuration
                         .MinimumLevel.Information()
                         .MinimumLevel.Override("Microsoft", (LogEventLevel)loggingOptions.LogLevel.Microsoft)
                         .MinimumLevel.Override("System", (LogEventLevel)loggingOptions.LogLevel.System);
                     break;
 
-                case Enums.LogLevel.Warning:
+                case LoggingLevel.Warning:
                     configuration = configuration
                         .MinimumLevel.Warning()
                         .MinimumLevel.Override("Microsoft", (LogEventLevel)loggingOptions.LogLevel.Microsoft)
                         .MinimumLevel.Override("System", (LogEventLevel)loggingOptions.LogLevel.System);
                     break;
 
-                case Enums.LogLevel.Error:
+                case LoggingLevel.Error:
                     configuration = configuration
                         .MinimumLevel.Error()
                         .MinimumLevel.Override("Microsoft", (LogEventLevel)loggingOptions.LogLevel.Microsoft)
                         .MinimumLevel.Override("System", (LogEventLevel)loggingOptions.LogLevel.System);
                     break;
 
-                case Enums.LogLevel.Fatal:
+                case LoggingLevel.Fatal:
                     configuration = configuration
                         .MinimumLevel.Fatal()
                         .MinimumLevel.Override("Microsoft", (LogEventLevel)loggingOptions.LogLevel.Microsoft)
@@ -77,8 +80,8 @@ namespace Sequoia.Logging.Serilog
             if (loggingOptions.WriteToConsole)
                 configuration = configuration.WriteTo.Console();
 
-            if (loggingOptions.WriteToElasticsearch)
-                configuration = configuration.WriteTo.Elasticsearch(
+            if (loggingOptions.Elasticsearch.WriteToElasticsearch)
+                _ = configuration.WriteTo.Elasticsearch(
                     new ElasticsearchSinkOptions(new Uri($"{loggingOptions.Elasticsearch.Host}:{loggingOptions.Elasticsearch.Port}"))
                     {
                         IndexFormat = indexFormat ?? 
@@ -90,5 +93,5 @@ namespace Sequoia.Logging.Serilog
 
             return builder;
         }
-    }*/
+    }
 }
