@@ -1,13 +1,15 @@
 using Samples.Sequoia.Complex.Core;
 using Sequoia.Extensions;
+using Sequoia.Logging.Microsoft;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// register common components
+// register Sequoia components
 builder.Services.AddCoreServices(builder.Configuration);
+builder.Services.AddMicrosoftLogging(builder.Configuration);
 
+// register default components
 builder.Services.AddControllers();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -20,12 +22,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// use Sequoia components
 app.UseSequoiaExceptionHandler();
 
+// use default components
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
