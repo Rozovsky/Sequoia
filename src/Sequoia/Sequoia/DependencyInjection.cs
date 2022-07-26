@@ -17,9 +17,13 @@ namespace Sequoia
             services.AddValidatorsFromAssembly(executingAssembly);
             services.AddMediatR(executingAssembly, Assembly.GetExecutingAssembly());
 
-            // register behaviours
+            services.AddHttpContextAccessor();
+
+            // register cross cutting concerns
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(ExceptionHandlingBehaviour<,,>));
+            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuditBehaviour<,>));
+
 
             return services;
         }
