@@ -35,7 +35,7 @@ namespace Sequoia.Logging.Serilog.Behaviours
 
             _logger.Error("Sequoia.Logging.Serilog: {@method} {@path} {@request} / {@response}",
                 _httpContext.Request.Method, _httpContext.Request.Path, requestJson, responseJson);
-
+            
             state.SetHandled(default);
         }
     }

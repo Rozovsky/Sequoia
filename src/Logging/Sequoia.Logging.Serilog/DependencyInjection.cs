@@ -1,7 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MediatR.Pipeline;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sequoia.Logging.Enums;
 using Sequoia.Logging.Options;
+using Sequoia.Logging.Serilog.Behaviours;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.Elasticsearch;
@@ -10,6 +13,14 @@ namespace Sequoia.Logging.Serilog
 {
     public static class DependencyInjection
     {
+        public static IServiceCollection AddSerilogLogging(this IServiceCollection services, IConfiguration configuration)
+        {
+            // register cross cutting concerns
+            services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(ExceptionLoggingBehaviour<,,>));
+
+            return services;
+        }
+
         public static IHostBuilder AddSerilogLogging(this IHostBuilder builder, string indexFormat = null)
         {
             builder.UseSerilog((context, configuration)
@@ -21,7 +32,7 @@ namespace Sequoia.Logging.Serilog
         private static IHostBuilder ConfigurateSerilog(HostBuilderContext context, LoggerConfiguration configuration, IHostBuilder builder, string indexFormat)
         {
             var loggingOptions = context.Configuration.GetSection("LoggingOptions").Get<LoggingOptions>();
-
+            
             configuration = configuration.Enrich.FromLogContext();
 
             // set log level

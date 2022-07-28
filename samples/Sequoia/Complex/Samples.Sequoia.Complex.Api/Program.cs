@@ -1,12 +1,15 @@
 using Samples.Sequoia.Complex.Core;
 using Sequoia.Extensions;
-using Sequoia.Logging.Microsoft;
+using Sequoia.Logging.Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // register Sequoia components
 builder.Services.AddCoreServices(builder.Configuration);
-builder.Services.AddMicrosoftLogging(builder.Configuration);
+
+// add logging
+builder.Host.AddSerilogLogging();
+builder.Services.AddSerilogLogging(builder.Configuration);
 
 // register default components
 builder.Services.AddControllers();
