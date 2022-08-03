@@ -2,6 +2,8 @@ version: '3.4'
 
 services:
 
+  # Infrastructure
+
   postgres-db:
     image: postgres:14.4
     container_name: postgres-db
@@ -22,6 +24,31 @@ services:
     ports:
       - "10001:80"
 
+  # Samples Data
+
+  samples.data.postgresql.api:
+    image: ${DOCKER_REGISTRY-}samples-data-postgresql-api
+    build:
+      context: .
+      dockerfile: samples/Data/Postgresql/Samples.Data.Postgresql.Api/Dockerfile
+    container_name: samples-data-postgresql-api
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - TZ=Europe/Kiev
+    ports:
+      - "20000:80"
+      - "20001:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  # Samples Sequoia
   samples.sequoia.complex.api:
     image: ${DOCKER_REGISTRY-}samples-sequoia-complex-api
     build:
@@ -38,8 +65,8 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - TZ=Europe/Kiev
     ports:
-      - "20000:80"
-      - "20001:443"
+      - "30000:80"
+      - "30001:443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
