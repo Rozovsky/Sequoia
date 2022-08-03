@@ -10,4 +10,8 @@
     <ProjectReference Include="..\..\Sequoia\Sequoia\Sequoia.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Options\" />
+  </ItemGroup>
+
 </Project>
