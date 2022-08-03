@@ -9,13 +9,13 @@
     <RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
     <PackageTags>cqrs;clean-architecture;ddd;identity;web-client;</PackageTags>
     <Authors>Rozovsky</Authors>
-	<Version>0.0.2</Version>
+	<Version>0.0.3</Version>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<PackageIcon>logo_128_128_w.png</PackageIcon>
+	<PackageIcon>logo_128_128.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\assets\logo_128_128_w.png">
+    <None Include="..\..\..\assets\logo_128_128.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
