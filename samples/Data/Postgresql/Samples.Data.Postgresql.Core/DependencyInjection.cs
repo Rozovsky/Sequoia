@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Samples.Data.Postgresql.Core.Application.Common.Interfaces;
+using Samples.Data.Postgresql.Core.Application.Common.Services;
 using Samples.Data.Postgresql.Core.Infrastructure;
 using Sequoia;
 using Sequoia.Data.Postgresql;
@@ -18,15 +19,13 @@ namespace Samples.Data.Postgresql.Core
             // register common components
             services.AddSequoia(Assembly.GetExecutingAssembly(), configuration);
 
-            // add kernel web client
-            //services.AddWebClient(configuration);
-
             // add postgres db
             services.AddPostgresql<IApplicationDbContext, ApplicationDbContext>(
                 configuration.GetConnectionString("DefaultConnection"));
 
             // add application services
-            //services.AddTransient<ICoffeeService, CoffeeService>();
+            services.AddTransient<IStoreService, StoreService>();
+            services.AddTransient<ICoffeeMachineService, CoffeeMachineService>();
 
             // add application repositories
             //services.AddTransient<IOrderRepository, OrderRepository>();
