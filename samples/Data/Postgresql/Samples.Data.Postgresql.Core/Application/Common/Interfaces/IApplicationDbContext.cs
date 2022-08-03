@@ -5,7 +5,8 @@ namespace Samples.Data.Postgresql.Core.Application.Common.Interfaces
 {
     public interface IApplicationDbContext
     {
-        DbSet<Shop> Shops { get; set; }
+        DbSet<Store> Shops { get; set; }
+        DbSet<CoffeeMachine> CoffeeMachines { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

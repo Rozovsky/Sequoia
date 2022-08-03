@@ -1,0 +1,14 @@
+﻿Migration for EF design nuget: 
+execute in Tools -> NuGet Package Manager -> Pakage Manager Console
+
+add-migration <migration-name> -p Samples.Data.Postgresql.Core -c ApplicationDbContext -o Infrastructure\Migrations
+
+remove-migration -p Samples.Data.Postgresql.Core
+
+update-database -p Samples.Data.Postgresql.Core
+
+
+
+Migrations for terminal execution:
+
+dotnet ef migrations add <migration-name> --project Samples.Data.Postgresql.Core --startup-project Samples.Data.Postgresql.Api -o Infrastructure/Migrations
