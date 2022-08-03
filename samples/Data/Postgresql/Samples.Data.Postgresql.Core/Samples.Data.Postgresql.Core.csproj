@@ -13,8 +13,6 @@
     <Folder Include="Application\Common\Helpers\" />
     <Folder Include="Application\Common\Options\" />
     <Folder Include="Application\Common\ViewModels\" />
-    <Folder Include="Application\Stores\Commands\" />
-    <Folder Include="Application\Stores\Queries\" />
     <Folder Include="Domain\Constants\" />
     <Folder Include="Domain\Models\" />
     <Folder Include="Infrastructure\Repositories\" />

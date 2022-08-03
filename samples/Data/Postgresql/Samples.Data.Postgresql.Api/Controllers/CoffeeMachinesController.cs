@@ -10,7 +10,7 @@ using Sequoia.Abstractions;
 
 namespace Samples.Data.Postgresql.Api.Controllers
 {
-    [Route("api/coffee")]
+    [Route("api/coffee-machines")]
     public class CoffeeMachinesController : ApiController
     {
         [HttpPost]

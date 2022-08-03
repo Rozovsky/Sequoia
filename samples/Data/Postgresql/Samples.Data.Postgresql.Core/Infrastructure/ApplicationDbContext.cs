@@ -13,7 +13,7 @@ namespace Samples.Data.Postgresql.Core.Infrastructure
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
-        public DbSet<Store> Shops { get; set; }
+        public DbSet<Store> Stores { get; set; }
         public DbSet<CoffeeMachine> CoffeeMachines { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
