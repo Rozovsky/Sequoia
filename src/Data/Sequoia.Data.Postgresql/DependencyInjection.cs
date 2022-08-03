@@ -1,25 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sequoia.Data.Postgresql
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddPostgresql(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddPostgresql<TContextInterface, TContext>(this IServiceCollection services, string connectionString)
+            where TContext : DbContext, TContextInterface
+            where TContextInterface : class
         {
             // add pgsql db
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseNpgsql(
-            //        configuration.GetConnectionString("DefaultConnection"),
-            //        b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-            
-            //services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            services.AddDbContext<TContext>(options =>
+                options.UseNpgsql(connectionString,
+                    b => b.MigrationsAssembly(typeof(TContext).Assembly.FullName)));
+
+            services.AddScoped<TContextInterface>(provider => provider.GetService<TContext>());
 
             return services;
         }
