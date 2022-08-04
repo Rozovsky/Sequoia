@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using Samples.Data.Mongo.Core.Application.Common.Interfaces;
 using Samples.Data.Mongo.Core.Application.Stores.Dtos;
 using Samples.Data.Mongo.Core.Domain.Entities;
+using Sequoia.Data.Mongo.Extensions;
 using Sequoia.Exceptions;
 
 namespace Samples.Data.Mongo.Core.Application.Common.Services
@@ -55,13 +56,12 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
 
         public async Task<Store> GetStore(string id, CancellationToken cancellationToken)
         {
-            var filter = Builders<Store>.Filter.Where(c => c.Id == id);
-            var collection = await _dbContext.Stores.FindAsync(filter, cancellationToken: cancellationToken);
-
-            var store = await collection.SingleOrDefaultAsync(cancellationToken: cancellationToken);
-
+            var store = await _dbContext.Stores.SingleOrDefaultAsync(c => c.Id == id, cancellationToken);
             if (store == null)
                 throw new NotFoundException(nameof(Store), id);
+
+            //var storeFirst = await _dbContext.Stores
+            //    .FirstOrDefaultAsync(c => !string.IsNullOrEmpty(c.Id), c => c.DateOfCreation, cancellationToken);
 
             return store;
         }
