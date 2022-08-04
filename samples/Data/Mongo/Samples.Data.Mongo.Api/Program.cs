@@ -1,9 +1,12 @@
+using Samples.Data.Mongo.Core;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// register Sequoia components
+builder.Services.AddCoreServices(builder.Configuration);
 
+// register default components
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
