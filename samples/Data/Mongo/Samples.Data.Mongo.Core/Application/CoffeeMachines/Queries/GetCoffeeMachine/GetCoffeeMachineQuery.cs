@@ -5,6 +5,6 @@ namespace Samples.Data.Mongo.Core.Application.CoffeeMachines.Queries.GetCoffeeMa
 {
     public class GetCoffeeMachineQuery : IRequest<CoffeeMachineVm>
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
     }
 }

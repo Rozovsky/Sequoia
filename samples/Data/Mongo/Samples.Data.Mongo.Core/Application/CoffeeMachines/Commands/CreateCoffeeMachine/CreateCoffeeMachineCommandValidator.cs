@@ -7,7 +7,7 @@ namespace Samples.Data.Mongo.Core.Application.CoffeeMachines.Commands.CreateCoff
         public CreateCoffeeMachineCommandValidator()
         {
             RuleFor(v => v.Dto.StoreId)
-                .GreaterThan(0)
+                .NotEmpty()
                     .WithMessage("StoreId must be set");
 
             RuleFor(v => v.Dto.Brand)

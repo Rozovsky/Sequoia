@@ -2,7 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Samples.Data.Mongo.Core.Application.Common.Interfaces;
 using Samples.Data.Mongo.Core.Application.Common.Services;
+using Samples.Data.Mongo.Core.Infrastructure.Repositories;
 using Sequoia;
+using Sequoia.Data.Mongo;
 using System.Reflection;
 
 namespace Samples.Data.Mongo.Core
@@ -17,12 +19,16 @@ namespace Samples.Data.Mongo.Core
             // register common components
             services.AddSequoia(Assembly.GetExecutingAssembly(), configuration);
 
+            // add mongo db
+            services.AddMongoDb(configuration.GetConnectionString("MongoConnection"), "coffee-store");
+
             // add application services
             services.AddTransient<IStoreService, StoreService>();
             services.AddTransient<ICoffeeMachineService, CoffeeMachineService>();
 
             // add application repositories
-            //services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IStoreRepository, StoreRepository>();
+            services.AddTransient<ICoffeeMachineRepository, CoffeeMachineRepository>();
 
             return services;
         }

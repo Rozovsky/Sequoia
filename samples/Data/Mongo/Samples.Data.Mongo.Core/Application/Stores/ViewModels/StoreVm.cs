@@ -8,7 +8,7 @@ namespace Samples.Data.Mongo.Core.Application.Stores.ViewModels
     [AutoMap(typeof(Store))]
     public class StoreVm
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public ShopType Type { get; set; }

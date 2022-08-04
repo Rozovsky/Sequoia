@@ -6,7 +6,7 @@ namespace Samples.Data.Mongo.Core.Application.CoffeeMachines.Commands.UpdateCoff
 {
     public class UpdateCoffeeMachineCommand : IRequest<CoffeeMachineVm>
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public CoffeeMachineToUpdateDto Dto { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class CoffeeMachineToUpdateDto
     {
-        public long StoreId { get; set; }
+        public string StoreId { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
     }

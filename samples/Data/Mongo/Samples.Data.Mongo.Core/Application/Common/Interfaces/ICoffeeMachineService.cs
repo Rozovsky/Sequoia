@@ -6,9 +6,9 @@ namespace Samples.Data.Mongo.Core.Application.Common.Interfaces
     public interface ICoffeeMachineService
     {
         Task<CoffeeMachine> CreateCoffeeMachine(CoffeeMachineToCreateDto dto, CancellationToken cancellationToken);
-        Task<CoffeeMachine> UpdateCoffeeMachine(long id, CoffeeMachineToUpdateDto dto, CancellationToken cancellationToken);
-        Task DeleteCoffeeMachine(long id, CancellationToken cancellationToken);
-        Task<CoffeeMachine> GetCoffeeMachine(long id, CancellationToken cancellationToken);
+        Task<CoffeeMachine> UpdateCoffeeMachine(string id, CoffeeMachineToUpdateDto dto, CancellationToken cancellationToken);
+        Task DeleteCoffeeMachine(string id, CancellationToken cancellationToken);
+        Task<CoffeeMachine> GetCoffeeMachine(string id, CancellationToken cancellationToken);
         Task<List<CoffeeMachine>> GetCoffeeMachines(CancellationToken cancellationToken);
     }
 }

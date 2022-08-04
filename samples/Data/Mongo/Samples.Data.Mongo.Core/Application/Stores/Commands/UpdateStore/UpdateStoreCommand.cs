@@ -6,7 +6,7 @@ namespace Samples.Data.Mongo.Core.Application.Stores.Commands.UpdateStore
 {
     public class UpdateStoreCommand : IRequest<StoreVm>
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public StoreToUpdateDto Dto { get; set; }
     }
 }

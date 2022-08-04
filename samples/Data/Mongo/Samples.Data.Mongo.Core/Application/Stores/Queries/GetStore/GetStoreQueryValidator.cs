@@ -7,7 +7,7 @@ namespace Samples.Data.Mongo.Core.Application.Stores.Queries.GetStore
         public GetStoreQueryValidator()
         {
             RuleFor(v => v.Id)
-                .GreaterThan(0)
+                .NotEmpty()
                     .WithMessage("Id must be set");
         }
     }

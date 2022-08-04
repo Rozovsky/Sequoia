@@ -24,7 +24,7 @@ namespace Samples.Data.Postgresql.Api.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<StoreVm> UpdateStore([FromRoute] long id, [FromBody] StoreToUpdateDto dto)
+        public async Task<StoreVm> UpdateStore([FromRoute] string id, [FromBody] StoreToUpdateDto dto)
         {
             return await Mediator.Send(new UpdateStoreCommand
             {
@@ -35,7 +35,7 @@ namespace Samples.Data.Postgresql.Api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteStore([FromRoute] long id)
+        public async Task<IActionResult> DeleteStore([FromRoute] string id)
         {
             await Mediator.Send(new DeleteStoreCommand
             {
@@ -47,7 +47,7 @@ namespace Samples.Data.Postgresql.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<StoreVm> GetStore([FromRoute] long id)
+        public async Task<StoreVm> GetStore([FromRoute] string id)
         {
             return await Mediator.Send(new GetStoreQuery
             {

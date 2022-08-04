@@ -7,11 +7,11 @@ namespace Samples.Data.Mongo.Core.Application.CoffeeMachines.Commands.UpdateCoff
         public UpdateCoffeeMachineCommandValidator()
         {
             RuleFor(v => v.Id)
-                .GreaterThan(0)
+                .NotEmpty()
                     .WithMessage("Id must be set");
 
             RuleFor(v => v.Dto.StoreId)
-                .GreaterThan(0)
+                .NotEmpty()
                     .WithMessage("StoreId must be set");
 
             RuleFor(v => v.Dto.Brand)

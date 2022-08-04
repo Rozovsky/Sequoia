@@ -5,6 +5,6 @@ namespace Samples.Data.Mongo.Core.Application.Stores.Queries.GetStore
 {
     public class GetStoreQuery : IRequest<StoreVm>
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
     }
 }

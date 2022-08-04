@@ -24,6 +24,27 @@ services:
     ports:
       - "10001:80"
 
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 777888
+    ports:
+      - "11000:27017"
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - 11001:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 777888
+      ME_CONFIG_MONGODB_URL: mongodb://root:777888@mongo:27017/
+
   # Samples Data
 
   samples.data.postgresql.api:
@@ -48,13 +69,12 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
-  # Samples Sequoia
-  samples.sequoia.complex.api:
-    image: ${DOCKER_REGISTRY-}samples-sequoia-complex-api
+  samples.data.mongo.api:
+    image: ${DOCKER_REGISTRY-}samples-data-mongo-api
     build:
       context: .
-      dockerfile: samples/Sequoia/Complex/Samples.Sequoia.Complex.Api/Dockerfile
-    container_name: samples-sequoia-complex-api
+      dockerfile: samples/Data/Mongo/Samples.Data.Mongo.Api/Dockerfile
+    container_name: samples-data-mongo-api
     restart: always
     logging:
       driver: "json-file"
@@ -65,8 +85,32 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - TZ=Europe/Kiev
     ports:
-      - "30000:80"
-      - "30001:443"
+      - "20010:80"
+      - "20011:443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  # Samples Sequoia
+
+  #samples.sequoia.complex.api:
+  #  image: ${DOCKER_REGISTRY-}samples-sequoia-complex-api
+  #  build:
+  #    context: .
+  #    dockerfile: samples/Sequoia/Complex/Samples.Sequoia.Complex.Api/Dockerfile
+  #  container_name: samples-sequoia-complex-api
+  #  restart: always
+  #  logging:
+  #    driver: "json-file"
+  #    options:
+  #      max-size: "100m"
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - ASPNETCORE_URLS=https://+:443;http://+:80
+  #    - TZ=Europe/Kiev
+  #  ports:
+  #    - "30000:80"
+  #    - "30001:443"
+  #  volumes:
+  #    - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+  #    - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

@@ -4,6 +4,6 @@ namespace Samples.Data.Mongo.Core.Application.CoffeeMachines.Commands.DeleteCoff
 {
     public class DeleteCoffeeMachineCommand : IRequest
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
     }
 }

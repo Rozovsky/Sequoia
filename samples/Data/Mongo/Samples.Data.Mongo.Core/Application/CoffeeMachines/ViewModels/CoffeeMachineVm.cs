@@ -6,7 +6,7 @@ namespace Samples.Data.Mongo.Core.Application.CoffeeMachines.ViewModels
     [AutoMap(typeof(CoffeeMachine))]
     public class CoffeeMachineVm
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public long StoreId { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }

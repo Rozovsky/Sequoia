@@ -24,7 +24,7 @@ namespace Samples.Data.Mongo.Api.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<CoffeeMachineVm> UpdateCoffeeMachine([FromRoute] long id, [FromBody] CoffeeMachineToUpdateDto dto)
+        public async Task<CoffeeMachineVm> UpdateCoffeeMachine([FromRoute] string id, [FromBody] CoffeeMachineToUpdateDto dto)
         {
             return await Mediator.Send(new UpdateCoffeeMachineCommand
             {
@@ -35,7 +35,7 @@ namespace Samples.Data.Mongo.Api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteCoffeeMachine([FromRoute] long id)
+        public async Task<IActionResult> DeleteCoffeeMachine([FromRoute] string id)
         {
             await Mediator.Send(new DeleteCoffeeMachineCommand
             {
@@ -47,7 +47,7 @@ namespace Samples.Data.Mongo.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<CoffeeMachineVm> GetCoffeeMachine([FromRoute] long id)
+        public async Task<CoffeeMachineVm> GetCoffeeMachine([FromRoute] string id)
         {
             return await Mediator.Send(new GetCoffeeMachineQuery
             {

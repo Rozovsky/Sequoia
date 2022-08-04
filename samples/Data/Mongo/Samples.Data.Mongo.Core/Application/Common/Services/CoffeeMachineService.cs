@@ -30,7 +30,7 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
             return new CoffeeMachine();
         }
 
-        public async Task<CoffeeMachine> UpdateCoffeeMachine(long id, CoffeeMachineToUpdateDto dto, CancellationToken cancellationToken)
+        public async Task<CoffeeMachine> UpdateCoffeeMachine(string id, CoffeeMachineToUpdateDto dto, CancellationToken cancellationToken)
         {
             /*var machine = await this.GetCoffeeMachine(id, cancellationToken);
 
@@ -43,7 +43,7 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
             return new CoffeeMachine();
         }
 
-        public async Task DeleteCoffeeMachine(long id, CancellationToken cancellationToken)
+        public async Task DeleteCoffeeMachine(string id, CancellationToken cancellationToken)
         {
             /*var machine = await this.GetCoffeeMachine(id, cancellationToken);
 
@@ -51,7 +51,7 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
             await _dbContext.SaveChangesAsync(cancellationToken);*/
         }
 
-        public async Task<CoffeeMachine> GetCoffeeMachine(long id, CancellationToken cancellationToken)
+        public async Task<CoffeeMachine> GetCoffeeMachine(string id, CancellationToken cancellationToken)
         {
             /*var machine = await _dbContext.CoffeeMachines
                 .SingleOrDefaultAsync(c => c.Id == id, cancellationToken);

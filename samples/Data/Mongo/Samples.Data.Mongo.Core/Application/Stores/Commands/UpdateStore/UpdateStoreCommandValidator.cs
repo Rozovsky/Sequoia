@@ -7,7 +7,7 @@ namespace Samples.Data.Mongo.Core.Application.Stores.Commands.UpdateStore
         public UpdateStoreCommandValidator()
         {
             RuleFor(v => v.Id)
-                .GreaterThan(0)
+                .NotEmpty()
                     .WithMessage("Id must be set");
 
             RuleFor(v => v.Dto.Type)
