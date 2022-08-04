@@ -22,7 +22,6 @@ namespace Samples.Data.Postgresql.Core.Application.Common.Services
 
         public async Task<CoffeeMachine> CreateCoffeeMachine(CoffeeMachineToCreateDto dto, CancellationToken cancellationToken)
         {
-            // TODO: check if store exist
             var machine = _mapper.Map<CoffeeMachine>(dto);
 
             _dbContext.CoffeeMachines.Add(machine);
@@ -35,7 +34,6 @@ namespace Samples.Data.Postgresql.Core.Application.Common.Services
         {
             var machine = await this.GetCoffeeMachine(id, cancellationToken);
 
-            // TODO: check if store exist // if dto.StoreId != machine.StoreId
             _mapper.Map(dto, machine);
 
             await _dbContext.SaveChangesAsync(cancellationToken);
