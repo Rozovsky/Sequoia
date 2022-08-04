@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MongoDB.Driver;
 using Samples.Data.Mongo.Core.Application.Common.Interfaces;
 using Samples.Data.Mongo.Core.Application.Stores.Dtos;
 using Samples.Data.Mongo.Core.Domain.Entities;
@@ -8,16 +9,16 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
 {
     public class StoreService : IStoreService
     {
-        //private readonly IApplicationDbContext _dbContext;
+        private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IStoreRepository _storeRepository;
 
         public StoreService(
-            //IApplicationDbContext dbContext,
+            IApplicationDbContext dbContext,
             IMapper mapper, 
             IStoreRepository storeRepository)
         {
-            //_dbContext = dbContext;
+            _dbContext = dbContext;
             _mapper = mapper;
             _storeRepository = storeRepository;
         }
@@ -25,8 +26,8 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
         public async Task<Store> CreateStore(StoreToCreateDto dto, CancellationToken cancellationToken)
         {
             var store = _mapper.Map<Store>(dto);
-            
-            store = await _storeRepository.AddAsync(store, cancellationToken);
+
+            await _dbContext.Stores.InsertOneAsync(store, cancellationToken: cancellationToken);
 
             return store;
         }
@@ -37,7 +38,10 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
 
             _mapper.Map(dto, store);
 
-            await _storeRepository.UpdateAsync(c => c.Id == id, store, cancellationToken);
+            await _dbContext.Stores.ReplaceOneAsync(
+                c => c.Id == id, store,
+                new ReplaceOptions { IsUpsert = true },
+                cancellationToken: cancellationToken);
 
             return store;
         }
@@ -46,12 +50,15 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
         {
             var store = await this.GetStore(id, cancellationToken);
 
-            await _storeRepository.DeleteAsync(c => c.Id == id, cancellationToken);
+            await _dbContext.Stores.DeleteOneAsync(c => c.Id == id, cancellationToken);
         }
 
         public async Task<Store> GetStore(string id, CancellationToken cancellationToken)
         {
-            var store = await _storeRepository.SingleOrDefaultAsync(c => c.Id == id, cancellationToken);
+            var filter = Builders<Store>.Filter.Where(c => c.Id == id);
+            var collection = await _dbContext.Stores.FindAsync(filter, cancellationToken: cancellationToken);
+
+            var store = await collection.SingleOrDefaultAsync(cancellationToken: cancellationToken);
 
             if (store == null)
                 throw new NotFoundException(nameof(Store), id);
@@ -61,9 +68,57 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
 
         public async Task<List<Store>> GetStores(CancellationToken cancellationToken)
         {
-            var stores = _storeRepository.AsQueryable().ToList();
+            var stores = _dbContext.Stores.AsQueryable().ToList();
 
             return stores;
         }
+
+        #region With repositories
+
+        //public async Task<Store> CreateStore(StoreToCreateDto dto, CancellationToken cancellationToken)
+        //{
+        //    var store = _mapper.Map<Store>(dto);
+
+        //    store = await _storeRepository.AddAsync(store, cancellationToken);
+
+        //    return store;
+        //}
+
+        //public async Task<Store> UpdateStore(string id, StoreToUpdateDto dto, CancellationToken cancellationToken)
+        //{
+        //    var store = await this.GetStore(id, cancellationToken);
+
+        //    _mapper.Map(dto, store);
+
+        //    await _storeRepository.UpdateAsync(c => c.Id == id, store, cancellationToken);
+
+        //    return store;
+        //}
+
+        //public async Task DeleteStore(string id, CancellationToken cancellationToken)
+        //{
+        //    var store = await this.GetStore(id, cancellationToken);
+
+        //    await _storeRepository.DeleteAsync(c => c.Id == id, cancellationToken);
+        //}
+
+        //public async Task<Store> GetStore(string id, CancellationToken cancellationToken)
+        //{
+        //    var store = await _storeRepository.SingleOrDefaultAsync(c => c.Id == id, cancellationToken);
+
+        //    if (store == null)
+        //        throw new NotFoundException(nameof(Store), id);
+
+        //    return store;
+        //}
+
+        //public async Task<List<Store>> GetStores(CancellationToken cancellationToken)
+        //{
+        //    var stores = _storeRepository.AsQueryable().ToList();
+
+        //    return stores;
+        //}
+
+        #endregion
     }
 }
