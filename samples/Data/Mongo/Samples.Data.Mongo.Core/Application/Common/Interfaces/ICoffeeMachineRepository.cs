@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Samples.Data.Mongo.Core.Domain.Entities;
+using Sequoia.Data.Mongo.Interfaces;
 
 namespace Samples.Data.Mongo.Core.Application.Common.Interfaces
 {
-    public interface ICoffeeMachineRepository
+    public interface ICoffeeMachineRepository : IMongoRepository<CoffeeMachine>
     {
     }
 }

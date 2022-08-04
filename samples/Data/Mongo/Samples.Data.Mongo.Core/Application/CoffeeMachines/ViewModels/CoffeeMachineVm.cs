@@ -7,7 +7,7 @@ namespace Samples.Data.Mongo.Core.Application.CoffeeMachines.ViewModels
     public class CoffeeMachineVm
     {
         public string Id { get; set; }
-        public long StoreId { get; set; }
+        public string StoreId { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public string CreatedBy { get; set; }

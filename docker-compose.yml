@@ -4,25 +4,25 @@ services:
 
   # Infrastructure
 
-  postgres-db:
-    image: postgres:14.4
-    container_name: postgres-db
-    restart: always
-    ports:
-      - "10000:5432"
-    environment:
-      POSTGRES_PASSWORD: 777888
-      PGDATA: /var/lib/postgresql/data/pgdata
+  #postgres-db:
+  #  image: postgres:14.4
+  #  container_name: postgres-db
+  #  restart: always
+  #  ports:
+  #    - "10000:5432"
+  #  environment:
+  #    POSTGRES_PASSWORD: 777888
+  #    PGDATA: /var/lib/postgresql/data/pgdata
 
-  pg-admin:
-    container_name: postgres-admin
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: dev@sequoia.ua
-      PGADMIN_DEFAULT_PASSWORD: 777888
-    ports:
-      - "10001:80"
+  #pg-admin:
+  #  container_name: postgres-admin
+  #  image: dpage/pgadmin4
+  #  restart: always
+  #  environment:
+  #    PGADMIN_DEFAULT_EMAIL: dev@sequoia.ua
+  #    PGADMIN_DEFAULT_PASSWORD: 777888
+  #  ports:
+  #    - "10001:80"
 
   mongo:
     image: mongo
@@ -47,27 +47,27 @@ services:
 
   # Samples Data
 
-  samples.data.postgresql.api:
-    image: ${DOCKER_REGISTRY-}samples-data-postgresql-api
-    build:
-      context: .
-      dockerfile: samples/Data/Postgresql/Samples.Data.Postgresql.Api/Dockerfile
-    container_name: samples-data-postgresql-api
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100m"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - TZ=Europe/Kiev
-    ports:
-      - "20000:80"
-      - "20001:443"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  #samples.data.postgresql.api:
+  #  image: ${DOCKER_REGISTRY-}samples-data-postgresql-api
+  #  build:
+  #    context: .
+  #    dockerfile: samples/Data/Postgresql/Samples.Data.Postgresql.Api/Dockerfile
+  #  container_name: samples-data-postgresql-api
+  #  restart: always
+  #  logging:
+  #    driver: "json-file"
+  #    options:
+  #      max-size: "100m"
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - ASPNETCORE_URLS=https://+:443;http://+:80
+  #    - TZ=Europe/Kiev
+  #  ports:
+  #    - "20000:80"
+  #    - "20001:443"
+  #  volumes:
+  #    - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+  #    - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
   samples.data.mongo.api:
     image: ${DOCKER_REGISTRY-}samples-data-mongo-api
