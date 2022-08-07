@@ -4,11 +4,12 @@ using Samples.Data.Postgresql.Core.Application.Common.Interfaces;
 using Samples.Data.Postgresql.Core.Application.Common.Services;
 using Samples.Data.Postgresql.Core.Infrastructure;
 using Sequoia;
+using Sequoia.Attributes;
 using Sequoia.Data.Postgresql;
-using System.Reflection;
 
 namespace Samples.Data.Postgresql.Core
 {
+    [SequoiaMember]
     public static class DependencyInjection
     {
         /// <summary>
@@ -17,7 +18,7 @@ namespace Samples.Data.Postgresql.Core
         public static IServiceCollection AddCoreServices(this IServiceCollection services, IConfiguration configuration)
         {
             // register common components
-            services.AddSequoia(Assembly.GetExecutingAssembly(), configuration);
+            services.AddSequoia();
 
             // add postgres db
             services.AddPostgresql<IApplicationDbContext, ApplicationDbContext>(
