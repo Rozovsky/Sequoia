@@ -5,8 +5,10 @@ using Samples.Data.Mongo.Core.Application.Stores.Commands.UpdateStore;
 using Samples.Data.Mongo.Core.Application.Stores.Dtos;
 using Samples.Data.Mongo.Core.Application.Stores.Queries.GetStore;
 using Samples.Data.Mongo.Core.Application.Stores.Queries.GetStores;
+using Samples.Data.Mongo.Core.Application.Stores.Queries.GetStoresPaged;
 using Samples.Data.Mongo.Core.Application.Stores.ViewModels;
 using Sequoia.Abstractions;
+using Sequoia.Data.Abstractions;
 
 namespace Samples.Data.Postgresql.Api.Controllers
 {
@@ -59,6 +61,13 @@ namespace Samples.Data.Postgresql.Api.Controllers
         public async Task<List<StoreVm>> GetStores()
         {
             return await Mediator.Send(new GetStoresQuery());
+        }
+
+        [HttpGet]
+        [Route("paged")]
+        public async Task<PagedWrapper<StoreVm>> GetStoresPaged([FromQuery] GetStoresPagedQuery query)
+        {
+            return await Mediator.Send(query);
         }
     }
 }

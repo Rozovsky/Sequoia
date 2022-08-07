@@ -1,6 +1,6 @@
 ﻿namespace Sequoia.Data.Abstractions
 {
-    public abstract class ListWrapperBase
+    public abstract class PagedWrapperBase
     {
         public int PageNumber { get; set; }
         public int TotalPages { get; set; }

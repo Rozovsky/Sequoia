@@ -5,7 +5,8 @@ namespace Sequoia.Data.Mongo.Extensions
 {
     public static class IMongoCollectionExtensions
     {
-        public static async Task<TEntity> SingleOrDefaultAsync<TEntity>(
+        // https://github.com/mongodb/mongo-csharp-driver/blob/master/src/MongoDB.Driver/Linq/MongoQueryable.cs
+        /*public static async Task<TEntity> SingleOrDefaultAsync<TEntity>(
             this IMongoCollection<TEntity> collection, Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
         {
             var filter = Builders<TEntity>.Filter.Where(predicate);
@@ -13,11 +14,11 @@ namespace Sequoia.Data.Mongo.Extensions
             var entity = await result.SingleOrDefaultAsync(cancellationToken);
 
             return entity;
-        }
+        }*/
 
-        // TODO: add order by extension
+        // TODO: add order-by extension
 
-        public static async Task<TEntity> FirstOrDefaultAsync<TEntity, TSortKey>(
+        /*public static async Task<TEntity> FirstOrDefaultAsync<TEntity, TSortKey>(
             this IMongoCollection<TEntity> collection, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TSortKey>> sortKey, CancellationToken cancellationToken = default)
         {
             /*var filter = Builders<TEntity>.Filter.Where(predicate);
@@ -38,12 +39,14 @@ namespace Sequoia.Data.Mongo.Extensions
 
             var result2 = await collection.FirstOrDefaultAsync(cancellationToken);*/
 
+            /*var t = sortKey as FieldDefinition<TEntity>;
+            
             var entity = await collection
              .Find(Builders<TEntity>.Filter.Where(predicate))
              .Sort(Builders<TEntity>.Sort.Descending(sortKey as FieldDefinition<TEntity>))
              .FirstOrDefaultAsync(cancellationToken);
 
             return entity;
-        }        
+        }      */  
     }
 }

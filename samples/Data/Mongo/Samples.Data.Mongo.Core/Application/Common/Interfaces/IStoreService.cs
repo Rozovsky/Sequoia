@@ -1,5 +1,6 @@
 ﻿using Samples.Data.Mongo.Core.Application.Stores.Dtos;
 using Samples.Data.Mongo.Core.Domain.Entities;
+using Sequoia.Data.Abstractions;
 
 namespace Samples.Data.Mongo.Core.Application.Common.Interfaces
 {
@@ -10,5 +11,6 @@ namespace Samples.Data.Mongo.Core.Application.Common.Interfaces
         Task DeleteStore(string id, CancellationToken cancellationToken);
         Task<Store> GetStore(string id, CancellationToken cancellationToken);
         Task<List<Store>> GetStores(CancellationToken cancellationToken);
+        Task<PagedWrapper<Store>> GetStoresPaged(int page, int limit, CancellationToken cancellationToken);
     }
 }
