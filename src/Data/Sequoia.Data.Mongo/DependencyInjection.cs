@@ -4,9 +4,9 @@ using Sequoia.Data.Mongo.Interfaces;
 using Sequoia.Data.Mongo.Options;
 using Sequoia.Data.Mongo.Persistence;
 
-[assembly: SequoiaMember()]
 namespace Sequoia.Data.Mongo
 {
+    [SequoiaMember]
     public static class DependencyInjection
     {
         public static IServiceCollection AddMongoDb(this IServiceCollection services, string connectionString, string database)

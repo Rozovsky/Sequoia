@@ -5,11 +5,13 @@ using Samples.Data.Mongo.Core.Application.Common.Services;
 using Samples.Data.Mongo.Core.Infrastructure;
 using Samples.Data.Mongo.Core.Infrastructure.Repositories;
 using Sequoia;
+using Sequoia.Attributes;
 using Sequoia.Data.Mongo;
 using System.Reflection;
 
 namespace Samples.Data.Mongo.Core
 {
+    [SequoiaMember]
     public static class DependencyInjection
     {
         /// <summary>
@@ -18,7 +20,7 @@ namespace Samples.Data.Mongo.Core
         public static IServiceCollection AddCoreServices(this IServiceCollection services, IConfiguration configuration)
         {
             // register common components
-            services.AddSequoia(Assembly.GetExecutingAssembly(), configuration);
+            services.AddSequoia();
 
             // add mongo db
             services.AddMongoDb(configuration.GetConnectionString("MongoConnection"), "coffee-store");
