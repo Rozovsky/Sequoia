@@ -7,7 +7,6 @@ using Samples.Data.Mongo.Core.Infrastructure.Repositories;
 using Sequoia;
 using Sequoia.Attributes;
 using Sequoia.Data.Mongo;
-using System.Reflection;
 
 namespace Samples.Data.Mongo.Core
 {
@@ -23,8 +22,9 @@ namespace Samples.Data.Mongo.Core
             services.AddSequoia();
 
             // add mongo db
-            services.AddMongoDb(configuration.GetConnectionString("MongoConnection"), "coffee-store");
-            services.AddScoped<IApplicationDbContext, ApplicationDbContext>(); // TODO: move to AddMongoDb
+            services.AddMongoDb<IApplicationDbContext, ApplicationDbContext>(
+                configuration.GetConnectionString("MongoConnection"), "coffee-store");
+            //services.AddScoped<IApplicationDbContext, ApplicationDbContext>(); // TODO: move to AddMongoDb
 
             // add application services
             services.AddTransient<IStoreService, StoreService>();
