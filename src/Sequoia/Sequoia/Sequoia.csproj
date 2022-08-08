@@ -7,7 +7,7 @@
     <PackageProjectUrl></PackageProjectUrl>
     <Description>Kernel for creating microservices on CQRS and Clean Architecture</Description>
     <RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
-    <PackageTags>cqrs;clean-architecture;ddd;identity;web-client;</PackageTags>
+    <PackageTags>microservices;kernel;cqrs;clean-architecture;identity;web-client;</PackageTags>
     <Authors>Rozovsky</Authors>
 	<Version>0.0.4</Version>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
