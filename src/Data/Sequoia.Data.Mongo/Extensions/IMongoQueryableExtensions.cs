@@ -12,13 +12,13 @@ namespace Sequoia.Data.Mongo.Extensions
         {
             var result = new PagedWrapper<TSource>
             {
-                PageNumber = page,
+                Page = page,
                 PageSize = limit,
-                TotalCount = source.Count()
+                ItemsTotal = source.Count()
             };
 
-            var pageCount = (double)result.TotalCount / limit;
-            result.TotalPages = (int)Math.Ceiling(pageCount);
+            var pageCount = (double)result.ItemsTotal / limit;
+            result.PagesTotal = (int)Math.Ceiling(pageCount);
             var skip = (page - 1) * limit;
 
             result.Items = await source

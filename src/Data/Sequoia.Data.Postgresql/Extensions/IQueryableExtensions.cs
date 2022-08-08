@@ -11,13 +11,13 @@ namespace Sequoia.Data.Postgresql.Extensions
         {
             var result = new PagedWrapper<T>
             {
-                PageNumber = page,
+                Page = page,
                 PageSize = limit,
-                TotalCount = query.Count()
+                ItemsTotal = query.Count()
             };
 
-            var pageCount = (double)result.TotalCount / limit;
-            result.TotalPages = (int)Math.Ceiling(pageCount);
+            var pageCount = (double)result.ItemsTotal / limit;
+            result.PagesTotal = (int)Math.Ceiling(pageCount);
             var skip = (page - 1) * limit;
 
             result.Items = await query
@@ -27,28 +27,5 @@ namespace Sequoia.Data.Postgresql.Extensions
 
             return result;
         }
-
-        //public static PagedWrapper<U> ToCastedPagedWrapper<T, U>(this IQueryable<T> query, IMapper mapper, int page, int pageSize) where U : class
-        //{
-        //    var result = new PagedWrapper<U>
-        //    {
-        //        PageNumber = page,
-        //        PageSize = pageSize,
-        //        TotalCount = query.Count()
-        //    };
-
-        //    var pageCount = (double)result.TotalCount / pageSize;
-        //    result.TotalPages = (int)Math.Ceiling(pageCount);
-
-        //    var skip = (page - 1) * pageSize;
-
-        //    result.Items = query
-        //        .Skip(skip)
-        //        .Take(pageSize)
-        //        .ProjectTo<U>(mapper.ConfigurationProvider)
-        //        .ToList();
-
-        //    return result;
-        //}
     }
 }
