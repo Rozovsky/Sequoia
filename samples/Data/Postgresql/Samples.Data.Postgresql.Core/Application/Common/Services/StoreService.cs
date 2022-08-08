@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Samples.Data.Postgresql.Core.Application.Common.Interfaces;
 using Samples.Data.Postgresql.Core.Application.Stores.Dtos;
 using Samples.Data.Postgresql.Core.Domain.Entities;
+using Sequoia.Data.Abstractions;
+using Sequoia.Data.Postgresql.Extensions;
 using Sequoia.Exceptions;
 
 namespace Samples.Data.Postgresql.Core.Application.Common.Services
@@ -22,7 +24,6 @@ namespace Samples.Data.Postgresql.Core.Application.Common.Services
 
         public async Task<Store> CreateStore(StoreToCreateDto dto, CancellationToken cancellationToken)
         {
-            // TODO: check if store exist
             var store = _mapper.Map<Store>(dto);
 
             _dbContext.Stores.Add(store);
@@ -34,8 +35,6 @@ namespace Samples.Data.Postgresql.Core.Application.Common.Services
         public async Task<Store> UpdateStore(long id, StoreToUpdateDto dto, CancellationToken cancellationToken)
         {
             var store = await this.GetStore(id, cancellationToken);
-
-            // TODO: check if store exist // if dto.StoreId != machine.StoreId
             _mapper.Map(dto, store);
 
             await _dbContext.SaveChangesAsync(cancellationToken);
@@ -69,6 +68,16 @@ namespace Samples.Data.Postgresql.Core.Application.Common.Services
                 .AsNoTracking()
                 .Include(c => c.CoffeeMachines)
                 .ToListAsync(cancellationToken);
+
+            return stores;
+        }
+
+        public async Task<PagedWrapper<Store>> GetStoresPaged(int page, int limit, CancellationToken cancellationToken)
+        {
+            var stores = await _dbContext.Stores
+                .AsQueryable()
+                .Where(c => c.Address.Length > 0)
+                .ToPagedWrapper(page, limit, cancellationToken);
 
             return stores;
         }

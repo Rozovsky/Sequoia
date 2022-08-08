@@ -1,5 +1,6 @@
 ﻿using Samples.Data.Postgresql.Core.Application.Stores.Dtos;
 using Samples.Data.Postgresql.Core.Domain.Entities;
+using Sequoia.Data.Abstractions;
 
 namespace Samples.Data.Postgresql.Core.Application.Common.Interfaces
 {
@@ -10,5 +11,6 @@ namespace Samples.Data.Postgresql.Core.Application.Common.Interfaces
         Task DeleteStore(long id, CancellationToken cancellationToken);
         Task<Store> GetStore(long id, CancellationToken cancellationToken);
         Task<List<Store>> GetStores(CancellationToken cancellationToken);
+        Task<PagedWrapper<Store>> GetStoresPaged(int page, int limit, CancellationToken cancellationToken);
     }
 }

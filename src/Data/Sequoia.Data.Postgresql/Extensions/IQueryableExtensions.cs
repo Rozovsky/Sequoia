@@ -6,21 +6,24 @@ namespace Sequoia.Data.Postgresql.Extensions
     public static class IQueryableExtensions
     {
         public static async Task<PagedWrapper<T>> ToPagedWrapper<T>(
-            this IQueryable<T> query, int page, int pageSize)
+            this IQueryable<T> query, int page, int limit, CancellationToken cancellationToken = default)
             where T : class
         {
             var result = new PagedWrapper<T>
             {
                 PageNumber = page,
-                PageSize = pageSize,
+                PageSize = limit,
                 TotalCount = query.Count()
             };
 
-            var pageCount = (double)result.TotalCount / pageSize;
+            var pageCount = (double)result.TotalCount / limit;
             result.TotalPages = (int)Math.Ceiling(pageCount);
-            var skip = (page - 1) * pageSize;
+            var skip = (page - 1) * limit;
 
-            result.Items = await query.Skip(skip).Take(pageSize).ToListAsync();
+            result.Items = await query
+                .Skip(skip)
+                .Take(limit)
+                .ToListAsync(cancellationToken);
 
             return result;
         }

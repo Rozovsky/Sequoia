@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Sequoia.Data.Abstractions;
 
 namespace Sequoia.Data.Postgresql
 {
@@ -15,6 +16,8 @@ namespace Sequoia.Data.Postgresql
                     b => b.MigrationsAssembly(typeof(TContext).Assembly.FullName)));
 
             services.AddScoped<TContextInterface>(provider => provider.GetService<TContext>());
+
+            services.AddAutoMapper(typeof(PagedWrapper<>));
 
             return services;
         }
