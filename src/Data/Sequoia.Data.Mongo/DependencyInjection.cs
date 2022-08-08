@@ -10,16 +10,6 @@ namespace Sequoia.Data.Mongo
     [SequoiaMember]
     public static class DependencyInjection
     {
-        //public static IServiceCollection AddMongoDb(this IServiceCollection services, string connectionString, string database)
-        //{
-        //    services.AddSingleton(_ => new MongoConnectionOptions(connectionString, database));
-        //    services.AddScoped<IMongoContext, MongoContext>();
-
-        //    services.AddAutoMapper(typeof(PagedWrapper<>));
-
-        //    return services;
-        //}
-
         public static IServiceCollection AddMongoDb<TContextInterface, TContext>(
             this IServiceCollection services, string connectionString, string database)
             where TContext : TContextInterface
@@ -27,7 +17,7 @@ namespace Sequoia.Data.Mongo
         {
             services.AddSingleton(_ => new MongoConnectionOptions(connectionString, database));
             services.AddScoped<IMongoContext, MongoContext>();
-            services.AddScoped<TContextInterface>(provider => provider.GetService<TContext>());
+            services.AddScoped(typeof(TContextInterface), typeof(TContext));
 
             services.AddAutoMapper(typeof(PagedWrapper<>));
 

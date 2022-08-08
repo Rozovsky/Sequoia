@@ -24,7 +24,6 @@ namespace Samples.Data.Mongo.Core
             // add mongo db
             services.AddMongoDb<IApplicationDbContext, ApplicationDbContext>(
                 configuration.GetConnectionString("MongoConnection"), "coffee-store");
-            //services.AddScoped<IApplicationDbContext, ApplicationDbContext>(); // TODO: move to AddMongoDb
 
             // add application services
             services.AddTransient<IStoreService, StoreService>();
