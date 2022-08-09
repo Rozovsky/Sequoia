@@ -17,7 +17,7 @@ namespace Samples.Data.WebClient.Core.Infrastructure.Repositories
             _webClient = webClient;
             _webClient.Configure(c =>
             {
-                c.WebResourcePath = "sample-api/stores-service";
+                c.WebResourcePath = "data-postgresql-api/stores-service";
                 c.ErrorHandlingMode = ErrorHandlingMode.Debug;
                 c.IgnoreSslErrors = true;
                 c.AuthenticationType = AuthenticationType.Basic;

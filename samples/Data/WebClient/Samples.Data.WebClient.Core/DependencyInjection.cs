@@ -5,6 +5,7 @@ using Samples.Data.WebClient.Core.Application.Common.Services;
 using Samples.Data.WebClient.Core.Infrastructure.Repositories;
 using Sequoia;
 using Sequoia.Attributes;
+using Sequoia.Data.WebClient;
 
 namespace Samples.Data.WebClient.Core
 {
@@ -18,6 +19,7 @@ namespace Samples.Data.WebClient.Core
         {
             // register common components
             services.AddSequoia();
+            services.AddWebClient(configuration);
 
             // add application services
             services.AddTransient<ICoffeeMachineService, CoffeeMachineService>();

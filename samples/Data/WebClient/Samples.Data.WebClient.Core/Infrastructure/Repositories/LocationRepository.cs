@@ -16,7 +16,7 @@ namespace Samples.Data.WebClient.Core.Infrastructure.Repositories
             _webClient = webClient;
             _webClient.Configure(c =>
             {
-                c.WebResourcePath = "sample-api/locations-service";
+                c.WebResourcePath = "authentication-basic-api/locations-service";
                 c.ErrorHandlingMode = ErrorHandlingMode.Debug;
                 c.IgnoreSslErrors = true;
                 c.AuthenticationType = AuthenticationType.Basic;

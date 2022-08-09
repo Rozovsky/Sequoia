@@ -7,7 +7,7 @@ using Sequoia.Data.Abstractions;
 
 namespace Samples.Authentication.Basic.Api.Controllers
 {
-    [Route("api/locations")]
+    [Route("api/basic/locations")]
     public class LocationsController : ApiController
     {
 

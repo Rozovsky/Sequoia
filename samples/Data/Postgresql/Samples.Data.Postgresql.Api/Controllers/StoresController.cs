@@ -12,7 +12,7 @@ using Sequoia.Data.Abstractions;
 
 namespace Samples.Data.Postgresql.Api.Controllers
 {
-    [Route("api/stores")]
+    [Route("api/postgresql/stores")]
     public class StoresController : ApiController
     {
         [HttpPost]

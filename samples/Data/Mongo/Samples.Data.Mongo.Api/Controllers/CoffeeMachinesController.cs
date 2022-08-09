@@ -10,7 +10,7 @@ using Sequoia.Abstractions;
 
 namespace Samples.Data.Mongo.Api.Controllers
 {
-    [Route("api/coffee-machines")]
+    [Route("api/mongo/coffee-machines")]
     public class CoffeeMachinesController : ApiController
     {
         [HttpPost]
