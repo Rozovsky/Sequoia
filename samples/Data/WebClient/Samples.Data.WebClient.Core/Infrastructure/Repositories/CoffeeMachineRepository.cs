@@ -1,58 +1,65 @@
 ﻿using Samples.Data.WebClient.Core.Application.CoffeeMachines.Dtos;
 using Samples.Data.WebClient.Core.Application.Common.Interfaces;
 using Samples.Data.WebClient.Core.Domain.Models.CoffeeMachines;
+using Sequoia.Data.WebClient.Enums;
+using Sequoia.Data.WebClient.Extensions;
+using Sequoia.Data.WebClient.Interfaces;
 
 namespace Samples.Data.WebClient.Core.Infrastructure.Repositories
 {
     public class CoffeeMachineRepository : ICoffeeMachineRepository
     {
+        private readonly IWebClient _webClient;
+
+        public CoffeeMachineRepository(IWebClient webClient)
+        {
+            _webClient = webClient;
+            _webClient.Configure(c =>
+            {
+                c.WebResourcePath = "sample-api/machines-service";
+                c.ErrorHandlingMode = ErrorHandlingMode.Debug;
+                c.IgnoreSslErrors = true;
+                c.AuthenticationType = AuthenticationType.Basic;
+            });
+        }
+
         public async Task<CoffeeMachine> CreateCoffeeMachine(CoffeeMachineToCreateDto dto, CancellationToken cancellationToken)
         {
-            /*var machine = _mapper.Map<CoffeeMachine>(dto);
+            var machine = await _webClient
+                .WithStringContent(dto)
+                .Post<CoffeeMachine>("/coffee-machines", cancellationToken);
 
-            _dbContext.CoffeeMachines.Add(machine);
-            await _dbContext.SaveChangesAsync(cancellationToken);*/
-
-            return new CoffeeMachine();
+            return machine;
         }
 
         public async Task<CoffeeMachine> UpdateCoffeeMachine(long id, CoffeeMachineToUpdateDto dto, CancellationToken cancellationToken)
         {
-            /*var machine = await this.GetCoffeeMachine(id, cancellationToken);
+            var machine = await _webClient
+                .WithStringContent(dto)
+                .Put<CoffeeMachine>($"/coffee-machines/{id}", cancellationToken);
 
-            _mapper.Map(dto, machine);
-
-            await _dbContext.SaveChangesAsync(cancellationToken);*/
-
-            return new CoffeeMachine();
+            return machine;
         }
 
         public async Task DeleteCoffeeMachine(long id, CancellationToken cancellationToken)
         {
-            /*var machine = await this.GetCoffeeMachine(id, cancellationToken);
-
-            _dbContext.CoffeeMachines.Remove(machine);
-            await _dbContext.SaveChangesAsync(cancellationToken);*/
+            await _webClient.Delete($"/coffee-machines/{id}", cancellationToken);
         }
 
         public async Task<CoffeeMachine> GetCoffeeMachine(long id, CancellationToken cancellationToken)
         {
-            /*var machine = await _dbContext.CoffeeMachines
-                .SingleOrDefaultAsync(c => c.Id == id, cancellationToken);
+            var machine = await _webClient
+               .Get<CoffeeMachine>($"/coffee-machines/{id}", cancellationToken);
 
-            if (machine == null)
-                throw new NotFoundException(nameof(CoffeeMachine), id);*/
-
-            return new CoffeeMachine();
+            return machine;
         }
 
         public async Task<List<CoffeeMachine>> GetCoffeeMachines(CancellationToken cancellationToken)
         {
-            /*var machines = await _dbContext.CoffeeMachines
-                .AsNoTracking()
-                .ToListAsync(cancellationToken);*/
+            var machines = await _webClient
+                .Get<List<CoffeeMachine>>("/coffee-machines", cancellationToken);
 
-            return new List<CoffeeMachine>();
+            return machines;
         }
 
         // TODO: add paged

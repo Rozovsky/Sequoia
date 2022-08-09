@@ -2,69 +2,74 @@
 using Samples.Data.WebClient.Core.Application.Stores.Dtos;
 using Samples.Data.WebClient.Core.Domain.Models.Stores;
 using Sequoia.Data.Abstractions;
+using Sequoia.Data.WebClient.Enums;
+using Sequoia.Data.WebClient.Extensions;
+using Sequoia.Data.WebClient.Interfaces;
 
 namespace Samples.Data.WebClient.Core.Infrastructure.Repositories
 {
     public class StoreRepository : IStoreRepository
     {
+        private readonly IWebClient _webClient;
+
+        public StoreRepository(IWebClient webClient)
+        {
+            _webClient = webClient;
+            _webClient.Configure(c =>
+            {
+                c.WebResourcePath = "sample-api/stores-service";
+                c.ErrorHandlingMode = ErrorHandlingMode.Debug;
+                c.IgnoreSslErrors = true;
+                c.AuthenticationType = AuthenticationType.Basic;
+            });
+        }
+
         public async Task<Store> CreateStore(StoreToCreateDto dto, CancellationToken cancellationToken)
         {
-            /*var store = _mapper.Map<Store>(dto);
+            var store = await _webClient
+                .WithStringContent(dto)
+                .Post<Store>("/stores", cancellationToken);
 
-            _dbContext.Stores.Add(store);
-            await _dbContext.SaveChangesAsync(cancellationToken);*/
-
-            return new Store();
+            return store;
         }
 
         public async Task<Store> UpdateStore(long id, StoreToUpdateDto dto, CancellationToken cancellationToken)
         {
-            /*var store = await this.GetStore(id, cancellationToken);
-            _mapper.Map(dto, store);
+            var store = await _webClient
+                .WithStringContent(dto)
+                .Put<Store>($"/stores/{id}", cancellationToken);
 
-            await _dbContext.SaveChangesAsync(cancellationToken);*/
-
-            return new Store();
+            return store;
         }
 
         public async Task DeleteStore(long id, CancellationToken cancellationToken)
         {
-            /*var store = await this.GetStore(id, cancellationToken);
-
-            _dbContext.Stores.Remove(store);
-            await _dbContext.SaveChangesAsync(cancellationToken);*/
+            await _webClient.Delete($"/stores/{id}", cancellationToken);
         }
 
         public async Task<Store> GetStore(long id, CancellationToken cancellationToken)
         {
-            /*var store = await _dbContext.Stores
-                .Include(c => c.CoffeeMachines)
-                .SingleOrDefaultAsync(c => c.Id == id, cancellationToken);
+            var store = await _webClient
+                 .Get<Store>($"/stores/{id}", cancellationToken);
 
-            if (store == null)
-                throw new NotFoundException(nameof(Store), id);*/
-
-            return new Store();
+            return store;
         }
 
         public async Task<List<Store>> GetStores(CancellationToken cancellationToken)
         {
-            /*var stores = await _dbContext.Stores
-                .AsNoTracking()
-                .Include(c => c.CoffeeMachines)
-                .ToListAsync(cancellationToken);*/
+            var stores = await _webClient
+              .Get<List<Store>>("/stores", cancellationToken);
 
-            return new List<Store>();
+            return stores;
         }
 
         public async Task<PagedWrapper<Store>> GetStoresPaged(int page, int limit, CancellationToken cancellationToken)
         {
-            /*var stores = await _dbContext.Stores
-                .AsQueryable()
-                .Where(c => c.Address.Length > 0)
-                .ToPagedWrapper(page, limit, cancellationToken);*/
+            var stores = await _webClient
+                .WithQueryParams(new { page, limit })
+                .Get<PagedWrapper<Store>>("/stores/paged", cancellationToken);
 
-            return new PagedWrapper<Store>();
+            return stores;
         }
     }
 }
