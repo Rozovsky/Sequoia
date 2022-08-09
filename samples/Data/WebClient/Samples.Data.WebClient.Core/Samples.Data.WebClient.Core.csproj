@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\CoffeeMachines\Commands\" />
-    <Folder Include="Application\CoffeeMachines\Dtos\" />
-    <Folder Include="Application\CoffeeMachines\ViewModels\" />
-    <Folder Include="Application\CoffeeMachines\Queries\" />
     <Folder Include="Application\Common\Exceptions\" />
     <Folder Include="Application\Common\Extensions\" />
     <Folder Include="Application\Common\Helpers\" />
