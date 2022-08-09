@@ -1,6 +1,6 @@
 ﻿namespace Samples.Data.Postgresql.Core.Domain.Enums
 {
-    public enum ShopType
+    public enum StoreType
     {
         None,
         Store,

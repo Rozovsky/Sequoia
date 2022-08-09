@@ -1,4 +1,4 @@
-﻿namespace Samples.Authentication.Basic.Core.Domain.Enums
+﻿namespace Samples.Data.WebClient.Core.Domain.Models.Locations
 {
     public enum LocationType
     {

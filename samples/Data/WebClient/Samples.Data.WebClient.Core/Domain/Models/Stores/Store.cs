@@ -1,12 +1,8 @@
-﻿using AutoMapper;
-using Samples.Data.Postgresql.Core.Application.Stores.Dtos;
-using Samples.Data.Postgresql.Core.Domain.Enums;
+﻿using Samples.Data.WebClient.Core.Domain.Models.CoffeeMachines;
 using Sequoia.Abstractions;
 
-namespace Samples.Data.Postgresql.Core.Domain.Entities
+namespace Samples.Data.WebClient.Core.Domain.Models.Stores
 {
-    [AutoMap(typeof(StoreToCreateDto))]
-    [AutoMap(typeof(StoreToUpdateDto))]
     public class Store : EntityAuditable<long, string, DateTimeOffset?>
     {
         public string Name { get; set; }

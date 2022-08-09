@@ -11,7 +11,7 @@ namespace Samples.Data.Postgresql.Core.Application.Stores.ViewModels
         public long Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public ShopType Type { get; set; }
+        public StoreType Type { get; set; }
         public IEnumerable<CoffeeMachineVm> CoffeeMachines { get; set; }
     }
 }
