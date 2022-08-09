@@ -15,10 +15,6 @@
     <Folder Include="Application\Locations\Dtos\" />
     <Folder Include="Application\Locations\ViewModels\" />
     <Folder Include="Application\Locations\Queries\" />
-    <Folder Include="Application\Stores\Commands\" />
-    <Folder Include="Application\Stores\Dtos\" />
-    <Folder Include="Application\Stores\ViewModels\" />
-    <Folder Include="Application\Stores\Queries\" />
     <Folder Include="Domain\Constants\" />
     <Folder Include="Domain\Entities\" />
     <Folder Include="Domain\Enums\" />

@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Samples.Data.WebClient.Core.Application.Stores.Dtos;
+using Samples.Data.WebClient.Core.Domain.Models.Stores;
+using Sequoia.Data.Abstractions;
 
 namespace Samples.Data.WebClient.Core.Application.Common.Interfaces
 {
     public interface IStoreService
     {
+        Task<Store> CreateStore(StoreToCreateDto dto, CancellationToken cancellationToken);
+        Task<Store> UpdateStore(long id, StoreToUpdateDto dto, CancellationToken cancellationToken);
+        Task DeleteStore(long id, CancellationToken cancellationToken);
+        Task<Store> GetStore(long id, CancellationToken cancellationToken);
+        Task<List<Store>> GetStores(CancellationToken cancellationToken);
+        Task<PagedWrapper<Store>> GetStoresPaged(int page, int limit, CancellationToken cancellationToken);
     }
 }

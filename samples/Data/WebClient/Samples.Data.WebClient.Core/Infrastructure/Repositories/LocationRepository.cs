@@ -1,9 +1,6 @@
 ﻿using Samples.Data.WebClient.Core.Application.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Samples.Data.WebClient.Core.Domain.Models.Locations;
+using Sequoia.Data.Abstractions;
 
 namespace Samples.Data.WebClient.Core.Infrastructure.Repositories
 {
@@ -11,12 +8,12 @@ namespace Samples.Data.WebClient.Core.Infrastructure.Repositories
     {
         public async Task<List<Location>> GetLocations(CancellationToken cancellationToken)
         {
-            return await _locationRepository.GetLocations(cancellationToken);
+            return new List<Location>();
         }
 
         public async Task<PagedWrapper<Location>> GetLocationsPaged(int page, int limit, CancellationToken cancellationToken)
         {
-            return await _locationRepository.GetLocationsPaged(page, limit, cancellationToken);
+            return new PagedWrapper<Location>();
         }
     }
 }
