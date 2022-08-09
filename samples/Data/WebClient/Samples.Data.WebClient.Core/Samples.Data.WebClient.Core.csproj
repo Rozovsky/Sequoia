@@ -13,8 +13,6 @@
     <Folder Include="Application\Common\Options\" />
     <Folder Include="Application\Locations\Commands\" />
     <Folder Include="Application\Locations\Dtos\" />
-    <Folder Include="Application\Locations\ViewModels\" />
-    <Folder Include="Application\Locations\Queries\" />
     <Folder Include="Domain\Constants\" />
     <Folder Include="Domain\Entities\" />
     <Folder Include="Domain\Enums\" />
