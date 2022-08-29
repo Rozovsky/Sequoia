@@ -12,7 +12,7 @@ namespace Samples.Data.Mongo.Core.Infrastructure.Repositories
 
         public CoffeeMachineRepository(IMongoContext context) : base(context)
         {
-            _machineCollection = _context.GetCollection<CoffeeMachine>(nameof(CoffeeMachine));
+            _machineCollection = MongoContext.GetCollection<CoffeeMachine>(nameof(CoffeeMachine));
         }
     }
 }

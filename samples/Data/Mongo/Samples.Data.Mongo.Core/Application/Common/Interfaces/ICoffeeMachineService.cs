@@ -9,6 +9,6 @@ namespace Samples.Data.Mongo.Core.Application.Common.Interfaces
         Task<CoffeeMachine> UpdateCoffeeMachine(string id, CoffeeMachineToUpdateDto dto, CancellationToken cancellationToken);
         Task DeleteCoffeeMachine(string id, CancellationToken cancellationToken);
         Task<CoffeeMachine> GetCoffeeMachine(string id, CancellationToken cancellationToken);
-        Task<List<CoffeeMachine>> GetCoffeeMachines(CancellationToken cancellationToken);
+        Task<IEnumerable<CoffeeMachine>> GetCoffeeMachines(CancellationToken cancellationToken);
     }
 }

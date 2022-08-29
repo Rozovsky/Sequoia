@@ -26,7 +26,7 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
         {
             var machine = _mapper.Map<CoffeeMachine>(dto);
 
-            machine = await _coffeeMachineRepository.AddAsync(machine, cancellationToken);
+            machine = await _coffeeMachineRepository.CreateAsync(machine, cancellationToken);
 
             return machine;
         }
@@ -50,7 +50,7 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
 
         public async Task<CoffeeMachine> GetCoffeeMachine(string id, CancellationToken cancellationToken)
         {
-            var machine = await _coffeeMachineRepository.SingleOrDefaultAsync(c => c.Id == id, cancellationToken);
+            var machine = await _coffeeMachineRepository.GetAsync(c => c.Id == id, cancellationToken);
 
             if (machine == null)
                 throw new NotFoundException(nameof(CoffeeMachine), id);
@@ -58,9 +58,9 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
             return machine;
         }
 
-        public async Task<List<CoffeeMachine>> GetCoffeeMachines(CancellationToken cancellationToken)
+        public async Task<IEnumerable<CoffeeMachine>> GetCoffeeMachines(CancellationToken cancellationToken)
         {
-            var machines = _coffeeMachineRepository.AsQueryable().ToList();
+            var machines = await _coffeeMachineRepository.GetAllAsync(cancellationToken);
 
             return machines;
         }
