@@ -1,10 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+	  <TargetFramework>net6.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>disable</Nullable>
+	  <PackageProjectUrl></PackageProjectUrl>
+	  <Description>Kernel Data package</Description>
+	  <RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
+	  <PackageTags>microservices;kernel;data</PackageTags>
+	  <Authors>Rozovsky</Authors>
+	  <Version>0.0.5</Version>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <PackageIcon>logo_128_128_w.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\assets\logo_128_128_w.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Sequoia\Sequoia\Sequoia.csproj" />

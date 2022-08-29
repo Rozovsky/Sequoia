@@ -77,7 +77,7 @@ namespace Samples.Data.Postgresql.Core.Application.Common.Services
             var stores = await _dbContext.Stores
                 .AsQueryable()
                 .Where(c => c.Address.Length > 0)
-                .ToPagedWrapper(page, limit, cancellationToken);
+                .ToPagedListAsync(page, limit, cancellationToken);
 
             return stores;
         }
