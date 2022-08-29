@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 
 namespace Sequoia.Data.Mongo.Extensions
 {

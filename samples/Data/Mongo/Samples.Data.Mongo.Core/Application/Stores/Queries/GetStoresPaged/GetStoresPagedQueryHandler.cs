@@ -2,7 +2,7 @@
 using MediatR;
 using Samples.Data.Mongo.Core.Application.Common.Interfaces;
 using Samples.Data.Mongo.Core.Application.Stores.ViewModels;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 
 namespace Samples.Data.Mongo.Core.Application.Stores.Queries.GetStoresPaged
 {

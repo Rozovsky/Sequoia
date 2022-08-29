@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Sequoia.Attributes;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 using Sequoia.Data.Mongo.Interfaces;
 using Sequoia.Data.Mongo.Options;
 using Sequoia.Data.Mongo.Persistence;

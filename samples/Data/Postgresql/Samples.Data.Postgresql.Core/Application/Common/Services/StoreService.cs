@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Samples.Data.Postgresql.Core.Application.Common.Interfaces;
 using Samples.Data.Postgresql.Core.Application.Stores.Dtos;
 using Samples.Data.Postgresql.Core.Domain.Entities;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 using Sequoia.Data.Postgresql.Extensions;
 using Sequoia.Exceptions;
 

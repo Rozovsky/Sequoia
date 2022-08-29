@@ -1,5 +1,5 @@
-﻿using Sequoia.Data.Abstractions;
-using Sequoia.Data.Interfaces;
+﻿using Sequoia.Data.Interfaces;
+using Sequoia.Data.Models;
 using Sequoia.Data.WebClient.Extensions;
 using Sequoia.Data.WebClient.Interfaces;
 using Sequoia.Data.WebClient.Models;
@@ -28,7 +28,7 @@ namespace Sequoia.Data.WebClient.Repositories
             return rows;
         }
 
-        public virtual async Task<PagedWrapper<TEntity>> GetAllPaged(int page, int pageSize, CancellationToken cancellationToken)
+        public virtual async Task<PagedWrapper<TEntity>> GetPaged(int page, int pageSize, CancellationToken cancellationToken)
         {
             var rows = await _webClient
                 .WithQueryParams(new { Page = page, PageSize = pageSize })

@@ -1,6 +1,6 @@
 ﻿using Samples.Data.Mongo.Core.Application.Stores.Dtos;
 using Samples.Data.Mongo.Core.Domain.Entities;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 
 namespace Samples.Data.Mongo.Core.Application.Common.Interfaces
 {

@@ -1,6 +1,6 @@
 ﻿using Samples.Data.Postgresql.Core.Application.Stores.Dtos;
 using Samples.Data.Postgresql.Core.Domain.Entities;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 
 namespace Samples.Data.Postgresql.Core.Application.Common.Interfaces
 {

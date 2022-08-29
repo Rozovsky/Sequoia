@@ -2,7 +2,7 @@
 using MediatR;
 using Samples.Authentication.Basic.Core.Application.Common.Interfaces;
 using Samples.Authentication.Basic.Core.Application.Locations.ViewModels;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 
 namespace Samples.Authentication.Basic.Core.Application.Locations.Queries.GetLocationsPaged
 {

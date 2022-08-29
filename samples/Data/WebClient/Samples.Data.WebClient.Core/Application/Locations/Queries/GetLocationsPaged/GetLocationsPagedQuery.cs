@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Samples.Data.WebClient.Core.Application.Locations.ViewModels;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 
 namespace Samples.Data.WebClient.Core.Application.Locations.Queries.GetLocationsPaged
 {

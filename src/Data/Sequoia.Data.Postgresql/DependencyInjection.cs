@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 
 namespace Sequoia.Data.Postgresql
 {

@@ -1,5 +1,5 @@
 ﻿using Samples.Authentication.Basic.Core.Domain.Entities;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 
 namespace Samples.Authentication.Basic.Core.Application.Common.Interfaces
 {

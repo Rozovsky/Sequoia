@@ -4,7 +4,7 @@ using MongoDB.Driver.Linq;
 using Samples.Data.Mongo.Core.Application.Common.Interfaces;
 using Samples.Data.Mongo.Core.Application.Stores.Dtos;
 using Samples.Data.Mongo.Core.Domain.Entities;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 using Sequoia.Data.Mongo.Extensions;
 using Sequoia.Exceptions;
 

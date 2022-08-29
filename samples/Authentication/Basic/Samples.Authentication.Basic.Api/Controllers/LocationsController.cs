@@ -3,7 +3,7 @@ using Samples.Authentication.Basic.Core.Application.Locations.Queries.GetLocatio
 using Samples.Authentication.Basic.Core.Application.Locations.Queries.GetLocationsPaged;
 using Samples.Authentication.Basic.Core.Application.Locations.ViewModels;
 using Sequoia.Abstractions;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 
 namespace Samples.Authentication.Basic.Api.Controllers
 {

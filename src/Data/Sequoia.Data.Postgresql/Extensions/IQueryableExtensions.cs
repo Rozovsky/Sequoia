@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 
 namespace Sequoia.Data.Postgresql.Extensions
 {

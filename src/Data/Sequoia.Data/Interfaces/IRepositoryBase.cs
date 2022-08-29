@@ -1,10 +1,10 @@
-﻿using Sequoia.Data.Abstractions;
+﻿using Sequoia.Data.Models;
 
 namespace Sequoia.Data.Interfaces
 {
     public interface IRepositoryBase<TEntity, TPrimaryKey> 
         where TEntity : class
     {
-        Task<PagedWrapper<TEntity>> GetAllPaged(int page, int pageSize, CancellationToken cancellationToken);
+        Task<PagedWrapper<TEntity>> GetPaged(int page, int pageSize, CancellationToken cancellationToken);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Samples.Data.WebClient.Core.Application.Common.Interfaces;
 using Samples.Data.WebClient.Core.Application.Stores.Dtos;
 using Samples.Data.WebClient.Core.Domain.Models.Stores;
-using Sequoia.Data.Abstractions;
+using Sequoia.Data.Models;
 
 namespace Samples.Data.WebClient.Core.Application.Common.Services
 {
