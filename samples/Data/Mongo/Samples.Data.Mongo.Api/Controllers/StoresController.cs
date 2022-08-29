@@ -7,8 +7,8 @@ using Samples.Data.Mongo.Core.Application.Stores.Queries.GetStore;
 using Samples.Data.Mongo.Core.Application.Stores.Queries.GetStores;
 using Samples.Data.Mongo.Core.Application.Stores.Queries.GetStoresPaged;
 using Samples.Data.Mongo.Core.Application.Stores.ViewModels;
-using Sequoia.Abstractions;
 using Sequoia.Data.Models;
+using Sequoia.Models;
 
 namespace Samples.Data.Postgresql.Api.Controllers
 {

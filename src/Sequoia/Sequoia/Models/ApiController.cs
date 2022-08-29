@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Sequoia.Abstractions
+namespace Sequoia.Models
 {
     [ApiController]
     public class ApiController : ControllerBase

@@ -6,7 +6,7 @@ using Samples.Data.WebClient.Core.Application.CoffeeMachines.Dtos;
 using Samples.Data.WebClient.Core.Application.CoffeeMachines.Queries.GetCoffeeMachine;
 using Samples.Data.WebClient.Core.Application.CoffeeMachines.Queries.GetCoffeeMachines;
 using Samples.Data.WebClient.Core.Application.CoffeeMachines.ViewModels;
-using Sequoia.Abstractions;
+using Sequoia.Models;
 
 namespace Samples.Data.WebClient.Api.Controllers
 {

@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
     <PackageTags>microservices;kernel;cqrs;clean-architecture;identity;web-client;</PackageTags>
     <Authors>Rozovsky</Authors>
-	<Version>0.0.4</Version>
+	<Version>0.0.5</Version>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<PackageIcon>logo_128_128.png</PackageIcon>
   </PropertyGroup>

@@ -2,8 +2,8 @@
 using Samples.Data.WebClient.Core.Application.Locations.Queries.GetLocations;
 using Samples.Data.WebClient.Core.Application.Locations.Queries.GetLocationsPaged;
 using Samples.Data.WebClient.Core.Application.Locations.ViewModels;
-using Sequoia.Abstractions;
 using Sequoia.Data.Models;
+using Sequoia.Models;
 
 namespace Samples.Data.WebClient.Api.Controllers
 {

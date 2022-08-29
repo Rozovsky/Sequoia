@@ -6,7 +6,7 @@ using Samples.Data.Mongo.Core.Application.CoffeeMachines.Dtos;
 using Samples.Data.Mongo.Core.Application.CoffeeMachines.Queries.GetCoffeeMachine;
 using Samples.Data.Mongo.Core.Application.CoffeeMachines.Queries.GetCoffeeMachines;
 using Samples.Data.Mongo.Core.Application.CoffeeMachines.ViewModels;
-using Sequoia.Abstractions;
+using Sequoia.Models;
 
 namespace Samples.Data.Mongo.Api.Controllers
 {
