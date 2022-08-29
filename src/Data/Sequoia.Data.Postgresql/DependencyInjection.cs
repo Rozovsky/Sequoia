@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Sequoia.Attributes;
 using Sequoia.Data.Models;
 
 namespace Sequoia.Data.Postgresql
 {
+    [SequoiaMember]
     public static class DependencyInjection
     {
         public static IServiceCollection AddPostgresql<TContextInterface, TContext>(this IServiceCollection services, string connectionString)
