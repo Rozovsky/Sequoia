@@ -13,21 +13,26 @@ namespace Samples.Data.Postgresql.Core.Application.Common.Services
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IStoreRepository _storeRepository;
 
         public StoreService(
             IApplicationDbContext dbContext,
-            IMapper mapper)
+            IMapper mapper,
+            IStoreRepository storeRepository)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _storeRepository = storeRepository;
         }
 
         public async Task<Store> CreateStore(StoreToCreateDto dto, CancellationToken cancellationToken)
         {
             var store = _mapper.Map<Store>(dto);
 
-            _dbContext.Stores.Add(store);
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            store = await _storeRepository.CreateAsync(store, cancellationToken);
+
+            //_dbContext.Stores.Add(store);
+            //await _dbContext.SaveChangesAsync(cancellationToken);
 
             return store;
         }

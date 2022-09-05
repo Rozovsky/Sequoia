@@ -16,6 +16,8 @@ namespace Samples.Data.Postgresql.Core.Infrastructure
         public DbSet<Store> Stores { get; set; }
         public DbSet<CoffeeMachine> CoffeeMachines { get; set; }
 
+
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var entry in ChangeTracker.Entries<IEntityAuditable>())
@@ -33,6 +35,11 @@ namespace Samples.Data.Postgresql.Core.Infrastructure
             }
 
             return base.SaveChangesAsync(cancellationToken);
+        }
+
+        public override DbSet<TEntity> Set<TEntity>() where TEntity : class
+        {
+            return base.Set<TEntity>();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

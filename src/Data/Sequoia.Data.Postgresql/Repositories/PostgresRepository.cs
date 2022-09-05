@@ -8,39 +8,52 @@ namespace Sequoia.Data.Postgresql.Repositories
     public abstract class PostgresRepository<TEntity> : IPostgresRepository<TEntity>
         where TEntity : class
     {
-        private DbSet<TEntity> DbSet { get; set; }
+        //private DbSet<TEntity> DbSet { get; set; }
+        //private readonly DbContext _dbContext;
 
-        public PostgresRepository()
+        //public PostgresRepository(DbContext dbContext)
+        //{
+        //    _dbContext = dbContext;
+        //}
+
+        private readonly IPostgresContext _postgresContext;
+
+        public PostgresRepository(IPostgresContext postgresContext)
         {
-
+            _postgresContext = postgresContext;
         }
 
-        public Task<TEntity> CreateAsync(TEntity obj, CancellationToken cancellationToken)
+        public virtual async Task<TEntity> CreateAsync(TEntity obj, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _postgresContext.Set<TEntity>()
+                .Add(obj);
+
+            await _postgresContext.SaveChangesAsync(cancellationToken);
+
+            return obj;
         }
 
-        public Task DeleteAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<PagedWrapper<TEntity>> GetPagedAsync(int page, int limit, CancellationToken cancellationToken)
+        public virtual Task DeleteAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> predicate, TEntity obj, CancellationToken cancellationToken)
+        public virtual Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<PagedWrapper<TEntity>> GetPagedAsync(int page, int limit, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> predicate, TEntity obj, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

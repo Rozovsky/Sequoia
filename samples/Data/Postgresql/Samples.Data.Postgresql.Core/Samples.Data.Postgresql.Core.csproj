@@ -15,7 +15,6 @@
     <Folder Include="Application\Common\ViewModels\" />
     <Folder Include="Domain\Constants\" />
     <Folder Include="Domain\Models\" />
-    <Folder Include="Infrastructure\Repositories\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Samples.Data.Postgresql.Core.Application.Common.Interfaces;
 using Samples.Data.Postgresql.Core.Application.Common.Services;
 using Samples.Data.Postgresql.Core.Infrastructure;
+using Samples.Data.Postgresql.Core.Infrastructure.Repositories;
 using Sequoia;
 using Sequoia.Attributes;
 using Sequoia.Data.Postgresql;
@@ -29,7 +30,7 @@ namespace Samples.Data.Postgresql.Core
             services.AddTransient<ICoffeeMachineService, CoffeeMachineService>();
 
             // add application repositories
-            //services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IStoreRepository, StoreRepository>();
 
             return services;
         }
