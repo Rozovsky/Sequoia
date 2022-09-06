@@ -8,7 +8,5 @@ namespace Samples.Data.Postgresql.Core.Application.Common.Interfaces
     {
         DbSet<Store> Stores { get; set; }
         DbSet<CoffeeMachine> CoffeeMachines { get; set; }
-
-        //Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }
