@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using Samples.Common.Domain.Entities;
+using Samples.Common.Infrastructure.Interfaces;
 using Samples.Data.Mongo.Core.Infrastructure.Configurations;
 using Samples.Data.Mongo.Core.Infrastructure.Interfaces;
 using Sequoia.Data.Mongo.Interfaces;

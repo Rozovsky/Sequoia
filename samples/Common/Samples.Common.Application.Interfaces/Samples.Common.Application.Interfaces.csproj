@@ -6,4 +6,9 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Data\Sequoia.Data\Sequoia.Data.csproj" />
+    <ProjectReference Include="..\Samples.Common.Domain\Samples.Common.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

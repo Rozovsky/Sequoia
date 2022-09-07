@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Samples.Common.Application.Common.Services;
 using Samples.Common.Application.Interfaces;
+using Samples.Common.Infrastructure.Interfaces;
 using Samples.Data.Mongo.Core.Infrastructure;
 using Samples.Data.Mongo.Core.Infrastructure.Interfaces;
 using Samples.Data.Mongo.Core.Infrastructure.Repositories;

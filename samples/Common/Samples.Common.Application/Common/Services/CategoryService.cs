@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using Samples.Common.Application.Interfaces;
+using Samples.Common.Domain.Entities;
 using Samples.Common.Infrastructure.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
+using Sequoia.Data.Models;
 
 namespace Samples.Common.Application.Common.Services
 {
@@ -21,6 +17,36 @@ namespace Samples.Common.Application.Common.Services
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+        }
+
+        public Task<Category> CreateCategoryAsync(Category obj, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteCategoryAsync(long id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Category>> GetAllCategoriesAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PagedWrapper<Category>> GetCategoriesPagedAsync(int page, int limit, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Category> GetCategoryAsync(long id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Category> UpdateCategoryAsync(long id, Category obj, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
 
         /*public async Task<Store> CreateStore(StoreToCreateDto dto, CancellationToken cancellationToken)

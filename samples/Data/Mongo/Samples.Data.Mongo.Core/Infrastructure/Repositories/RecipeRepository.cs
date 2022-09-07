@@ -1,9 +1,4 @@
-﻿using Samples.Data.Mongo.Core.Infrastructure.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Samples.Common.Infrastructure.Interfaces;
 
 namespace Samples.Data.Mongo.Core.Infrastructure.Repositories
 {
