@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Samples.Data.Mongo.Core.Application.Common.Interfaces;
-using Samples.Data.Mongo.Core.Application.Common.Services;
+using Samples.Common.Application.Common.Services;
+using Samples.Common.Application.Interfaces;
 using Samples.Data.Mongo.Core.Infrastructure;
+using Samples.Data.Mongo.Core.Infrastructure.Interfaces;
 using Samples.Data.Mongo.Core.Infrastructure.Repositories;
 using Sequoia;
 using Sequoia.Attributes;
@@ -23,15 +24,17 @@ namespace Samples.Data.Mongo.Core
 
             // add mongo db
             services.AddMongoDb<IApplicationDbContext, ApplicationDbContext>(
-                configuration.GetConnectionString("MongoConnection"), "coffee-store");
+                configuration.GetConnectionString("MongoConnection"), "cookbook");
 
-            // add application services
-            services.AddTransient<IStoreService, StoreService>();
-            services.AddTransient<ICoffeeMachineService, CoffeeMachineService>();
+            // add application services (from common)
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IIngredientService, IngredientService>();
+            services.AddTransient<IRecipeService, RecipeService>();
 
-            // add application repositories
-            services.AddTransient<IStoreRepository, StoreRepository>();
-            services.AddTransient<ICoffeeMachineRepository, CoffeeMachineRepository>();
+            // add application repositories (local implementation)
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IIngredientRepository, IngredientRepository>();
+            services.AddTransient<IRecipeRepository, RecipeRepository>();
 
             return services;
         }

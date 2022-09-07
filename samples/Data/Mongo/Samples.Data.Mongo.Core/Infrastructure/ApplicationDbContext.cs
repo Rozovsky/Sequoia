@@ -1,19 +1,22 @@
 ﻿using MongoDB.Driver;
-using Samples.Data.Mongo.Core.Application.Common.Interfaces;
-using Samples.Data.Mongo.Core.Domain.Entities;
+using Samples.Common.Domain.Entities;
+using Samples.Data.Mongo.Core.Infrastructure.Configurations;
+using Samples.Data.Mongo.Core.Infrastructure.Interfaces;
 using Sequoia.Data.Mongo.Interfaces;
 
 namespace Samples.Data.Mongo.Core.Infrastructure
 {
     public class ApplicationDbContext : IApplicationDbContext
     {
-        public IMongoCollection<CoffeeMachine> CoffeeMachines { get; private set; }
-        public IMongoCollection<Store> Stores { get; private set; }
+        public IMongoCollection<Category> Categories { get; private set; }
+        public IMongoCollection<Ingredient> Ingredients { get; private set; }
+        public IMongoCollection<Recipe> Recipes { get; private set; }
 
         public ApplicationDbContext(IMongoContext context)
         {
-            CoffeeMachines = context.GetCollection<CoffeeMachine>(nameof(CoffeeMachine));
-            Stores = context.GetCollection<Store>(nameof(Store));
+            Categories = context.GetCollection<Category>(CategoryConfig.GetCollectionName());
+            Ingredients = context.GetCollection<Ingredient>(IngredientConfig.GetCollectionName());
+            Recipes = context.GetCollection<Recipe>(RecipeConfig.GetCollectionName());
         }
     }
 }

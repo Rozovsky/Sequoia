@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Categories\Commands\" />
+    <Folder Include="Categories\Dtos\" />
+    <Folder Include="Categories\Queries\" />
+    <Folder Include="Categories\ViewModels\" />
+    <Folder Include="Common\Exceptions\" />
+    <Folder Include="Ingredients\Commands\" />
+    <Folder Include="Ingredients\Dtos\" />
+    <Folder Include="Ingredients\ViewModels\" />
+    <Folder Include="Ingredients\Queries\" />
+    <Folder Include="Recipes\Commands\" />
+    <Folder Include="Recipes\Dtos\" />
+    <Folder Include="Recipes\ViewModels\" />
+    <Folder Include="Recipes\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Samples.Common.Application.Interfaces\Samples.Common.Application.Interfaces.csproj" />
+    <ProjectReference Include="..\Samples.Common.Infrastructure.Interfaces\Samples.Common.Infrastructure.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
