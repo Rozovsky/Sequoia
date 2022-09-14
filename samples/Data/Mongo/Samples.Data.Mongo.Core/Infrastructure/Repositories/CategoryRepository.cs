@@ -22,7 +22,7 @@ namespace Samples.Data.Mongo.Core.Infrastructure.Repositories
             return await base.CreateAsync(obj, cancellationToken);
         }
 
-        public async Task DeleteCategoryAsync(long id, CancellationToken cancellationToken)
+        public async Task DeleteCategoryAsync(string id, CancellationToken cancellationToken)
         {
             await base.DeleteAsync(c => c.Id == id, cancellationToken);
         }
@@ -37,12 +37,12 @@ namespace Samples.Data.Mongo.Core.Infrastructure.Repositories
             return await base.GetPagedAsync(page, limit, cancellationToken);
         }
 
-        public async Task<Category> GetCategoryAsync(long id, CancellationToken cancellationToken)
+        public async Task<Category> GetCategoryAsync(string id, CancellationToken cancellationToken)
         {
             return await base.GetAsync(c => c.Id == id, cancellationToken);
         }
 
-        public async Task<Category> UpdateCategoryAsync(long id, Category obj, CancellationToken cancellationToken)
+        public async Task<Category> UpdateCategoryAsync(string id, Category obj, CancellationToken cancellationToken)
         {
             return await base.UpdateAsync(c => c.Id == id, obj, cancellationToken);
         }

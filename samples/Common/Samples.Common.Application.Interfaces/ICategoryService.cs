@@ -5,8 +5,7 @@ namespace Samples.Common.Application.Interfaces
 {
     public interface ICategoryService
     {
-        //TODO: to Dto
-        Task<Category> CreateCategoryAsync(Category obj, CancellationToken cancellationToken);
+        //Task<Category> CreateCategoryAsync(CategoryToCreateDto dto, CancellationToken cancellationToken);
         Task<Category> UpdateCategoryAsync(long id, Category obj, CancellationToken cancellationToken);
         Task DeleteCategoryAsync(long id, CancellationToken cancellationToken);
         Task<Category> GetCategoryAsync(long id, CancellationToken cancellationToken);

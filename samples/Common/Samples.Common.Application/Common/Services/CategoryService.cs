@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Samples.Common.Application.Categories.Dtos;
 using Samples.Common.Application.Interfaces;
 using Samples.Common.Domain.Entities;
 using Samples.Common.Infrastructure.Interfaces;
@@ -19,10 +20,13 @@ namespace Samples.Common.Application.Common.Services
             _mapper = mapper;
         }
 
-        public Task<Category> CreateCategoryAsync(Category obj, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<Category> CreateCategoryAsync(CategoryToCreateDto dto, CancellationToken cancellationToken)
+        //{
+        //    var category = _mapper.Map<Category>(dto);
+        //    category = await _categoryRepository.CreateCategoryAsync(category, cancellationToken);
+
+        //    return category;
+        //}
 
         public Task DeleteCategoryAsync(long id, CancellationToken cancellationToken)
         {

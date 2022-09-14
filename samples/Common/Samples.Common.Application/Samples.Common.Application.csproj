@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Categories\Commands\" />
-    <Folder Include="Categories\Dtos\" />
-    <Folder Include="Categories\Queries\" />
-    <Folder Include="Categories\ViewModels\" />
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Ingredients\Commands\" />
     <Folder Include="Ingredients\Dtos\" />
