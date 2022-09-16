@@ -19,6 +19,20 @@ namespace Sequoia.Data.Mongo
             services.AddScoped<IMongoContext, MongoContext>();
             services.AddScoped(typeof(TContextInterface), typeof(TContext));
 
+            // enable entities configs
+            var entityConfigs = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .SelectMany(s => s.GetTypes())
+                .Where(p => typeof(IMongoEntityConfig).IsAssignableFrom(p) && p.IsClass);
+
+            foreach (var entityConfigType in entityConfigs)
+            {
+                var instance = Activator.CreateInstance(entityConfigType);
+                var entityConfigInstance = instance as IMongoEntityConfig;
+
+                entityConfigInstance.Configure();
+            }
+
             services.AddAutoMapper(typeof(PagedWrapper<>));
 
             return services;

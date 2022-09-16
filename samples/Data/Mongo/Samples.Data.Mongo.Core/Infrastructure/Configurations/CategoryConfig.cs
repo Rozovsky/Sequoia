@@ -4,10 +4,11 @@ using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Bson.Serialization.Serializers;
 using Samples.Common.Domain.Entities;
 using Sequoia.Data.Mongo.Extensions;
+using Sequoia.Data.Mongo.Interfaces;
 
 namespace Samples.Data.Mongo.Core.Infrastructure.Configurations
 {
-    public class CategoryConfig
+    public class CategoryConfig : IMongoEntityConfig
     {
         public void Configure()
         {
