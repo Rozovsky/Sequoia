@@ -1,7 +1,6 @@
 ﻿using MongoDB.Driver;
 using Samples.Common.Domain.Entities;
 using Samples.Common.Infrastructure.Interfaces;
-using Samples.Data.Mongo.Core.Infrastructure.Configurations;
 using Sequoia.Data.Models;
 using Sequoia.Data.Mongo.Interfaces;
 using Sequoia.Data.Mongo.Repositories;
@@ -14,7 +13,7 @@ namespace Samples.Data.Mongo.Core.Infrastructure.Repositories
 
         public CategoryRepository(IMongoContext context) : base(context)
         {
-            _categoryCollection = MongoContext.GetCollection<Category>(CategoryConfig.GetCollectionName());
+            _categoryCollection = MongoContext.GetCollection<Category>();
         }
 
         public async Task<Category> CreateCategoryAsync(Category obj, CancellationToken cancellationToken)

@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using Sequoia.Data.Models;
 using Sequoia.Data.Mongo.Extensions;
@@ -16,7 +17,8 @@ namespace Sequoia.Data.Mongo.Repositories
         protected MongoRepository(IMongoContext context)
         {
             MongoContext = context;
-            MongoCollection = context.GetCollection<TEntity>(typeof(TEntity).Name);
+            MongoCollection = context.GetCollection<TEntity>(
+                BsonClassMap.LookupClassMap(typeof(TEntity)).GetCollectionName());
         }
 
         public virtual async Task<TEntity> CreateAsync(TEntity obj, CancellationToken cancellationToken)

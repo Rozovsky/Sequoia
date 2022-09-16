@@ -1,4 +1,6 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
+using Sequoia.Data.Mongo.Extensions;
 using Sequoia.Data.Mongo.Interfaces;
 using Sequoia.Data.Mongo.Options;
 
@@ -18,6 +20,11 @@ namespace Sequoia.Data.Mongo.Persistence
         public IMongoCollection<T> GetCollection<T>(string name)
         {
             return Database.GetCollection<T>(name);
+        }
+
+        public IMongoCollection<T> GetCollection<T>()
+        {
+            return Database.GetCollection<T>(BsonClassMap.LookupClassMap(typeof(T)).GetCollectionName());
         }
     }
 }

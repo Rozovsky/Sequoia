@@ -1,8 +1,6 @@
 ﻿using MongoDB.Driver;
 using Samples.Common.Domain.Entities;
 using Samples.Common.Infrastructure.Interfaces;
-using Samples.Data.Mongo.Core.Infrastructure.Configurations;
-using Samples.Data.Mongo.Core.Infrastructure.Interfaces;
 using Sequoia.Data.Mongo.Interfaces;
 using Sequoia.Data.Mongo.Repositories;
 
@@ -14,7 +12,7 @@ namespace Samples.Data.Mongo.Core.Infrastructure.Repositories
 
         public IngredientRepository(IMongoContext context) : base(context)
         {
-            _ingredientCollection = MongoContext.GetCollection<Ingredient>(IngredientConfig.GetCollectionName());
+            _ingredientCollection = MongoContext.GetCollection<Ingredient>();
         }
     }
 }

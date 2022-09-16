@@ -1,14 +1,18 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson.Serialization;
 using Samples.Common.Application.Common.Services;
 using Samples.Common.Application.Interfaces;
+using Samples.Common.Domain.Entities;
 using Samples.Common.Infrastructure.Interfaces;
 using Samples.Data.Mongo.Core.Infrastructure;
+using Samples.Data.Mongo.Core.Infrastructure.Configurations;
 using Samples.Data.Mongo.Core.Infrastructure.Interfaces;
 using Samples.Data.Mongo.Core.Infrastructure.Repositories;
 using Sequoia;
 using Sequoia.Attributes;
 using Sequoia.Data.Mongo;
+using Sequoia.Data.Mongo.Extensions;
 
 namespace Samples.Data.Mongo.Core
 {
@@ -26,6 +30,9 @@ namespace Samples.Data.Mongo.Core
             // add mongo db
             services.AddMongoDb<IApplicationDbContext, ApplicationDbContext>(
                 configuration.GetConnectionString("MongoConnection"), "cookbook");
+
+            var conf = new CategoryConfig(); // TODO: move it
+            conf.Configure();
 
             // add application services (from common)
             services.AddTransient<ICategoryService, CategoryService>();
