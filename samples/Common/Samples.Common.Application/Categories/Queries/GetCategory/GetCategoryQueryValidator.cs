@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace Samples.Common.Application.Categories.Queries.GetCategory
 {
-    internal class GetCategoryQueryValidator
+    public class GetCategoryQueryValidator : AbstractValidator<GetCategoryQuery>
     {
+        public GetCategoryQueryValidator()
+        {
+            RuleFor(v => v.Id)
+                .NotNull()
+                    .WithMessage("Id must be set");
+        }
     }
 }

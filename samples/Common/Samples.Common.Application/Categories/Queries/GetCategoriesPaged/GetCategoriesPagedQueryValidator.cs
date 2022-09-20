@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace Samples.Common.Application.Categories.Queries.GetCategoriesPaged
 {
-    internal class GetCategoriesPagedQueryValidator
+    public class GetCategoriesPagedQueryValidator : AbstractValidator<GetCategoriesPagedQuery>
     {
+        public GetCategoriesPagedQueryValidator()
+        {
+            RuleFor(v => v.Page)
+                .GreaterThan(0)
+                    .WithMessage("Page must be greater than 0");
+
+            RuleFor(v => v.Limit)
+                .GreaterThan(0)
+                    .WithMessage("Limit must be greater than 0");
+        }
     }
 }

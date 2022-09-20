@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using Samples.Common.Application.Categories.ViewModels;
 
 namespace Samples.Common.Application.Categories.Queries.GetAllCategories
 {
-    internal class GetAllCategoriesQuery
+    public class GetAllCategoriesQuery : IRequest<List<CategoryVm>>
     {
     }
 }

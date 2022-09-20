@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace Samples.Common.Application.Categories.Commands.DeleteCategory
 {
-    internal class DeleteCategoryCommandValidator
+    public class DeleteCategoryCommandValidator : AbstractValidator<DeleteCategoryCommand>
     {
+        public DeleteCategoryCommandValidator()
+        {
+            RuleFor(v => v.Id)
+                .NotNull()
+                    .WithMessage("Id must be set");
+        }
     }
 }

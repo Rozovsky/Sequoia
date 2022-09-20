@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Samples.Common.Application.Categories.Dtos;
 using Samples.Common.Application.Interfaces;
 using Samples.Common.Domain.Entities;
 using Samples.Common.Infrastructure.Interfaces;
 using Sequoia.Data.Models;
+using Sequoia.Exceptions;
 
 namespace Samples.Common.Application.Common.Services
 {
@@ -18,6 +18,16 @@ namespace Samples.Common.Application.Common.Services
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+        }
+
+        public async Task<Category> GetCategoryAsync(string id, CancellationToken cancellationToken)
+        {
+            var category = await _categoryRepository.GetCategoryAsync(id, cancellationToken);
+
+            if (category == null)
+                throw new NotFoundException(nameof(Category), id);
+
+            return category;
         }
 
         //public async Task<Category> CreateCategoryAsync(CategoryToCreateDto dto, CancellationToken cancellationToken)
@@ -43,10 +53,7 @@ namespace Samples.Common.Application.Common.Services
             throw new NotImplementedException();
         }
 
-        public Task<Category> GetCategoryAsync(long id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public Task<Category> UpdateCategoryAsync(long id, Category obj, CancellationToken cancellationToken)
         {

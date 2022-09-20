@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using Samples.Common.Application.Categories.ViewModels;
 
 namespace Samples.Common.Application.Categories.Queries.GetCategory
 {
-    internal class GetCategoryQuery
+    public class GetCategoryQuery : IRequest<CategoryVm>
     {
+        public string Id { get; set; }
     }
 }

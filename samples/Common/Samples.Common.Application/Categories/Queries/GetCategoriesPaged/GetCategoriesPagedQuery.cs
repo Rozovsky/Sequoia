@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using Samples.Common.Application.Categories.ViewModels;
+using Sequoia.Data.Models;
 
 namespace Samples.Common.Application.Categories.Queries.GetCategoriesPaged
 {
-    internal class GetCategoriesPagedQuery
+    public class GetCategoriesPagedQuery : IRequest<PagedWrapper<CategoryVm>>
     {
+        public int Page { get; set; }
+        public int Limit { get; set; }
     }
 }

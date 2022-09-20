@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace Samples.Common.Application.Categories.Commands.DeleteCategory
 {
-    internal class DeleteCategoryCommand
+    public class DeleteCategoryCommand : IRequest
     {
+        public string Id { get; set; }
     }
 }
