@@ -6,7 +6,7 @@ using Samples.Common.Infrastructure.Interfaces;
 
 namespace Samples.Common.Application.Categories.Commands.CreateCategory
 {
-    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, Category>
+    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, CategoryVm>
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
@@ -19,13 +19,12 @@ namespace Samples.Common.Application.Categories.Commands.CreateCategory
             _mapper = mapper;
         }
 
-        public async Task<Category> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<CategoryVm> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
             var category = await _categoryRepository.CreateCategoryAsync(
                 _mapper.Map<Category>(request.Dto), cancellationToken);
 
-            //return _mapper.Map<CategoryVm>(category);
-            return category;
+            return _mapper.Map<CategoryVm>(category);
         }
     }
 }

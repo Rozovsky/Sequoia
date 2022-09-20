@@ -11,7 +11,7 @@ namespace Samples.Data.Mongo.Api.Controllers
     public class CategoriesController : ApiController
     {
         [HttpPost]
-        public async Task<Category> CreateCategory([FromBody] CategoryToCreateDto dto)
+        public async Task<CategoryVm> CreateCategory([FromBody] CategoryToCreateDto dto)
         {
             return await Mediator.Send(new CreateCategoryCommand
             {
