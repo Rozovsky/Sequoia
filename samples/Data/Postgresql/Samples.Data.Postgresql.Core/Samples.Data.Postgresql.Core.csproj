@@ -7,18 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Common\Dtos\" />
-    <Folder Include="Application\Common\Exceptions\" />
-    <Folder Include="Application\Common\Extensions\" />
-    <Folder Include="Application\Common\Helpers\" />
-    <Folder Include="Application\Common\Options\" />
-    <Folder Include="Application\Common\ViewModels\" />
-    <Folder Include="Domain\Constants\" />
-    <Folder Include="Domain\Models\" />
+    <Compile Remove="Domain\Constants\**" />
+    <Compile Remove="Domain\Models\**" />
+    <EmbeddedResource Remove="Domain\Constants\**" />
+    <EmbeddedResource Remove="Domain\Models\**" />
+    <None Remove="Domain\Constants\**" />
+    <None Remove="Domain\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\" />
+    <Folder Include="Domain\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Data\Sequoia.Data.Postgresql\Sequoia.Data.Postgresql.csproj" />
+    <ProjectReference Include="..\..\..\Common\Samples.Common.Application\Samples.Common.Application.csproj" />
+    <ProjectReference Include="..\..\..\Common\Samples.Common.Infrastructure.Interfaces\Samples.Common.Infrastructure.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

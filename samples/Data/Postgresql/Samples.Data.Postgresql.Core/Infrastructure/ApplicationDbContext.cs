@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Samples.Data.Postgresql.Core.Application.Common.Interfaces;
-using System.Reflection;
-using Sequoia.Interfaces;
-using Samples.Data.Postgresql.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Samples.Common.Domain.Entities;
+using Samples.Data.Postgresql.Core.Infrastructure.Interfaces;
+using Sequoia.Interfaces;
+using System.Reflection;
 
 namespace Samples.Data.Postgresql.Core.Infrastructure
 {
@@ -14,8 +14,9 @@ namespace Samples.Data.Postgresql.Core.Infrastructure
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
-        public DbSet<Store> Stores { get; set; }
-        public DbSet<CoffeeMachine> CoffeeMachines { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Samples.Data.Postgresql.Core\Samples.Data.Postgresql.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
