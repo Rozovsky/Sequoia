@@ -2,7 +2,9 @@
 using Samples.Common.Application.CategoryRecipes.Commands.CreateCategoryRecipe;
 using Samples.Common.Application.CategoryRecipes.Commands.DeleteCategoryRecipe;
 using Samples.Common.Application.CategoryRecipes.Dtos;
+using Samples.Common.Application.CategoryRecipes.Queries.GetCategoryRecipesPaged;
 using Samples.Common.Application.CategoryRecipes.ViewModels;
+using Sequoia.Data.Models;
 using Sequoia.Models;
 
 namespace Samples.Data.Mongo.Api.Controllers
@@ -29,6 +31,14 @@ namespace Samples.Data.Mongo.Api.Controllers
             });
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("paged")]
+        public async Task<PagedWrapper<CategoryRecipeVm>> GetCategoryRecipesPaged(
+            [FromQuery] GetCategoryRecipesPagedQuery query)
+        {
+            return await Mediator.Send(query);
         }
     }
 }

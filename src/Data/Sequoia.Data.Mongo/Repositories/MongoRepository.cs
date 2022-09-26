@@ -52,20 +52,20 @@ namespace Sequoia.Data.Mongo.Repositories
 
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
         {
-            var stores = await MongoCollection
+            var entities = await MongoCollection
                 .AsQueryable()
                 .ToListAsync(cancellationToken);
 
-            return stores;
+            return entities;
         }
 
         public virtual async Task<PagedWrapper<TEntity>> GetPagedAsync(int page, int limit, CancellationToken cancellationToken)
         {
-            var stores = await MongoCollection
+            var entities = await MongoCollection
                 .AsQueryable()
                 .ToPagedListAsync(page, limit, cancellationToken);
 
-            return stores;
+            return entities;
         }
     }
 }

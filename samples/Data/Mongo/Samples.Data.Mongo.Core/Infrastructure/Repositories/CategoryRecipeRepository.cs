@@ -1,7 +1,9 @@
 ﻿using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using Samples.Common.Domain.Entities;
 using Samples.Common.Infrastructure.Interfaces;
 using Sequoia.Data.Models;
+using Sequoia.Data.Mongo.Extensions;
 using Sequoia.Data.Mongo.Interfaces;
 using Sequoia.Data.Mongo.Repositories;
 
@@ -21,29 +23,19 @@ namespace Samples.Data.Mongo.Core.Infrastructure.Repositories
             return await base.CreateAsync(obj, cancellationToken);
         }
 
-        public async Task<CategoryRecipe> UpdateCategoryRecipeAsync(string id, CategoryRecipe obj, CancellationToken cancellationToken)
-        {
-            return await base.UpdateAsync(c => c.Id == id, obj, cancellationToken);
-        }
-
         public async Task DeleteCategoryRecipeAsync(string id, CancellationToken cancellationToken)
         {
             await base.DeleteAsync(c => c.Id == id, cancellationToken);
         }
 
-        public async Task<IEnumerable<CategoryRecipe>> GetAllCategoryRecipeAsync(CancellationToken cancellationToken)
+        public async Task<PagedWrapper<CategoryRecipe>> GetCategoryRecipesPagedAsync(string categoryId, int page, int limit, CancellationToken cancellationToken)
         {
-            return await base.GetAllAsync(cancellationToken);
-        }
+            var categoryRecipes = await MongoCollection
+                .AsQueryable()
+                .Where(c => c.CategoryId == categoryId)
+                .ToPagedListAsync(page, limit, cancellationToken);
 
-        public async Task<PagedWrapper<CategoryRecipe>> GetCategoryRecipePagedAsync(int page, int limit, CancellationToken cancellationToken)
-        {
-            return await base.GetPagedAsync(page, limit, cancellationToken);
-        }
-
-        public async Task<CategoryRecipe> GetCategoryRecipeAsync(string id, CancellationToken cancellationToken)
-        {
-            return await base.GetAsync(c => c.Id == id, cancellationToken);
+            return categoryRecipes;
         }
     }
 }
