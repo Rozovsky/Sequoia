@@ -6,40 +6,40 @@ using Sequoia.Data.Postgresql.Repositories;
 
 namespace Samples.Data.Postgresql.Core.Infrastructure.Repositories
 {
-    public class IngredientRepository : PostgresRepository<Category>, IIngredientRepository
+    public class IngredientRepository : PostgresRepository<Ingredient>, IIngredientRepository
     {
         public IngredientRepository(IApplicationDbContext dbContext) : base(dbContext)
         {
         }
 
-        public Task<Ingredient> CreateIngredientAsync(Ingredient obj, CancellationToken cancellationToken)
+        public async Task<Ingredient> CreateIngredientAsync(Ingredient obj, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await base.CreateAsync(obj, cancellationToken);
         }
 
-        public Task DeleteIngredientAsync(string id, CancellationToken cancellationToken)
+        public async Task<Ingredient> UpdateIngredientAsync(string id, Ingredient obj, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await base.UpdateAsync(c => c.Id == id, obj, cancellationToken);
         }
 
-        public Task<IEnumerable<Ingredient>> GetAllIngredientsAsync(CancellationToken cancellationToken)
+        public async Task DeleteIngredientAsync(string id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await base.DeleteAsync(c => c.Id == id, cancellationToken);
         }
 
-        public Task<Ingredient> GetIngredientAsync(string id, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Ingredient>> GetAllIngredientsAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await base.GetAllAsync(cancellationToken);
         }
 
-        public Task<PagedWrapper<Ingredient>> GetIngredientsPagedAsync(int page, int limit, CancellationToken cancellationToken)
+        public async Task<Ingredient> GetIngredientAsync(string id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await base.GetAsync(c => c.Id == id, cancellationToken);
         }
 
-        public Task<Ingredient> UpdateIngredientAsync(string id, Ingredient obj, CancellationToken cancellationToken)
+        public async Task<PagedWrapper<Ingredient>> GetIngredientsPagedAsync(int page, int limit, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await base.GetPagedAsync(page, limit, cancellationToken);
         }
     }
 }

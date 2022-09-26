@@ -9,10 +9,6 @@
   <ItemGroup>
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Ingredients\ViewModels\" />
-    <Folder Include="Recipes\Commands\" />
-    <Folder Include="Recipes\Dtos\" />
-    <Folder Include="Recipes\ViewModels\" />
-    <Folder Include="Recipes\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
