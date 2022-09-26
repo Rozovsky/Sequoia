@@ -5,6 +5,7 @@ using Samples.Common.Application.Recipes.Commands.UpdateRecipe;
 using Samples.Common.Application.Recipes.Dtos;
 using Samples.Common.Application.Recipes.Queries.GetAllRecipes;
 using Samples.Common.Application.Recipes.Queries.GetRecipe;
+using Samples.Common.Application.Recipes.Queries.GetRecipesBatch;
 using Samples.Common.Application.Recipes.Queries.GetRecipesPaged;
 using Samples.Common.Application.Recipes.ViewModels;
 using Sequoia.Data.Models;
@@ -66,6 +67,13 @@ namespace Samples.Data.Mongo.Api.Controllers
         [HttpGet]
         [Route("paged")]
         public async Task<PagedWrapper<RecipeVm>> GetRecipesPaged([FromQuery] GetRecipesPagedQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        [HttpGet]
+        [Route("batch")]
+        public async Task<List<RecipeVm>> GetRecipesBatch([FromQuery] GetRecipesBatchQuery query)
         {
             return await Mediator.Send(query);
         }

@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using Samples.Common.Domain.Entities;
 using Samples.Common.Infrastructure.Interfaces;
 using Sequoia.Data.Models;
@@ -44,6 +45,16 @@ namespace Samples.Data.Mongo.Core.Infrastructure.Repositories
         public async Task<Recipe> GetRecipeAsync(string id, CancellationToken cancellationToken)
         {
             return await base.GetAsync(c => c.Id == id, cancellationToken);
+        }
+
+        public async Task<List<Recipe>> GetRecipesBatchAsync(string[] ids, CancellationToken cancellationToken)
+        {
+            var recipes = await MongoCollection
+                .AsQueryable()
+                .Where(c => ids.Contains(c.Id))
+                .ToListAsync(cancellationToken);
+
+            return recipes;
         }
     }
 }

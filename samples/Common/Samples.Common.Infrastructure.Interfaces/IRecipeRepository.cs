@@ -11,5 +11,6 @@ namespace Samples.Common.Infrastructure.Interfaces
         Task<IEnumerable<Recipe>> GetAllRecipesAsync(CancellationToken cancellationToken);
         Task<PagedWrapper<Recipe>> GetRecipesPagedAsync(int page, int limit, CancellationToken cancellationToken);
         Task<Recipe> GetRecipeAsync(string id, CancellationToken cancellationToken);
+        Task<List<Recipe>> GetRecipesBatchAsync(string[] ids, CancellationToken cancellationToken);
     }
 }
