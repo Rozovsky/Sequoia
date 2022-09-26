@@ -12,7 +12,7 @@ using Sequoia.Models;
 
 namespace Samples.Data.Mongo.Api.Controllers
 {
-    [Route("api/postgresql/ingredients")]
+    [Route("api/mongo/ingredients")]
     public class IngredientsController : ApiController
     {
         [HttpPost]

@@ -36,6 +36,7 @@ namespace Samples.Data.Mongo.Core
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IIngredientRepository, IngredientRepository>();
             services.AddTransient<IRecipeRepository, RecipeRepository>();
+            services.AddTransient<ICategoryRecipeRepository, CategoryRecipeRepository>();
 
             return services;
         }
