@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Sequoia.Attributes;
-using Sequoia.Authentication.Interfaces;
-using Sequoia.Authentication.Services;
 
 namespace Sequoia.Authentication
 {
@@ -15,7 +13,6 @@ namespace Sequoia.Authentication
         {
             // add default current user services
             services.AddHttpContextAccessor();
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             return services;
         }

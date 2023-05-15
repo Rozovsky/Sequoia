@@ -5,13 +5,14 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<PackageProjectUrl></PackageProjectUrl>
-		<Description>Kernel for creating microservices on CQRS and Clean Architecture</Description>
+		<Description>Authentication module for Sequoia</Description>
 		<RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
-		<PackageTags>cqrs;clean-architecture;ddd;identity;web-client;</PackageTags>
+		<PackageTags>cqrs;clean-architecture;auth;identity</PackageTags>
 		<Authors>Rozovsky</Authors>
-		<Version>0.0.1</Version>
+		<Version>0.0.4</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>logo_128_128_w.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -27,6 +28,18 @@
 
 	<ItemGroup>
 	  <Folder Include="Extensions\" />
+	  <Folder Include="Services\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>

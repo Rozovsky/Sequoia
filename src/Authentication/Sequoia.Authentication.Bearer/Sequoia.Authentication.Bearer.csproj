@@ -1,13 +1,39 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
+	<Description>JWT authentication for Sequoia</Description>
+	<RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
+	<PackageTags>cqrs;clean-architecture;auth;identity;jwt</PackageTags>
+	<Authors>Rozovsky</Authors>
+	<Version>0.0.4</Version>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<PackageIcon>logo_128_128_w.png</PackageIcon>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\..\assets\logo_128_128_w.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Sequoia.Authentication\Sequoia.Authentication.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
+    </None>
   </ItemGroup>
 
 </Project>

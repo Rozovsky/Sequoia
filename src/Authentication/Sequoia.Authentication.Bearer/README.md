@@ -1,0 +1,1 @@
+# Sequoia JWT authentication

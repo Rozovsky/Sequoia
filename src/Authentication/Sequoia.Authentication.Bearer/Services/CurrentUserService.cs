@@ -3,7 +3,7 @@ using Sequoia.Authentication.Interfaces;
 using Sequoia.Authentication.Models;
 using System.Security.Claims;
 
-namespace Sequoia.Authentication.Services
+namespace Sequoia.Authentication.Bearer.Services
 {
     public class CurrentUserService : ICurrentUserService
     {
