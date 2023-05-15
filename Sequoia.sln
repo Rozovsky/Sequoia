@@ -151,29 +151,31 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sequoia.Logging.Microsoft",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{27CC6FB9-03B7-43E2-AD9B-50E87EECB47B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sequoia.Client", "src\Client\Sequoia.Client\Sequoia.Client.csproj", "{4D9952DD-58BE-452A-A587-9E042D62F6F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sequoia.Client", "src\Client\Sequoia.Client\Sequoia.Client.csproj", "{4D9952DD-58BE-452A-A587-9E042D62F6F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sequoia.Client.Http", "src\Client\Sequoia.Client.Http\Sequoia.Client.Http.csproj", "{435F805F-A831-4DA4-B606-66A533D23436}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sequoia.Client.Http", "src\Client\Sequoia.Client.Http\Sequoia.Client.Http.csproj", "{435F805F-A831-4DA4-B606-66A533D23436}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{EE7DD47C-CC5A-4E6B-B80A-D18B0DA2878E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Http", "Http", "{D2FF8C5F-DF34-45EC-869B-A0F0D9398A97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Client.Http.Api", "samples\Client\Http\Samples.Client.Http.Api\Samples.Client.Http.Api.csproj", "{EBCDD222-A695-4DF1-AC43-A830FB3961CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Client.Http.Api", "samples\Client\Http\Samples.Client.Http.Api\Samples.Client.Http.Api.csproj", "{EBCDD222-A695-4DF1-AC43-A830FB3961CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Client.Http.Core", "samples\Client\Http\Samples.Client.Http.Core\Samples.Client.Http.Core.csproj", "{20E0C2DE-1318-4EA3-BD52-B72F1C3347D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Client.Http.Core", "samples\Client\Http\Samples.Client.Http.Core\Samples.Client.Http.Core.csproj", "{20E0C2DE-1318-4EA3-BD52-B72F1C3347D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{8D057F50-7597-45E1-A957-E257494CA952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Common.Domain", "samples\Common\Samples.Common.Domain\Samples.Common.Domain.csproj", "{D6685DE0-DFE5-4D16-8BFF-876CA34FA45F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Common.Domain", "samples\Common\Samples.Common.Domain\Samples.Common.Domain.csproj", "{D6685DE0-DFE5-4D16-8BFF-876CA34FA45F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Common.Application", "samples\Common\Samples.Common.Application\Samples.Common.Application.csproj", "{F7CB7466-A0E1-440C-90D8-E8ED218D2F88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Common.Application", "samples\Common\Samples.Common.Application\Samples.Common.Application.csproj", "{F7CB7466-A0E1-440C-90D8-E8ED218D2F88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Common.Application.Interfaces", "samples\Common\Samples.Common.Application.Interfaces\Samples.Common.Application.Interfaces.csproj", "{07588187-9A2F-43D2-8270-EF3C58FEC982}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Common.Application.Interfaces", "samples\Common\Samples.Common.Application.Interfaces\Samples.Common.Application.Interfaces.csproj", "{07588187-9A2F-43D2-8270-EF3C58FEC982}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Common.Infrastructure", "samples\Common\Samples.Common.Infrastructure\Samples.Common.Infrastructure.csproj", "{4794B41A-BAFD-44BD-AE62-9A1F3BE45722}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Common.Infrastructure", "samples\Common\Samples.Common.Infrastructure\Samples.Common.Infrastructure.csproj", "{4794B41A-BAFD-44BD-AE62-9A1F3BE45722}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Common.Infrastructure.Interfaces", "samples\Common\Samples.Common.Infrastructure.Interfaces\Samples.Common.Infrastructure.Interfaces.csproj", "{90B8F33C-82FF-46CA-A0CC-369B05CDA234}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Common.Infrastructure.Interfaces", "samples\Common\Samples.Common.Infrastructure.Interfaces\Samples.Common.Infrastructure.Interfaces.csproj", "{90B8F33C-82FF-46CA-A0CC-369B05CDA234}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.Postgresql.Infrastructure", "samples\Data\Postgresql\Samples.Data.Postgresql.Infrastructure\Samples.Data.Postgresql.Infrastructure.csproj", "{9C26D5C9-5A94-4C71-B13D-94401931E3AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -393,6 +395,10 @@ Global
 		{90B8F33C-82FF-46CA-A0CC-369B05CDA234}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90B8F33C-82FF-46CA-A0CC-369B05CDA234}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90B8F33C-82FF-46CA-A0CC-369B05CDA234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C26D5C9-5A94-4C71-B13D-94401931E3AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C26D5C9-5A94-4C71-B13D-94401931E3AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C26D5C9-5A94-4C71-B13D-94401931E3AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C26D5C9-5A94-4C71-B13D-94401931E3AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -474,6 +480,7 @@ Global
 		{07588187-9A2F-43D2-8270-EF3C58FEC982} = {8D057F50-7597-45E1-A957-E257494CA952}
 		{4794B41A-BAFD-44BD-AE62-9A1F3BE45722} = {8D057F50-7597-45E1-A957-E257494CA952}
 		{90B8F33C-82FF-46CA-A0CC-369B05CDA234} = {8D057F50-7597-45E1-A957-E257494CA952}
+		{9C26D5C9-5A94-4C71-B13D-94401931E3AC} = {244E26A1-7D14-45F3-9CFD-03FAD96D3FBE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2C8E49FD-E999-45EB-8590-AFE6C44F3DB1}
