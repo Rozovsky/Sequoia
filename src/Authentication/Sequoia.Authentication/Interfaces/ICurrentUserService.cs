@@ -4,6 +4,6 @@ namespace Sequoia.Authentication.Interfaces
 {
     public interface ICurrentUserService
     {
-        public User User { get; }
+        public CurrentUser User { get; }
     }
 }

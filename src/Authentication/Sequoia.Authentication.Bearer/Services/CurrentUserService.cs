@@ -1,26 +1,26 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Sequoia.Authentication.Interfaces;
 using Sequoia.Authentication.Models;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace Sequoia.Authentication.Bearer.Services
 {
     public class CurrentUserService : ICurrentUserService
     {
-        public User User { get; }
+        public CurrentUser User { get; }
 
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
-            User = new User
+            User = new CurrentUser
             {
-                // get auth server guid
-                Id = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Sid),
-                Login = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier),
-                UserName = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Name),
+                // get user's properties
+                Id = httpContextAccessor.HttpContext?.User?.FindFirstValue(JwtRegisteredClaimNames.Sub),
+                ProfileId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Sid),
                 Email = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email),
-                PhoneNumber = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.MobilePhone),
+                UserName = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier),
 
-                // get auth server roles list
+                // get user's roles
                 Roles = new List<string>()
             };
 
