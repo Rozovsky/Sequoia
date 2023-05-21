@@ -1,8 +1,6 @@
-﻿using Sequoia.Interfaces;
-
-namespace Sequoia.Authentication.Models
+﻿namespace Sequoia.Interfaces
 {
-    public class CurrentUser : ICurrentUser
+    public interface ICurrentUser
     {
         public string Id { get; set; }
         public string ProfileId { get; set; }

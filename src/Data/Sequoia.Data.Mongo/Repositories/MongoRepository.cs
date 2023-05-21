@@ -6,6 +6,7 @@ using Sequoia.Data.Models;
 using Sequoia.Data.Mongo.Extensions;
 using Sequoia.Data.Mongo.Interfaces;
 using Sequoia.Exceptions;
+using Sequoia.Interfaces;
 using System.Linq.Expressions;
 
 namespace Sequoia.Data.Mongo.Repositories
@@ -16,9 +17,12 @@ namespace Sequoia.Data.Mongo.Repositories
         public IMongoContext MongoContext { get; private set; }
         public IMongoCollection<TEntity> MongoCollection { get; private set; }
 
-        protected MongoRepository(IMongoContext context)
+        private ICurrentUser CurrentUser { get; set; }
+
+        protected MongoRepository(IMongoContext context, ICurrentUser currentUser = null)
         {
             MongoContext = context;
+            CurrentUser = currentUser;            
             MongoCollection = context.GetCollection<TEntity>(
                 BsonClassMap.LookupClassMap(typeof(TEntity)).GetCollectionName());
         }
@@ -28,14 +32,19 @@ namespace Sequoia.Data.Mongo.Repositories
             if (obj is not IAuditableEntity)
                 return obj;
 
-            var auditable = obj as IAuditableEntity;            
+            if (CurrentUser == null)
+                throw new Exception("CurrentUser is not defined in the repository");
+
+            var auditable = obj as IAuditableEntity;
 
             if (auditable.CreatedAt == null)
             {
+                auditable.CreatedBy = CurrentUser.ProfileId;
                 auditable.CreatedAt = DateTimeOffset.UtcNow;
             }
             else
             {
+                auditable.UpdatedBy = CurrentUser.ProfileId;
                 auditable.UpdatedAt = DateTimeOffset.UtcNow;
             }
 

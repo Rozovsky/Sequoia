@@ -9,9 +9,10 @@
     <RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
     <PackageTags>microservices;kernel;cqrs;clean-architecture;identity;web-client;</PackageTags>
     <Authors>Rozovsky</Authors>
-	<Version>0.0.5</Version>
+	<Version>0.0.6</Version>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<PackageIcon>logo_128_128.png</PackageIcon>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,5 +32,12 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
+
+	<ItemGroup>
+	  <None Update="README.md">
+	    <PackagePath>\</PackagePath>
+	    <Pack>True</Pack>
+	  </None>
+	</ItemGroup>
 
 </Project>
