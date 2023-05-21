@@ -9,9 +9,10 @@
 	  <RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
 	  <PackageTags>microservices;kernel;data</PackageTags>
 	  <Authors>Rozovsky</Authors>
-	  <Version>0.0.5.2</Version>
+	  <Version>0.0.6</Version>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <PackageIcon>logo_128_128_w.png</PackageIcon>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -23,6 +24,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Sequoia\Sequoia\Sequoia.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
+    </None>
   </ItemGroup>
 
 </Project>
