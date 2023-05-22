@@ -1,6 +1,6 @@
-﻿namespace Sequoia.Authentication.Options
+﻿namespace Sequoia.Authentication.Bearer.Swagger.Options
 {
-    public class AuthSwaggerOptions
+    public class AuthSwaggerSection
     {
         public string Version { get; set; }
         public string Title { get; set; }

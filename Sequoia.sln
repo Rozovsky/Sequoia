@@ -175,7 +175,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Common.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Common.Infrastructure.Interfaces", "samples\Common\Samples.Common.Infrastructure.Interfaces\Samples.Common.Infrastructure.Interfaces.csproj", "{90B8F33C-82FF-46CA-A0CC-369B05CDA234}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Data.Postgresql.Infrastructure", "samples\Data\Postgresql\Samples.Data.Postgresql.Infrastructure\Samples.Data.Postgresql.Infrastructure.csproj", "{9C26D5C9-5A94-4C71-B13D-94401931E3AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Data.Postgresql.Infrastructure", "samples\Data\Postgresql\Samples.Data.Postgresql.Infrastructure\Samples.Data.Postgresql.Infrastructure.csproj", "{9C26D5C9-5A94-4C71-B13D-94401931E3AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sequoia.Authentication.Bearer.Swagger", "src\Authentication\Sequoia.Authentication.Bearer.Swagger\Sequoia.Authentication.Bearer.Swagger.csproj", "{9E6C0A5D-A0DE-4A38-948C-B3F031E2E67D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -399,6 +401,10 @@ Global
 		{9C26D5C9-5A94-4C71-B13D-94401931E3AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C26D5C9-5A94-4C71-B13D-94401931E3AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C26D5C9-5A94-4C71-B13D-94401931E3AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E6C0A5D-A0DE-4A38-948C-B3F031E2E67D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E6C0A5D-A0DE-4A38-948C-B3F031E2E67D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E6C0A5D-A0DE-4A38-948C-B3F031E2E67D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E6C0A5D-A0DE-4A38-948C-B3F031E2E67D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -481,6 +487,7 @@ Global
 		{4794B41A-BAFD-44BD-AE62-9A1F3BE45722} = {8D057F50-7597-45E1-A957-E257494CA952}
 		{90B8F33C-82FF-46CA-A0CC-369B05CDA234} = {8D057F50-7597-45E1-A957-E257494CA952}
 		{9C26D5C9-5A94-4C71-B13D-94401931E3AC} = {244E26A1-7D14-45F3-9CFD-03FAD96D3FBE}
+		{9E6C0A5D-A0DE-4A38-948C-B3F031E2E67D} = {0A55E907-0BC2-48D3-B39F-6F74B92E878A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2C8E49FD-E999-45EB-8590-AFE6C44F3DB1}
