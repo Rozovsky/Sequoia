@@ -8,7 +8,7 @@
 	<RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
 	<PackageTags>cqrs;clean-architecture;auth;identity;jwt</PackageTags>
 	<Authors>Rozovsky</Authors>
-	<Version>0.0.8</Version>
+	<Version>0.0.9</Version>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<PackageIcon>logo_128_128_w.png</PackageIcon>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.16" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
