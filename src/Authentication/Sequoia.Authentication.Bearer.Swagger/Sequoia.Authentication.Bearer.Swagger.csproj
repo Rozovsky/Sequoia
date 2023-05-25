@@ -8,7 +8,7 @@
 	<RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
 	<PackageTags>cqrs;clean-architecture;auth;identity;jwt;swagger</PackageTags>
 	<Authors>Rozovsky</Authors>
-	<Version>0.0.8</Version>
+	<Version>0.0.9</Version>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<PackageIcon>logo_128_128_w.png</PackageIcon>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -19,6 +19,10 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
