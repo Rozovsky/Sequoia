@@ -9,7 +9,7 @@ namespace Sequoia.Client.Http
         public static IServiceCollection AddSequoiaHttpClient(this IServiceCollection services, IConfiguration configuration)
         {
             // register options
-            services.Configure<HttpClientOptions>(configuration.GetSection("HttpClientOptions"));
+            services.Configure<HttpClientOptions>(configuration.GetSection("HttpClient"));
 
             // add context accessor
             services.AddHttpContextAccessor();
@@ -18,10 +18,7 @@ namespace Sequoia.Client.Http
             services.AddHttpClient("default");
 
             // register web client services
-            //services.AddTransient<IWebClient, WebClientEngine>();
-
-            // register oauth repository
-            //services.AddSingleton<IOAuthRepository, OAuthRepository>();
+            services.AddTransient<IClient, Client>();
 
             return services;
         }

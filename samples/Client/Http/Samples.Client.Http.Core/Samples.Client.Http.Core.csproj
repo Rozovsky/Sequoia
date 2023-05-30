@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Application\Common\Exceptions\" />
     <Folder Include="Application\Common\Helpers\" />
-    <Folder Include="Application\Common\Interfaces\" />
     <Folder Include="Application\Common\Services\" />
     <Folder Include="Domain\Constants\" />
     <Folder Include="Domain\Models\" />

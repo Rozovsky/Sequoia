@@ -1,13 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Samples.Client.Http.Core.Application.Common.Interfaces;
+using Samples.Client.Http.Core.Infrastructure.Repositories;
 using Sequoia;
 using Sequoia.Attributes;
 using Sequoia.Client.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Samples.Client.Http.Core
 {
@@ -27,7 +24,7 @@ namespace Samples.Client.Http.Core
             //services.AddTransient<IStoreService, StoreService>();
 
             // add application repositories
-            //services.AddTransient<IStoreRepository, StoreRepository>();
+            services.AddTransient<IStoreRepository, StoreRepository>();
 
             return services;
         }
