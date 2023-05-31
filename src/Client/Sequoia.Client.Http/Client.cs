@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Sequoia.Client.Http.Configuration;
 using Sequoia.Client.Http.Exceptions;
+using Sequoia.Client.Http.Extensions;
 using Sequoia.Client.Http.Models;
 using Sequoia.Client.Http.Options;
 
@@ -27,24 +28,14 @@ namespace Sequoia.Client.Http
             Configuration = new ClientConfiguration(_httpClientOptions);
         }
 
-        private void ApplyConfiguration()
-        {
-            // path
-
-        }
-
-        private string GetUri(string path)
-        {
-            var uri = Configuration.Path.Uri + path + Configuration.Query.QueryString;
-
-            return uri;
-        }
-
-        // GET
+        #region Get
 
         public async Task<T> Get<T>(string path, CancellationToken cancellationToken) where T : class
         {
-            var response = await HttpClient.GetAsync(GetUri(path), cancellationToken);
+            var response = await HttpClient
+                .ApplyConfiguration(Configuration)
+                .GetAsync(Configuration.GetUri(path), cancellationToken);
+
             var responseData = await response.Content.ReadAsStringAsync(cancellationToken);
 
             if (!response.IsSuccessStatusCode)
@@ -71,11 +62,16 @@ namespace Sequoia.Client.Http
             await Get<Empty>(null, cancellationToken);
         }
 
-        // POST
+        #endregion
+
+        #region Post
 
         public async Task<T> Post<T>(string path, CancellationToken cancellationToken) where T : class
         {
-            var response = await HttpClient.PostAsync(GetUri(path), Configuration.Body.HttpContent, cancellationToken);
+            var response = await HttpClient
+                .ApplyConfiguration(Configuration)
+                .PostAsync(Configuration.GetUri(path), Configuration.Body.HttpContent, cancellationToken);
+
             var responseData = await response.Content.ReadAsStringAsync(cancellationToken);
 
             if (!response.IsSuccessStatusCode)
@@ -102,11 +98,16 @@ namespace Sequoia.Client.Http
             await Post<Empty>(null, cancellationToken);
         }
 
-        // PUT
+        #endregion
+
+        #region Put
 
         public async Task<T> Put<T>(string path, CancellationToken cancellationToken) where T : class
         {
-            var response = await HttpClient.PutAsync(GetUri(path), Configuration.Body.HttpContent, cancellationToken);
+            var response = await HttpClient
+               .ApplyConfiguration(Configuration)
+               .PutAsync(Configuration.GetUri(path), Configuration.Body.HttpContent, cancellationToken);
+
             var responseData = await response.Content.ReadAsStringAsync(cancellationToken);
 
             if (!response.IsSuccessStatusCode)
@@ -133,11 +134,16 @@ namespace Sequoia.Client.Http
             await Put<Empty>(null, cancellationToken);
         }
 
-        // DELETE
+        #endregion
+
+        #region Delete
 
         public async Task<T> Delete<T>(string path, CancellationToken cancellationToken) where T : class
         {
-            var response = await HttpClient.DeleteAsync(GetUri(path), cancellationToken);
+            var response = await HttpClient
+                .ApplyConfiguration(Configuration)
+                .GetAsync(Configuration.GetUri(path), cancellationToken);
+
             var responseData = await response.Content.ReadAsStringAsync(cancellationToken);
 
             if (!response.IsSuccessStatusCode)
@@ -164,11 +170,16 @@ namespace Sequoia.Client.Http
             await Delete<Empty>(null, cancellationToken);
         }
 
-        // PATCH
+        #endregion
+
+        #region Patch
 
         public async Task<T> Patch<T>(string path, CancellationToken cancellationToken) where T : class
         {
-            var response = await HttpClient.PatchAsync(GetUri(path), Configuration.Body.HttpContent, cancellationToken);
+            var response = await HttpClient
+              .ApplyConfiguration(Configuration)
+              .PatchAsync(Configuration.GetUri(path), Configuration.Body.HttpContent, cancellationToken);
+
             var responseData = await response.Content.ReadAsStringAsync(cancellationToken);
 
             if (!response.IsSuccessStatusCode)
@@ -194,5 +205,7 @@ namespace Sequoia.Client.Http
         {
             await Patch<Empty>(null, cancellationToken);
         }
+
+        #endregion
     }
 }

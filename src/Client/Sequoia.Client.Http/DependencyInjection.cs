@@ -12,7 +12,7 @@ namespace Sequoia.Client.Http
             services.Configure<HttpClientOptions>(configuration.GetSection("HttpClient"));
 
             // add context accessor
-            services.AddHttpContextAccessor();
+            //services.AddHttpContextAccessor();
 
             // register IHttpClientFactory
             services.AddHttpClient("default");

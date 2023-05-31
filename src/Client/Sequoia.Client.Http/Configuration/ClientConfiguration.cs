@@ -18,5 +18,10 @@ namespace Sequoia.Client.Http.Configuration
             Query = new Query();
             Headers = new Headers();
         }
+
+        public string GetUri(string path)
+        {
+            return Path.Uri + path + Query.QueryString;
+        }
     }
 }

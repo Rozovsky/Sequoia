@@ -2,9 +2,9 @@
 {
     public class Headers
     {
-        public Dictionary<string, object> HeadersCollection { get; set; }
+        public Dictionary<string, string> HeadersCollection { get; set; }
 
-        protected internal void SetOrReplaceHeader(string key, object value)
+        protected internal void SetOrReplaceHeader(string key, string value)
         {
             if (HeadersCollection.Any(c => c.Key == key))
                 HeadersCollection.Remove(key);

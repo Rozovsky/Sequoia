@@ -16,7 +16,7 @@
             return client;
         }
 
-        public static IClient Headers(this IClient client, string key, object value)
+        public static IClient Headers(this IClient client, string key, string value)
         {
             client.Configuration.Headers.SetOrReplaceHeader(key, value);
 
