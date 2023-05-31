@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Samples.Client.Http.Core.Application.Common.Interfaces;
+using Samples.Client.Http.Core.Application.Common.Services;
 using Samples.Client.Http.Core.Infrastructure.Repositories;
 using Sequoia;
 using Sequoia.Attributes;
@@ -14,17 +15,17 @@ namespace Samples.Client.Http.Core
         /// <summary>
         /// Add application services
         /// </summary>
-        public static IServiceCollection AddCoreServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddAppService(this IServiceCollection services, IConfiguration configuration)
         {
             // register common components
             services.AddSequoia();
             services.AddSequoiaHttpClient(configuration);
 
             // add application services
-            //services.AddTransient<IStoreService, StoreService>();
+            services.AddTransient<ITodoService, TodoService>();
 
             // add application repositories
-            services.AddTransient<IStoreRepository, StoreRepository>();
+            services.AddTransient<ITodoRepository, TodoRepository>();
 
             return services;
         }

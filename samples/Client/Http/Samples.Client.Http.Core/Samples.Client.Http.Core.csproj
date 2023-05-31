@@ -9,12 +9,11 @@
   <ItemGroup>
     <Folder Include="Application\Common\Exceptions\" />
     <Folder Include="Application\Common\Helpers\" />
-    <Folder Include="Application\Common\Services\" />
+    <Folder Include="Application\Todos\Commands\" />
     <Folder Include="Domain\Constants\" />
     <Folder Include="Domain\Models\" />
     <Folder Include="Infrastructure\Configurations\" />
     <Folder Include="Infrastructure\Migrations\" />
-    <Folder Include="Infrastructure\Repositories\" />
   </ItemGroup>
 
   <ItemGroup>

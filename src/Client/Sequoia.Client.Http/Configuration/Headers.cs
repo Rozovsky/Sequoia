@@ -2,7 +2,7 @@
 {
     public class Headers
     {
-        public Dictionary<string, string> HeadersCollection { get; set; }
+        public Dictionary<string, string> HeadersCollection { get; set; } = new Dictionary<string, string>();
 
         protected internal void SetOrReplaceHeader(string key, string value)
         {
