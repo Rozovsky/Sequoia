@@ -24,7 +24,7 @@ namespace Sequoia.Client.Http
 
             HttpClient = _httpClientFactory.CreateClient();
 
-            Configuration = new ClientConfiguration();
+            Configuration = new ClientConfiguration(_httpClientOptions);
         }
 
         private string GetUri(string path)

@@ -1,4 +1,6 @@
-﻿namespace Sequoia.Client.Http.Options
+﻿using Sequoia.Client.Options;
+
+namespace Sequoia.Client.Http.Options
 {
     public class HttpClientOptions
     {

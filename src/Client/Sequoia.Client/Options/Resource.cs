@@ -1,4 +1,4 @@
-﻿namespace Sequoia.Client.Http.Options
+﻿namespace Sequoia.Client.Options
 {
     public class Resource
     {

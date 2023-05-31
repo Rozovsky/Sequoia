@@ -1,4 +1,6 @@
-﻿namespace Sequoia.Client.Http.Configuration
+﻿using Sequoia.Client.Http.Options;
+
+namespace Sequoia.Client.Http.Configuration
 {
     public class ClientConfiguration
     {
@@ -8,11 +10,11 @@
         public Query Query { get; set; }
         public Headers Headers { get; set; }
 
-        public ClientConfiguration()
+        public ClientConfiguration(HttpClientOptions httpClientOptions)
         {
-            Auth = new Auth();
+            Auth = new Auth(httpClientOptions.Resources);
             Body = new Body();
-            Path = new Path();
+            Path = new Path(httpClientOptions.Resources);
             Query = new Query();
             Headers = new Headers();
         }

@@ -1,12 +1,17 @@
-﻿using Sequoia.Client.Http.Exceptions;
+﻿using Sequoia.Client.Extensions;
+using Sequoia.Client.Options;
 
 namespace Sequoia.Client.Http.Configuration
 {
     public class Path
     {
         public string Uri { get; set; }
-        public string Resource { get; set; }
-        public string Segment { get; set; }
+        private List<Resource> Resources { get; set; }
+
+        public Path(List<Resource> resources)
+        {
+            Resources = resources;
+        }
 
         protected internal void SetUri(string pattern)
         {
@@ -16,13 +21,10 @@ namespace Sequoia.Client.Http.Configuration
             }
             else
             {
-                var webResourcePathSplitted = pattern.Split('/');
+                var resource = Resources.FindResource(pattern);
+                var segment = resource.FindSegment(pattern);
 
-                if (webResourcePathSplitted.Length != 2)
-                    throw new PathPatternException(pattern);
-
-                Resource = webResourcePathSplitted[0];
-                Segment = webResourcePathSplitted[1];
+                Uri = resource.Uri + segment.Path;
             }
         }
     }

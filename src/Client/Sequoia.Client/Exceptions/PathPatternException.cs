@@ -2,7 +2,7 @@
 using Sequoia.Exceptions;
 using System.Net;
 
-namespace Sequoia.Client.Http.Exceptions
+namespace Sequoia.Client.Exceptions
 {
     public class PathPatternException : KernelException
     {
