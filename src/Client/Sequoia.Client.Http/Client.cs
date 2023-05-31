@@ -27,12 +27,20 @@ namespace Sequoia.Client.Http
             Configuration = new ClientConfiguration(_httpClientOptions);
         }
 
+        private void ApplyConfiguration()
+        {
+            // path
+
+        }
+
         private string GetUri(string path)
         {
             var uri = Configuration.Path.Uri + path + Configuration.Query.QueryString;
 
             return uri;
         }
+
+        // GET
 
         public async Task<T> Get<T>(string path, CancellationToken cancellationToken) where T : class
         {
@@ -61,6 +69,130 @@ namespace Sequoia.Client.Http
         public async Task Get(CancellationToken cancellationToken)
         {
             await Get<Empty>(null, cancellationToken);
+        }
+
+        // POST
+
+        public async Task<T> Post<T>(string path, CancellationToken cancellationToken) where T : class
+        {
+            var response = await HttpClient.PostAsync(GetUri(path), Configuration.Body.HttpContent, cancellationToken);
+            var responseData = await response.Content.ReadAsStringAsync(cancellationToken);
+
+            if (!response.IsSuccessStatusCode)
+                throw new HttpClientException(response.StatusCode, responseData);
+
+            if (typeof(T) == typeof(Empty))
+                return null;
+
+            return JsonConvert.DeserializeObject<T>(responseData);
+        }
+
+        public async Task<T> Post<T>(CancellationToken cancellationToken) where T : class
+        {
+            return await Post<T>(null, cancellationToken);
+        }
+
+        public async Task Post(string path, CancellationToken cancellationToken)
+        {
+            await Post<Empty>(path, cancellationToken);
+        }
+
+        public async Task Post(CancellationToken cancellationToken)
+        {
+            await Post<Empty>(null, cancellationToken);
+        }
+
+        // PUT
+
+        public async Task<T> Put<T>(string path, CancellationToken cancellationToken) where T : class
+        {
+            var response = await HttpClient.PutAsync(GetUri(path), Configuration.Body.HttpContent, cancellationToken);
+            var responseData = await response.Content.ReadAsStringAsync(cancellationToken);
+
+            if (!response.IsSuccessStatusCode)
+                throw new HttpClientException(response.StatusCode, responseData);
+
+            if (typeof(T) == typeof(Empty))
+                return null;
+
+            return JsonConvert.DeserializeObject<T>(responseData);
+        }
+
+        public async Task<T> Put<T>(CancellationToken cancellationToken) where T : class
+        {
+            return await Put<T>(null, cancellationToken);
+        }
+
+        public async Task Put(string path, CancellationToken cancellationToken)
+        {
+            await Put<Empty>(path, cancellationToken);
+        }
+
+        public async Task Put(CancellationToken cancellationToken)
+        {
+            await Put<Empty>(null, cancellationToken);
+        }
+
+        // DELETE
+
+        public async Task<T> Delete<T>(string path, CancellationToken cancellationToken) where T : class
+        {
+            var response = await HttpClient.DeleteAsync(GetUri(path), cancellationToken);
+            var responseData = await response.Content.ReadAsStringAsync(cancellationToken);
+
+            if (!response.IsSuccessStatusCode)
+                throw new HttpClientException(response.StatusCode, responseData);
+
+            if (typeof(T) == typeof(Empty))
+                return null;
+
+            return JsonConvert.DeserializeObject<T>(responseData);
+        }
+
+        public async Task<T> Delete<T>(CancellationToken cancellationToken) where T : class
+        {
+            return await Delete<T>(null, cancellationToken);
+        }
+
+        public async Task Delete(string path, CancellationToken cancellationToken)
+        {
+            await Delete<Empty>(path, cancellationToken);
+        }
+
+        public async Task Delete(CancellationToken cancellationToken)
+        {
+            await Delete<Empty>(null, cancellationToken);
+        }
+
+        // PATCH
+
+        public async Task<T> Patch<T>(string path, CancellationToken cancellationToken) where T : class
+        {
+            var response = await HttpClient.PatchAsync(GetUri(path), Configuration.Body.HttpContent, cancellationToken);
+            var responseData = await response.Content.ReadAsStringAsync(cancellationToken);
+
+            if (!response.IsSuccessStatusCode)
+                throw new HttpClientException(response.StatusCode, responseData);
+
+            if (typeof(T) == typeof(Empty))
+                return null;
+
+            return JsonConvert.DeserializeObject<T>(responseData);
+        }
+
+        public async Task<T> Patch<T>(CancellationToken cancellationToken) where T : class
+        {
+            return await Patch<T>(null, cancellationToken);
+        }
+
+        public async Task Patch(string path, CancellationToken cancellationToken)
+        {
+            await Patch<Empty>(path, cancellationToken);
+        }
+
+        public async Task Patch(CancellationToken cancellationToken)
+        {
+            await Patch<Empty>(null, cancellationToken);
         }
     }
 }

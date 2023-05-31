@@ -32,22 +32,7 @@
 
         public static IClient Auth(this IClient client, string token)
         {
-            //webClient.Configuration.WebResource = null;
-            //webClient.Configuration.Segment = null;
-            //webClient.Configuration.WebResourcePath = string.Empty;
-
-            //webClient.Configuration.RequestUri = uri;
-
-            return client;
-        }
-
-        public static IClient Auth(this IClient client) // take token from configuration or use current token
-        {
-            //webClient.Configuration.WebResource = null;
-            //webClient.Configuration.Segment = null;
-            //webClient.Configuration.WebResourcePath = string.Empty;
-
-            //webClient.Configuration.RequestUri = uri;
+            client.Configuration.Auth.SetToken(token);
 
             return client;
         }
