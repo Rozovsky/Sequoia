@@ -8,7 +8,7 @@
 	<RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
 	<PackageTags>microservices;kernel;client</PackageTags>
 	<Authors>Rozovsky</Authors>
-	<Version>0.0.9</Version>
+	<Version>0.1.0</Version>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<PackageIcon>logo_128_128_w.png</PackageIcon>
 	<PackageReadmeFile>README.md</PackageReadmeFile>

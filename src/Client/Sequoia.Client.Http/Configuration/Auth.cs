@@ -1,16 +1,15 @@
-﻿using Sequoia.Client.Extensions;
-using Sequoia.Client.Options;
+﻿using Sequoia.Client.Http.Exceptions;
 
 namespace Sequoia.Client.Http.Configuration
 {
     public class Auth
     {
         public string Token { get; set; }
-        private List<Resource> Resources { get; set; }
+        private string CurrentRequestToken { get; set; }
 
-        public Auth(List<Resource> resources)
+        public Auth(string token)
         {
-            Resources = resources;
+            CurrentRequestToken = token;
         }
 
         protected internal void SetToken(string pattern)
@@ -21,12 +20,13 @@ namespace Sequoia.Client.Http.Configuration
             }
             else
             {
-                var segment = Resources
-                    .FindResource(pattern)
-                    .FindSegment(pattern);
-
-                Token = segment.Token;
+                throw new InvalidAuthTokenException();
             }
+        }
+
+        protected internal void SetToken()
+        {
+            Token = CurrentRequestToken;
         }
     }
 }

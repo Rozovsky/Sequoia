@@ -19,7 +19,7 @@ namespace Samples.Client.Http.Core
         {
             // register common components
             services.AddSequoia();
-            services.AddSequoiaHttpClient(configuration);
+            services.AddClientHttp(configuration);
 
             // add application services
             services.AddTransient<ITodoService, TodoService>();

@@ -25,8 +25,14 @@ namespace Samples.Client.Http.Core.Infrastructure.Repositories
 
         public async Task<List<Todo>> GetTodos(CancellationToken cancellationToken)
         {
+            var batch = new List<string>
+            {
+                "var1", "var2", "var3"
+            };
+
             var result = await _client
                 .Path("jsonplaceholder/todo")
+                .Query("id", batch)
                 .Get<List<Todo>>(cancellationToken);
 
             return result;

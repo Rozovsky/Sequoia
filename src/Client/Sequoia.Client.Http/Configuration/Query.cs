@@ -9,16 +9,18 @@ namespace Sequoia.Client.Http.Configuration
 
         protected internal void SetQueryParams(object queryParams)
         {
-            NameValueCollection queryString = HttpUtility.ParseQueryString(string.Empty);
-
-            if (queryParams.GetType() == typeof(string))
-            {
-                QueryString = (string)queryParams;
-            }
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
 
             // query parameters
             if (queryParams != null)
             {
+                // flat string
+                if (queryParams.GetType() == typeof(string))
+                {
+                    QueryString = (string)queryParams;
+                }
+
+                // name value collection
                 if (queryParams is NameValueCollection)
                 {
                     var query = queryParams as NameValueCollection;
@@ -40,8 +42,24 @@ namespace Sequoia.Client.Http.Configuration
                     var propertyValue = property.GetValue(queryParams, null);
                     if (propertyValue == null)
                         continue;
+
                     queryString.Add(property.Name, property.GetValue(queryParams).ToString());
                 }
+            }
+
+            QueryString = "?" + queryString.ToString();
+        }
+
+        protected internal void SetQueryParams<T>(string key, IEnumerable<T> queryParams)
+        {
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
+
+            foreach (var queryParam in queryParams)
+            {
+                if (queryParam == null)
+                    continue;
+
+                queryString.Add(key, queryParam.ToString());
             }
 
             QueryString = "?" + queryString.ToString();

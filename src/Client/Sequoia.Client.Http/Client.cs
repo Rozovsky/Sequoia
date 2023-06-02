@@ -1,31 +1,22 @@
-﻿using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Sequoia.Client.Http.Configuration;
 using Sequoia.Client.Http.Exceptions;
 using Sequoia.Client.Http.Extensions;
 using Sequoia.Client.Http.Models;
-using Sequoia.Client.Http.Options;
 
 namespace Sequoia.Client.Http
 {
     public class Client : IClient
     {
-        private readonly HttpClientOptions _httpClientOptions;
-        private readonly IHttpClientFactory _httpClientFactory;
-
         public ClientConfiguration Configuration { get; protected set; }
         public HttpClient HttpClient { get; protected set; }
 
         public Client(
-            IOptions<HttpClientOptions> httpClientOptions, 
+            ClientConfiguration configuration, 
             IHttpClientFactory httpClientFactory)
         {
-            _httpClientOptions = httpClientOptions.Value;
-            _httpClientFactory = httpClientFactory;
-
-            HttpClient = _httpClientFactory.CreateClient();
-
-            Configuration = new ClientConfiguration(_httpClientOptions);
+            HttpClient = httpClientFactory.CreateClient();
+            Configuration = configuration;
         }
 
         #region Get
