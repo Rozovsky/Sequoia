@@ -19,19 +19,19 @@ namespace Sequoia.Authentication.Bearer.Services
                 ProfileId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Sid),
                 Email = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email),
                 UserName = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier),
+                Language = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Locality),
 
-                // get user's roles
-                Roles = new List<string>()
+                Roles = GetCurrentRoles(httpContextAccessor)
             };
+        }
 
-            var userRoles = httpContextAccessor.HttpContext?.User?.FindAll(ClaimTypes.Role)
+        private List<string> GetCurrentRoles(IHttpContextAccessor httpContextAccessor)
+        {
+            var roles = httpContextAccessor.HttpContext?.User?.FindAll(ClaimTypes.Role)
                 .Select(c => c.Value)
                 .ToList();
 
-            if (userRoles != null)
-            {
-                User.Roles = userRoles;
-            }
+            return roles;
         }
     }
 }

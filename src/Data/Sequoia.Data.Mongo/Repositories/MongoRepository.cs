@@ -6,49 +6,21 @@ using Sequoia.Data.Models;
 using Sequoia.Data.Mongo.Extensions;
 using Sequoia.Data.Mongo.Interfaces;
 using Sequoia.Exceptions;
-using Sequoia.Interfaces;
 using System.Linq.Expressions;
 
 namespace Sequoia.Data.Mongo.Repositories
 {
-    public abstract class MongoRepository<TEntity> : IMongoRepository<TEntity> 
+    public abstract class MongoRepository<TEntity> : IMongoRepository<TEntity>
         where TEntity : class
     {
         public IMongoContext MongoContext { get; private set; }
         public IMongoCollection<TEntity> MongoCollection { get; private set; }
 
-        private ICurrentUser CurrentUser { get; set; }
-
-        protected MongoRepository(IMongoContext context, ICurrentUser currentUser = null)
+        protected MongoRepository(IMongoContext context)
         {
             MongoContext = context;
-            CurrentUser = currentUser;            
             MongoCollection = context.GetCollection<TEntity>(
                 BsonClassMap.LookupClassMap(typeof(TEntity)).GetCollectionName());
-        }
-
-        private TEntity SetAuditableEntityValues(TEntity obj)
-        {
-            if (obj is not IAuditableEntity)
-                return obj;
-
-            if (CurrentUser == null)
-                throw new Exception("CurrentUser is not defined in the repository");
-
-            var auditable = obj as IAuditableEntity;
-
-            if (auditable.CreatedAt == null)
-            {
-                auditable.CreatedBy = CurrentUser.ProfileId;
-                auditable.CreatedAt = DateTimeOffset.UtcNow;
-            }
-            else
-            {
-                auditable.UpdatedBy = CurrentUser.ProfileId;
-                auditable.UpdatedAt = DateTimeOffset.UtcNow;
-            }
-
-            return obj;
         }
 
         private TEntity SetDeletedEntityValue(TEntity obj, bool isDeleted)
@@ -65,8 +37,6 @@ namespace Sequoia.Data.Mongo.Repositories
 
         public virtual async Task<TEntity> CreateAsync(TEntity obj, CancellationToken cancellationToken)
         {
-            obj = SetAuditableEntityValues(obj);
-
             await MongoCollection.InsertOneAsync(obj, cancellationToken: cancellationToken);
             
             return obj;
@@ -74,8 +44,6 @@ namespace Sequoia.Data.Mongo.Repositories
 
         public virtual async Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> predicate, TEntity obj, CancellationToken cancellationToken)
         {
-            obj = SetAuditableEntityValues(obj);
-
             await MongoCollection.ReplaceOneAsync(
                 predicate, obj, new ReplaceOptions { IsUpsert = true }, cancellationToken: cancellationToken);
 

@@ -1,0 +1,63 @@
+﻿using MongoDB.Driver;
+using Sequoia.Data.Interfaces;
+using Sequoia.Data.Mongo.Interfaces;
+using Sequoia.Interfaces;
+using System.Linq.Expressions;
+
+namespace Sequoia.Data.Mongo.Repositories
+{
+    public abstract class AuditableMongoRepository <TEntity> : MultilingualMongoRepository<TEntity>, IMongoRepository<TEntity>
+        where TEntity : class
+    {
+        private ICurrentUser CurrentUser { get; set; }
+
+        protected AuditableMongoRepository(IMongoContext context, ICurrentUser currentUser, string language = null) 
+            : base(context, currentUser.Language ?? language)
+        {
+            CurrentUser = currentUser;
+        }
+
+        private TEntity SetAuditableEntityValues(TEntity obj)
+        {
+            if (obj is not IAuditableEntity)
+                return obj;
+
+            if (CurrentUser == null)
+                throw new Exception("CurrentUser is not defined in the repository");
+
+            var auditable = obj as IAuditableEntity;
+
+            if (auditable.CreatedAt == null)
+            {
+                auditable.CreatedBy = CurrentUser.ProfileId;
+                auditable.CreatedAt = DateTimeOffset.UtcNow;
+            }
+            else
+            {
+                auditable.UpdatedBy = CurrentUser.ProfileId;
+                auditable.UpdatedAt = DateTimeOffset.UtcNow;
+            }
+
+            return obj;
+        }
+
+        public override async Task<TEntity> CreateAsync(TEntity obj, CancellationToken cancellationToken)
+        {
+            obj = SetAuditableEntityValues(obj);
+
+            await MongoCollection.InsertOneAsync(obj, cancellationToken: cancellationToken);
+
+            return obj;
+        }
+
+        public override async Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> predicate, TEntity obj, CancellationToken cancellationToken)
+        {
+            obj = SetAuditableEntityValues(obj);
+
+            await MongoCollection.ReplaceOneAsync(
+                predicate, obj, new ReplaceOptions { IsUpsert = true }, cancellationToken: cancellationToken);
+
+            return obj;
+        }
+    }
+}
