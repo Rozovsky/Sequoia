@@ -6,13 +6,13 @@ using System.Linq.Expressions;
 
 namespace Sequoia.Data.Mongo.Repositories
 {
-    public abstract class AuditableMongoRepository <TEntity> : MongoRepository<TEntity>, IMongoRepository<TEntity>
+    public class AuditableMultilingualMongoRepository<TEntity> : MultilingualMongoRepository<TEntity>, IMongoRepository<TEntity>
         where TEntity : class
     {
         private ICurrentUser CurrentUser { get; set; }
 
-        protected AuditableMongoRepository(IMongoContext context, ICurrentUser currentUser) 
-            : base(context)
+        protected AuditableMultilingualMongoRepository(IMongoContext context, ICurrentUser currentUser, string language = null)
+            : base(context, currentUser.Language ?? language)
         {
             CurrentUser = currentUser;
         }

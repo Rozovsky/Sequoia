@@ -14,24 +14,4 @@ namespace Sequoia.Data.Mongo.Entities
         [BsonElement("value")]
         public string Value { get; set; }
     }
-
-
-    public class Test
-    {
-        public class Entity : IMultilingual
-        {
-            public int Id { get; set; }
-            //public List<Translation> Translations { get; set; }
-            public IEnumerable<ITranslation> Translations { get; set; }
-        }
-
-        private void Tess() 
-        {
-            ITranslation tra = new Translation();
-
-            IEnumerable<ITranslation> translations = new List<Translation>();
-        }
-    }
-
-    
 }

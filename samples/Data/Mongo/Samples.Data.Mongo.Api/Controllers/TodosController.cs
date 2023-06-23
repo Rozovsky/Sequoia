@@ -2,7 +2,10 @@
 using Samples.Data.Mongo.Core.Application.Common.Dto;
 using Samples.Data.Mongo.Core.Application.Common.ViewModels;
 using Samples.Data.Mongo.Core.Application.Todos.Commands.CreateTodo;
+using Samples.Data.Mongo.Core.Application.Todos.Queries.GetAllTodos;
 using Samples.Data.Mongo.Core.Application.Todos.Queries.GetTodo;
+using Samples.Data.Mongo.Core.Application.Todos.Queries.GetTodoPaged;
+using Sequoia.Data.Models;
 using Sequoia.Models;
 using System.ComponentModel.DataAnnotations;
 
@@ -60,10 +63,17 @@ namespace Samples.Data.Mongo.Api.Controllers
             });
         }
 
-        //[HttpGet]
-        //public async Task<List<TodoVm>> GetTodos()
-        //{
-        //    return await Mediator.Send(new GetTodosQuery());
-        //}
+        [HttpGet]
+        public async Task<List<TodoVm>> GetTodos()
+        {
+            return await Mediator.Send(new GetAllTodosQuery());
+        }
+
+        [HttpGet]
+        [Route("paged")]
+        public async Task<PagedWrapper<TodoVm>> GetTodoPaged([FromQuery] GetTodoPagedQuery query)
+        {
+            return await Mediator.Send(query);
+        }
     }
 }

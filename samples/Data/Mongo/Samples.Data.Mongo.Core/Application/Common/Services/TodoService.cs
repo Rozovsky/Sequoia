@@ -2,6 +2,7 @@
 using Samples.Data.Mongo.Core.Application.Common.Interfaces;
 using Samples.Data.Mongo.Core.Domain;
 using Samples.Data.Mongo.Core.Infrastructure.Interfaces;
+using Sequoia.Data.Models;
 
 namespace Samples.Data.Mongo.Core.Application.Common.Services
 {
@@ -31,6 +32,16 @@ namespace Samples.Data.Mongo.Core.Application.Common.Services
         public async Task<Todo> GetTodo(string id, CancellationToken cancellationToken)
         {
             return await _todoRepository.GetTodo(id, cancellationToken);
+        }
+
+        public async Task<IEnumerable<Todo>> GetAllTodos(CancellationToken cancellationToken)
+        {
+            return await _todoRepository.GetAllTodos(cancellationToken);
+        }
+
+        public async Task<PagedWrapper<Todo>> GetTodoPaged(int page, int limit, CancellationToken cancellationToken)
+        {
+            return await _todoRepository.GetTodoPaged(page, limit, cancellationToken);
         }
     }
 }

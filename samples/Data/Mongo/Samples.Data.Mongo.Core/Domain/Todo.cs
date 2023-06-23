@@ -1,23 +1,28 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
 using Sequoia.Data.Interfaces;
-using Sequoia.Data.Models;
 using Sequoia.Data.Mongo.Entities;
 
 namespace Samples.Data.Mongo.Core.Domain
 {
-    public class Todo : IMultilingual
+    public class Todo : AuditableMultilingual //Auditable, IMultilingual<Translation> //Multilingual
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
-        public long UserId { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public bool Completed { get; set; }
-        public List<Translation> Translations { get; set; }
-        IEnumerable<ITranslation> IMultilingual.Translations { get; set; }
+        //[BsonId]
+        //[BsonRepresentation(BsonType.ObjectId)]
+        //public string Id { get; set; }
 
+        [BsonElement("user_id")]
+        public long UserId { get; set; }
+
+        [BsonElement("title")]
+        public string Title { get; set; }
+
+        [BsonElement("description")]
+        public string Description { get; set; }
+
+        [BsonElement("completed")]
+        public bool Completed { get; set; }
+
+        //[BsonElement("translations")]
         //public List<Translation> Translations { get; set; }
     }
 }

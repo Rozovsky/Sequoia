@@ -1,6 +1,6 @@
 ﻿namespace Sequoia.Data.Interfaces
 {
-    public interface IAuditableEntity : IBaseEntity
+    public interface IAuditable : IBaseEntity
     {
         public string CreatedBy { get; set; }
         public DateTimeOffset? CreatedAt { get; set; }

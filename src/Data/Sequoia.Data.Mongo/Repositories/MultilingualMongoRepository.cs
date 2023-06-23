@@ -2,6 +2,7 @@
 using MongoDB.Driver.Linq;
 using Sequoia.Data.Interfaces;
 using Sequoia.Data.Models;
+using Sequoia.Data.Mongo.Entities;
 using Sequoia.Data.Mongo.Extensions;
 using Sequoia.Data.Mongo.Interfaces;
 using System.Linq.Expressions;
@@ -18,34 +19,34 @@ namespace Sequoia.Data.Mongo.Repositories
             CurrentLanguage = language;
         }
 
-        //private IEnumerable<TEntity> SetMultilingualEntityValues(IEnumerable<TEntity> objs)
-        //{
-        //    if (CurrentLanguage == null)
-        //        return objs;
+        private IEnumerable<TEntity> SetMultilingualEntityValues(IEnumerable<TEntity> objs)
+        {
+            if (CurrentLanguage == null)
+                return objs;
 
-        //    var first = objs.FirstOrDefault();
+            var first = objs.FirstOrDefault();
 
-        //    if (first == null || first is not IMultilingual)
-        //        return objs;
+            if (first == null || first is not IMultilingual<Translation>)
+                return objs;
 
-        //    foreach (var obj in objs)
-        //    {
-        //        obj = SetMultilingualEntityValues(obj);
-        //    }
+            foreach (var obj in objs)
+            {
+                SetMultilingualEntityValues(obj);
+            }
 
-        //    return objs;
-        //}
+            return objs;
+        }
 
         private TEntity SetMultilingualEntityValues(TEntity obj)
         {
             if (CurrentLanguage == null)
                 return obj;
 
-            if (obj is not IMultilingual)
+            if (obj is not IMultilingual<Translation>)
                 return obj;
 
-            var multilingual = obj as IMultilingual;
-            if (multilingual.Translations == null || multilingual.Translations.Count() == 0)
+            var multilingual = obj as IMultilingual<Translation>;
+            if (multilingual.Translations == null || multilingual.Translations.Count == 0)
                 return obj;
 
             var properties = obj.GetType().GetProperties();
@@ -71,7 +72,7 @@ namespace Sequoia.Data.Mongo.Repositories
                 .AsQueryable()
                 .SingleOrDefaultAsync(predicate, cancellationToken);
 
-            entity = SetMultilingualEntityValues(entity);
+            SetMultilingualEntityValues(entity);
 
             return entity;
         }
@@ -82,6 +83,8 @@ namespace Sequoia.Data.Mongo.Repositories
                 .AsQueryable()
                 .ToListAsync(cancellationToken);
 
+            SetMultilingualEntityValues(entities);
+
             return entities;
         }
 
@@ -90,6 +93,8 @@ namespace Sequoia.Data.Mongo.Repositories
             var entities = await MongoCollection
                 .AsQueryable()
                 .ToPagedListAsync(page, limit, cancellationToken);
+
+            SetMultilingualEntityValues(entities.Items);
 
             return entities;
         }

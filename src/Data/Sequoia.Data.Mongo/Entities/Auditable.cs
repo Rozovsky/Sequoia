@@ -3,7 +3,7 @@ using Sequoia.Data.Interfaces;
 
 namespace Sequoia.Data.Mongo.Entities
 {
-    public abstract class AuditableEntity : BaseEntity, IAuditableEntity
+    public abstract class Auditable : BaseEntity, IAuditable
     {
         [BsonElement("created_by")]
         public virtual string CreatedBy { get; set; }

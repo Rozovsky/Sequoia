@@ -1,5 +1,6 @@
 ﻿using Samples.Data.Mongo.Core.Application.Common.Dto;
 using Samples.Data.Mongo.Core.Domain;
+using Sequoia.Data.Models;
 
 namespace Samples.Data.Mongo.Core.Application.Common.Interfaces
 {
@@ -7,5 +8,7 @@ namespace Samples.Data.Mongo.Core.Application.Common.Interfaces
     {
         Task<Todo> CreateTodo(TodoToCreateDto dto, CancellationToken cancellationToken);
         Task<Todo> GetTodo(string id, CancellationToken cancellationToken);
+        Task<IEnumerable<Todo>> GetAllTodos(CancellationToken cancellationToken);
+        Task<PagedWrapper<Todo>> GetTodoPaged(int page, int limit, CancellationToken cancellationToken);
     }
 }

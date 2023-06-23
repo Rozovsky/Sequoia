@@ -1,7 +1,7 @@
 ﻿namespace Sequoia.Data.Interfaces
 {
-    public interface IMultilingual
+    public interface IMultilingual<TTranslation> where TTranslation : ITranslation
     {
-        public IEnumerable<ITranslation> Translations { get; set; }
+        public List<TTranslation> Translations { get; set; }
     }
 }
