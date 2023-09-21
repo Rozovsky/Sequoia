@@ -6,7 +6,7 @@ using Sequoia.Data.Models;
 
 namespace Samples.Common.Application.CategoryRecipes.Queries.GetCategoryRecipesPaged
 {
-    public class GetCategoryRecipesPagedQueryHandler : IRequestHandler<GetCategoryRecipesPagedQuery, PagedWrapper<CategoryRecipeVm>>
+    public class GetCategoryRecipesPagedQueryHandler : IRequestHandler<GetCategoryRecipesPagedQuery, Paged<CategoryRecipeVm>>
     {
         private readonly ICategoryRecipeRepository _categoryRecipeRepository;
         private readonly IRecipeRepository _recipeRepository;
@@ -22,7 +22,7 @@ namespace Samples.Common.Application.CategoryRecipes.Queries.GetCategoryRecipesP
             _mapper = mapper;
         }
 
-        public async Task<PagedWrapper<CategoryRecipeVm>> Handle(GetCategoryRecipesPagedQuery request, CancellationToken cancellationToken)
+        public async Task<Paged<CategoryRecipeVm>> Handle(GetCategoryRecipesPagedQuery request, CancellationToken cancellationToken)
         {
             var categoryRecipes = await _categoryRecipeRepository.GetCategoryRecipesPagedAsync(
                 request.CategoryId, request.Page, request.Limit, cancellationToken);
@@ -32,7 +32,7 @@ namespace Samples.Common.Application.CategoryRecipes.Queries.GetCategoryRecipesP
 
             categoryRecipes.Items.ForEach(c => c.Recipe = recipes.FirstOrDefault(p => p.Id == c.RecipeId));
 
-            return _mapper.Map<PagedWrapper<CategoryRecipeVm>>(categoryRecipes);
+            return _mapper.Map<Paged<CategoryRecipeVm>>(categoryRecipes);
         }
     }
 }

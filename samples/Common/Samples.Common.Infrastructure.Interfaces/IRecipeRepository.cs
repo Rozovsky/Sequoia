@@ -9,7 +9,7 @@ namespace Samples.Common.Infrastructure.Interfaces
         Task<Recipe> UpdateRecipeAsync(string id, Recipe obj, CancellationToken cancellationToken);
         Task DeleteRecipeAsync(string id, CancellationToken cancellationToken);
         Task<IEnumerable<Recipe>> GetAllRecipesAsync(CancellationToken cancellationToken);
-        Task<PagedWrapper<Recipe>> GetRecipesPagedAsync(int page, int limit, CancellationToken cancellationToken);
+        Task<Paged<Recipe>> GetRecipesPagedAsync(int page, int limit, CancellationToken cancellationToken);
         Task<Recipe> GetRecipeAsync(string id, CancellationToken cancellationToken);
         Task<List<Recipe>> GetRecipesBatchAsync(string[] ids, CancellationToken cancellationToken);
     }

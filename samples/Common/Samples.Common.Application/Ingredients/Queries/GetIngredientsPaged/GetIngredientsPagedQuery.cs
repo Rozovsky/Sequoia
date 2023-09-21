@@ -4,7 +4,7 @@ using Sequoia.Data.Models;
 
 namespace Samples.Common.Application.Ingredients.Queries.GetIngredientsPaged
 {
-    public class GetIngredientsPagedQuery : IRequest<PagedWrapper<IngredientVm>>
+    public class GetIngredientsPagedQuery : IRequest<Paged<IngredientVm>>
     {
         public int Page { get; set; }
         public int Limit { get; set; }

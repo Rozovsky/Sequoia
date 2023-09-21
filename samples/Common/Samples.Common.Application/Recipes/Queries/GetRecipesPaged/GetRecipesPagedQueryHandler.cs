@@ -6,7 +6,7 @@ using Sequoia.Data.Models;
 
 namespace Samples.Common.Application.Recipes.Queries.GetRecipesPaged
 {
-    public class GetRecipesPagedQueryHandler : IRequestHandler<GetRecipesPagedQuery, PagedWrapper<RecipeVm>>
+    public class GetRecipesPagedQueryHandler : IRequestHandler<GetRecipesPagedQuery, Paged<RecipeVm>>
     {
         private readonly IRecipeRepository _recipeRepository;
         private readonly IMapper _mapper;
@@ -19,12 +19,12 @@ namespace Samples.Common.Application.Recipes.Queries.GetRecipesPaged
             _mapper = mapper;
         }
 
-        public async Task<PagedWrapper<RecipeVm>> Handle(GetRecipesPagedQuery request, CancellationToken cancellationToken)
+        public async Task<Paged<RecipeVm>> Handle(GetRecipesPagedQuery request, CancellationToken cancellationToken)
         {
             var recipes = await _recipeRepository.GetRecipesPagedAsync(
                 request.Page, request.Limit, cancellationToken);
 
-            return _mapper.Map<PagedWrapper<RecipeVm>>(recipes);
+            return _mapper.Map<Paged<RecipeVm>>(recipes);
         }
     }
 }

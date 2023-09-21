@@ -6,7 +6,7 @@ using Sequoia.Data.Models;
 
 namespace Samples.Common.Application.Categories.Queries.GetCategoriesPaged
 {
-    public class GetCategoriesPagedQueryHandler : IRequestHandler<GetCategoriesPagedQuery, PagedWrapper<CategoryVm>>
+    public class GetCategoriesPagedQueryHandler : IRequestHandler<GetCategoriesPagedQuery, Paged<CategoryVm>>
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
@@ -19,12 +19,12 @@ namespace Samples.Common.Application.Categories.Queries.GetCategoriesPaged
             _mapper = mapper;
         }
 
-        public async Task<PagedWrapper<CategoryVm>> Handle(GetCategoriesPagedQuery request, CancellationToken cancellationToken)
+        public async Task<Paged<CategoryVm>> Handle(GetCategoriesPagedQuery request, CancellationToken cancellationToken)
         {
             var category = await _categoryRepository.GetCategoriesPagedAsync(
                 request.Page, request.Limit, cancellationToken);
 
-            return _mapper.Map<PagedWrapper<CategoryVm>>(category);
+            return _mapper.Map<Paged<CategoryVm>>(category);
         }
     }
 }

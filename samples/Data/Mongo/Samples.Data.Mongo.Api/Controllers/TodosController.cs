@@ -2,10 +2,12 @@
 using Samples.Data.Mongo.Core.Application.Common.Dto;
 using Samples.Data.Mongo.Core.Application.Common.ViewModels;
 using Samples.Data.Mongo.Core.Application.Todos.Commands.CreateTodo;
-using Samples.Data.Mongo.Core.Application.Todos.Queries.GetAllTodos;
+using Samples.Data.Mongo.Core.Application.Todos.Commands.DeleteTodo;
+using Samples.Data.Mongo.Core.Application.Todos.Commands.UpdateTodo;
 using Samples.Data.Mongo.Core.Application.Todos.Queries.GetTodo;
-using Samples.Data.Mongo.Core.Application.Todos.Queries.GetTodoPaged;
-using Sequoia.Data.Models;
+using Samples.Data.Mongo.Core.Application.Todos.Queries.GetTodos;
+using Samples.Data.Mongo.Core.Application.Todos.Queries.GetTodosPaged;
+using Sequoia.Data.Mongo.ViewModels;
 using Sequoia.Models;
 using System.ComponentModel.DataAnnotations;
 
@@ -23,15 +25,15 @@ namespace Samples.Data.Mongo.Api.Controllers
             });
         }
 
-        //[HttpPut("{id}")]
-        //public async Task<TodoVm> UpdateTodo([FromRoute] long id, [FromBody] TodoToUpdateDto dto)
-        //{
-        //    return await Mediator.Send(new UpdateTodoCommand
-        //    {
-        //        Dto = dto,
-        //        Id = id
-        //    });
-        //}
+        [HttpPut("{id}")]
+        public async Task<TodoVm> UpdateTodo([FromRoute] string id, [FromBody] TodoToUpdateDto dto)
+        {
+            return await Mediator.Send(new UpdateTodoCommand
+            {
+                Dto = dto,
+                Id = id
+            });
+        }
 
         //[HttpPut("completed/{id}")]
         //public async Task<TodoVm> PatchCompleted([FromRoute] long id, [FromBody] TodoCompletedToPatchDto dto)
@@ -43,16 +45,16 @@ namespace Samples.Data.Mongo.Api.Controllers
         //    });
         //}
 
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteTodo(long id)
-        //{
-        //    await Mediator.Send(new DeleteTodoCommand
-        //    {
-        //        Id = id
-        //    });
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTodo(string id)
+        {
+            await Mediator.Send(new DeleteTodoCommand
+            {
+                Id = id
+            });
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
         [HttpGet("{id}")]
         public async Task<TodoVm> GetTodo([FromHeader(Name = "Accept-Language")][Required] string lang, string id)
@@ -66,14 +68,17 @@ namespace Samples.Data.Mongo.Api.Controllers
         [HttpGet]
         public async Task<List<TodoVm>> GetTodos()
         {
-            return await Mediator.Send(new GetAllTodosQuery());
+            return await Mediator.Send(new GetTodosQuery());
         }
 
         [HttpGet]
         [Route("paged")]
-        public async Task<PagedWrapper<TodoVm>> GetTodoPaged([FromQuery] GetTodoPagedQuery query)
+        public async Task<PagedVm<TodoHeaderVm>> GetTodosPaged([FromQuery] TodoToPagedDto dto)
         {
-            return await Mediator.Send(query);
+            return await Mediator.Send(new GetTodosPagedQuery
+            {
+                Dto = dto
+            });
         }
     }
 }

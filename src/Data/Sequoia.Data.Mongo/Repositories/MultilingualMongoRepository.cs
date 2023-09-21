@@ -66,7 +66,7 @@ namespace Sequoia.Data.Mongo.Repositories
             return obj;
         }
 
-        public override async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        public override async Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
         {
             var entity = await MongoCollection
                 .AsQueryable()
@@ -77,7 +77,7 @@ namespace Sequoia.Data.Mongo.Repositories
             return entity;
         }
 
-        public override async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
+        public override async Task<IEnumerable<TEntity>> GetAll(CancellationToken cancellationToken)
         {
             var entities = await MongoCollection
                 .AsQueryable()
@@ -88,11 +88,10 @@ namespace Sequoia.Data.Mongo.Repositories
             return entities;
         }
 
-        public override async Task<PagedWrapper<TEntity>> GetPagedAsync(int page, int limit, CancellationToken cancellationToken)
+        public override async Task<Paged<TEntity>> GetPaged(
+            FilterDefinition<TEntity> filter, SortDefinition<TEntity> sort, int page, int pageSize, CancellationToken cancellationToken = default)
         {
-            var entities = await MongoCollection
-                .AsQueryable()
-                .ToPagedListAsync(page, limit, cancellationToken);
+            var entities = await MongoCollection.AsPagedResult(filter, sort, page, pageSize);
 
             SetMultilingualEntityValues(entities.Items);
 

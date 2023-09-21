@@ -29,7 +29,7 @@ namespace Sequoia.Data.Postgresql.Extensions
         //    return result;
         //}
 
-        public static async Task<PagedWrapper<TSource>> ToPagedListAsync<TSource>(
+        public static async Task<Paged<TSource>> ToPagedListAsync<TSource>(
             this IQueryable<TSource> source, int page, int limit, CancellationToken cancellationToken = default)
             where TSource : class
         {

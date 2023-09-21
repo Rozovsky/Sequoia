@@ -22,11 +22,11 @@ namespace Samples.Authentication.Basic.Core.Infrastructure.Repositories
         }
 
         // TODO: add mapings and paged processing
-        public async Task<PagedWrapper<Location>> GetLocationsPaged(int page, int limit, CancellationToken cancellationToken)
+        public async Task<Paged<Location>> GetLocationsPaged(int page, int limit, CancellationToken cancellationToken)
         {
             await Task.Delay(0, cancellationToken);
 
-            return new PagedWrapper<Location>();
+            return new Paged<Location>();
         }
     }
 }

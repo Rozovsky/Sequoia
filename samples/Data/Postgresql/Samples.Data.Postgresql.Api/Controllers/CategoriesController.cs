@@ -65,7 +65,7 @@ namespace Samples.Data.Postgresql.Api.Controllers
 
         [HttpGet]
         [Route("paged")]
-        public async Task<PagedWrapper<CategoryVm>> GetCategoriesPaged([FromQuery] GetCategoriesPagedQuery query)
+        public async Task<Paged<CategoryVm>> GetCategoriesPaged([FromQuery] GetCategoriesPagedQuery query)
         {
             return await Mediator.Send(query);
         }

@@ -37,7 +37,7 @@ namespace Samples.Data.Postgresql.Core.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<PagedWrapper<Recipe>> GetRecipesPagedAsync(int page, int limit, CancellationToken cancellationToken)
+        public Task<Paged<Recipe>> GetRecipesPagedAsync(int page, int limit, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sequoia.Data.Interfaces;
 using Sequoia.Data.Models;
 using Sequoia.Data.Postgresql.Extensions;
 using Sequoia.Data.Postgresql.Interfaces;
@@ -16,7 +17,7 @@ namespace Sequoia.Data.Postgresql.Repositories
             _postgresContext = postgresContext;
         }
 
-        public virtual async Task<TEntity> CreateAsync(TEntity obj, CancellationToken cancellationToken)
+        public virtual async Task<TEntity> Create(TEntity obj, CancellationToken cancellationToken)
         {
             _postgresContext
                 .Set<TEntity>()
@@ -27,7 +28,7 @@ namespace Sequoia.Data.Postgresql.Repositories
             return obj;
         }
 
-        public virtual async Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> predicate, TEntity obj, CancellationToken cancellationToken)
+        public virtual async Task<TEntity> Update(Expression<Func<TEntity, bool>> predicate, TEntity obj, CancellationToken cancellationToken)
         {
             var entity = await _postgresContext
                 .Set<TEntity>()
@@ -42,7 +43,7 @@ namespace Sequoia.Data.Postgresql.Repositories
             return entity;
         }
 
-        public virtual async Task DeleteAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        public virtual async Task Delete(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
         {
             var entity = await _postgresContext
                 .Set<TEntity>()
@@ -55,7 +56,7 @@ namespace Sequoia.Data.Postgresql.Repositories
             }            
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
+        public virtual async Task<IEnumerable<TEntity>> GetAll(CancellationToken cancellationToken)
         {
             var entities = await _postgresContext
                 .Set<TEntity>()
@@ -64,7 +65,7 @@ namespace Sequoia.Data.Postgresql.Repositories
             return entities;
         }
 
-        public virtual async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        public virtual async Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
         {
             var entity = await _postgresContext
                 .Set<TEntity>()
@@ -73,13 +74,63 @@ namespace Sequoia.Data.Postgresql.Repositories
             return entity;
         }
 
-        public virtual async Task<PagedWrapper<TEntity>> GetPagedAsync(int page, int limit, CancellationToken cancellationToken)
+        public virtual async Task<Paged<TEntity>> GetPaged(int page, int limit, CancellationToken cancellationToken)
         {
             var entities = await _postgresContext
                 .Set<TEntity>()
                 .ToPagedListAsync(page, limit, cancellationToken);
 
             return entities;
+        }
+
+        public async Task<TEntity> MarkAsDeleted(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        {
+            var entity = await _postgresContext
+               .Set<TEntity>()
+               .SingleOrDefaultAsync(predicate, cancellationToken);
+
+            if (entity != null)
+            {
+                //if (entity is not IBaseEntity)
+                //    throw new Exception("The specified entry does not implement the IBaseEntity interface");
+
+                //var baseEntity = entity as IBaseEntity;
+
+                //baseEntity.IsDeleted = true;
+                //await _postgresContext.SaveChangesAsync(cancellationToken);
+
+                entity = SetDeletedEntityValue(entity, true);
+                await _postgresContext.SaveChangesAsync(cancellationToken);
+            }
+
+            return entity;
+        }
+
+        public async Task<TEntity> MarkAsRestored(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        {
+            var entity = await _postgresContext
+               .Set<TEntity>()
+               .SingleOrDefaultAsync(predicate, cancellationToken);
+
+            if (entity != null)
+            {
+                entity = SetDeletedEntityValue(entity, false);
+                await _postgresContext.SaveChangesAsync(cancellationToken);
+            }
+
+            return entity;
+        }
+
+        private TEntity SetDeletedEntityValue(TEntity obj, bool isDeleted)
+        {
+            if (obj is not IBaseEntity)
+                throw new Exception("The specified entry does not implement the IBaseEntity interface");
+
+            var baseEntity = obj as IBaseEntity;
+
+            baseEntity.IsDeleted = isDeleted;
+
+            return obj;
         }
     }
 }

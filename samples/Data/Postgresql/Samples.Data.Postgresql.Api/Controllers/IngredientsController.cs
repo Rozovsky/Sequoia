@@ -65,7 +65,7 @@ namespace Samples.Data.Postgresql.Api.Controllers
 
         [HttpGet]
         [Route("paged")]
-        public async Task<PagedWrapper<IngredientVm>> GetIngredientsPaged([FromQuery] GetIngredientsPagedQuery query)
+        public async Task<Paged<IngredientVm>> GetIngredientsPaged([FromQuery] GetIngredientsPagedQuery query)
         {
             return await Mediator.Send(query);
         }

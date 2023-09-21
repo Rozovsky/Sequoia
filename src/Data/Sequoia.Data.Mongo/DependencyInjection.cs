@@ -33,7 +33,18 @@ namespace Sequoia.Data.Mongo
                 entityConfigInstance.Configure();
             }
 
-            services.AddAutoMapper(typeof(PagedWrapper<>));
+            services.AddAutoMapper(typeof(Paged<>));
+
+            return services;
+        }
+
+        public static IServiceCollection AddMongoDb(
+            this IServiceCollection services, string connectionString, string database)
+        {
+            services.AddSingleton(_ => new MongoConnectionOptions(connectionString, database));
+            services.AddScoped<IMongoContext, MongoContext>();
+
+            services.AddAutoMapper(typeof(Paged<>));
 
             return services;
         }

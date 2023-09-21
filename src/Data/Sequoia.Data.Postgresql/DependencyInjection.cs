@@ -19,7 +19,7 @@ namespace Sequoia.Data.Postgresql
 
             services.AddScoped<TContextInterface>(provider => provider.GetService<TContext>());
 
-            services.AddAutoMapper(typeof(PagedWrapper<>));
+            services.AddAutoMapper(typeof(Paged<>));
 
             return services;
         }

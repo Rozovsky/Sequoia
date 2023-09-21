@@ -7,6 +7,6 @@ namespace Samples.Common.Infrastructure.Interfaces
     {
         Task<CategoryRecipe> CreateCategoryRecipeAsync(CategoryRecipe obj, CancellationToken cancellationToken);
         Task DeleteCategoryRecipeAsync(string id, CancellationToken cancellationToken);
-        Task<PagedWrapper<CategoryRecipe>> GetCategoryRecipesPagedAsync(string categoryId, int page, int limit, CancellationToken cancellationToken);
+        Task<Paged<CategoryRecipe>> GetCategoryRecipesPagedAsync(string categoryId, int page, int limit, CancellationToken cancellationToken);
     }
 }

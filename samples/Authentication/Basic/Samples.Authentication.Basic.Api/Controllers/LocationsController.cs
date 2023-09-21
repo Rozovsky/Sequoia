@@ -19,7 +19,7 @@ namespace Samples.Authentication.Basic.Api.Controllers
 
         [HttpGet]
         [Route("paged")]
-        public async Task<PagedWrapper<LocationVm>> GetLocationsPaged([FromQuery] GetLocationsPagedQuery query)
+        public async Task<Paged<LocationVm>> GetLocationsPaged([FromQuery] GetLocationsPagedQuery query)
         {
             return await Mediator.Send(query);
         }

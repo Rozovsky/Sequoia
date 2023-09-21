@@ -7,8 +7,10 @@ namespace Samples.Data.Mongo.Core.Application.Common.Interfaces
     public interface ITodoService
     {
         Task<Todo> CreateTodo(TodoToCreateDto dto, CancellationToken cancellationToken);
+        Task<Todo> UpdateTodo(string id, TodoToUpdateDto dto, CancellationToken cancellationToken);
+        Task DeleteTodo(string id, CancellationToken cancellationToken);
         Task<Todo> GetTodo(string id, CancellationToken cancellationToken);
-        Task<IEnumerable<Todo>> GetAllTodos(CancellationToken cancellationToken);
-        Task<PagedWrapper<Todo>> GetTodoPaged(int page, int limit, CancellationToken cancellationToken);
+        Task<IEnumerable<Todo>> GetTodos(CancellationToken cancellationToken);
+        Task<Paged<Todo>> GetTodosPaged(TodoToPagedDto dto, CancellationToken cancellationToken);
     }
 }

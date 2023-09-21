@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace Sequoia.Data.Mongo.Repositories
 {
-    public abstract class MongoRepository<TEntity> : IMongoRepository<TEntity>
+    public abstract class MongoRepository<TEntity> : IMongoRepository<TEntity> 
         where TEntity : class
     {
         public IMongoContext MongoContext { get; private set; }
@@ -35,14 +35,14 @@ namespace Sequoia.Data.Mongo.Repositories
             return obj;
         }
 
-        public virtual async Task<TEntity> CreateAsync(TEntity obj, CancellationToken cancellationToken)
+        public virtual async Task<TEntity> Create(TEntity obj, CancellationToken cancellationToken)
         {
             await MongoCollection.InsertOneAsync(obj, cancellationToken: cancellationToken);
             
             return obj;
         }
 
-        public virtual async Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> predicate, TEntity obj, CancellationToken cancellationToken)
+        public virtual async Task<TEntity> Update(Expression<Func<TEntity, bool>> predicate, TEntity obj, CancellationToken cancellationToken)
         {
             await MongoCollection.ReplaceOneAsync(
                 predicate, obj, new ReplaceOptions { IsUpsert = true }, cancellationToken: cancellationToken);
@@ -50,36 +50,36 @@ namespace Sequoia.Data.Mongo.Repositories
             return obj;
         }
 
-        public virtual async Task DeleteAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        public virtual async Task Delete(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
         {
             await MongoCollection.DeleteOneAsync(predicate, cancellationToken);
         }
 
-        public virtual async Task<TEntity> MarkAsDeletedAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        public virtual async Task<TEntity> MarkAsDeleted(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
         {
-            var obj = await GetAsync(predicate, cancellationToken);
+            var obj = await Get(predicate, cancellationToken);
 
             if (obj == null)
                 throw new NotFoundException("No matches found for the specified expression");
 
             obj = SetDeletedEntityValue(obj, true);
 
-            return await UpdateAsync(predicate, obj, cancellationToken);
+            return await Update(predicate, obj, cancellationToken);
         }
 
-        public virtual async Task<TEntity> MarkAsRestoredAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        public virtual async Task<TEntity> MarkAsRestored(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
         {
-            var obj = await GetAsync(predicate, cancellationToken);
+            var obj = await Get(predicate, cancellationToken);
 
             if (obj == null)
                 throw new NotFoundException("No matches found for the specified expression");
 
             obj = SetDeletedEntityValue(obj, false);
 
-            return await UpdateAsync(predicate, obj, cancellationToken);
+            return await Update(predicate, obj, cancellationToken);
         }
 
-        public virtual async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        public virtual async Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
         {
             var entity = await MongoCollection
                 .AsQueryable()
@@ -88,7 +88,7 @@ namespace Sequoia.Data.Mongo.Repositories
             return entity;
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
+        public virtual async Task<IEnumerable<TEntity>> GetAll(CancellationToken cancellationToken)
         {
             var entities = await MongoCollection
                 .AsQueryable()
@@ -97,13 +97,10 @@ namespace Sequoia.Data.Mongo.Repositories
             return entities;
         }
 
-        public virtual async Task<PagedWrapper<TEntity>> GetPagedAsync(int page, int limit, CancellationToken cancellationToken)
+        public virtual async Task<Paged<TEntity>> GetPaged(
+          FilterDefinition<TEntity> filter, SortDefinition<TEntity> sort, int page, int pageSize, CancellationToken cancellationToken = default)
         {
-            var entities = await MongoCollection
-                .AsQueryable()
-                .ToPagedListAsync(page, limit, cancellationToken);
-
-            return entities;
+            return await MongoCollection.AsPagedResult(filter, sort, page, pageSize);
         }
     }
 }

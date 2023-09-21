@@ -14,32 +14,32 @@ namespace Samples.Data.Postgresql.Core.Infrastructure.Repositories
 
         public async Task<Category> CreateCategoryAsync(Category obj, CancellationToken cancellationToken)
         {
-            return await base.CreateAsync(obj, cancellationToken);
+            return await base.Create(obj, cancellationToken);
         }
 
         public async Task<Category> UpdateCategoryAsync(string id, Category obj, CancellationToken cancellationToken)
         {
-            return await base.UpdateAsync(c => c.Id == id, obj, cancellationToken);
+            return await base.Update(c => c.Id == id, obj, cancellationToken);
         }
 
         public async Task DeleteCategoryAsync(string id, CancellationToken cancellationToken)
         {
-            await base.DeleteAsync(c => c.Id == id, cancellationToken);
+            await base.Delete(c => c.Id == id, cancellationToken);
         }
 
         public async Task<IEnumerable<Category>> GetAllCategoriesAsync(CancellationToken cancellationToken)
         {
-            return await base.GetAllAsync(cancellationToken);
+            return await base.GetAll(cancellationToken);
         }
 
-        public async Task<PagedWrapper<Category>> GetCategoriesPagedAsync(int page, int limit, CancellationToken cancellationToken)
+        public async Task<Paged<Category>> GetCategoriesPagedAsync(int page, int limit, CancellationToken cancellationToken)
         {
-            return await base.GetPagedAsync(page, limit, cancellationToken);
+            return await base.GetPaged(page, limit, cancellationToken);
         }
 
         public async Task<Category> GetCategoryAsync(string id, CancellationToken cancellationToken)
         {
-            return await base.GetAsync(c => c.Id == id, cancellationToken);
+            return await base.Get(c => c.Id == id, cancellationToken);
         }
     }
 }

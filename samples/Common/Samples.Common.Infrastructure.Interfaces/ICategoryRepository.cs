@@ -10,6 +10,6 @@ namespace Samples.Common.Infrastructure.Interfaces
         Task DeleteCategoryAsync(string id, CancellationToken cancellationToken);
         Task<Category> GetCategoryAsync(string id, CancellationToken cancellationToken);
         Task<IEnumerable<Category>> GetAllCategoriesAsync(CancellationToken cancellationToken);
-        Task<PagedWrapper<Category>> GetCategoriesPagedAsync(int page, int limit, CancellationToken cancellationToken);
+        Task<Paged<Category>> GetCategoriesPagedAsync(int page, int limit, CancellationToken cancellationToken);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 using Sequoia.Data.Interfaces;
-using System.Linq.Expressions;
+using Sequoia.Data.Models;
 
 namespace Sequoia.Data.Mongo.Interfaces
 {
@@ -9,9 +9,6 @@ namespace Sequoia.Data.Mongo.Interfaces
     {
         public IMongoContext MongoContext { get; }
         public IMongoCollection<TEntity> MongoCollection { get; }
-
-        // TODO: move to IRepositoryBase ? 
-        Task<TEntity> MarkAsDeletedAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
-        Task<TEntity> MarkAsRestoredAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+        Task<Paged<TEntity>> GetPaged(FilterDefinition<TEntity> filter, SortDefinition<TEntity> sort, int page, int pageSize, CancellationToken cancellationToken = default);
     }
 }

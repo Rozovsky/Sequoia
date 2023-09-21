@@ -9,15 +9,13 @@
   <ItemGroup>
     <Compile Remove="Domain\Constants\**" />
     <Compile Remove="Domain\Models\**" />
+    <Compile Remove="Infrastructure\Migrations\**" />
     <EmbeddedResource Remove="Domain\Constants\**" />
     <EmbeddedResource Remove="Domain\Models\**" />
+    <EmbeddedResource Remove="Infrastructure\Migrations\**" />
     <None Remove="Domain\Constants\**" />
     <None Remove="Domain\Models\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Domain\" />
-    <Folder Include="Infrastructure\Migrations\" />
+    <None Remove="Infrastructure\Migrations\**" />
   </ItemGroup>
 
   <ItemGroup>

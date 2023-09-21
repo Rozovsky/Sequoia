@@ -41,7 +41,7 @@ namespace Sequoia.Data.Mongo.Repositories
             return obj;
         }
 
-        public override async Task<TEntity> CreateAsync(TEntity obj, CancellationToken cancellationToken)
+        public override async Task<TEntity> Create(TEntity obj, CancellationToken cancellationToken)
         {
             obj = SetAuditableEntityValues(obj);
 
@@ -50,7 +50,7 @@ namespace Sequoia.Data.Mongo.Repositories
             return obj;
         }
 
-        public override async Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> predicate, TEntity obj, CancellationToken cancellationToken)
+        public override async Task<TEntity> Update(Expression<Func<TEntity, bool>> predicate, TEntity obj, CancellationToken cancellationToken)
         {
             obj = SetAuditableEntityValues(obj);
 

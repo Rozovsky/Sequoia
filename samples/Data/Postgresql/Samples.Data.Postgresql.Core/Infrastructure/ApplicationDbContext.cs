@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Samples.Common.Domain.Entities;
 using Samples.Data.Postgresql.Core.Infrastructure.Interfaces;
-using Sequoia.Interfaces;
+using Sequoia.Data.Interfaces;
 using System.Reflection;
 
 namespace Samples.Data.Postgresql.Core.Infrastructure
@@ -20,16 +20,16 @@ namespace Samples.Data.Postgresql.Core.Infrastructure
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            foreach (var entry in ChangeTracker.Entries<IEntityAuditable>())
+            foreach (var entry in ChangeTracker.Entries<IAuditable>())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.DateOfCreation = DateTimeOffset.Now;
+                        entry.Entity.CreatedAt = DateTimeOffset.Now;
                         break;
 
                     case EntityState.Modified:
-                        entry.Entity.DateOfModification = DateTimeOffset.Now;
+                        entry.Entity.UpdatedAt = DateTimeOffset.Now;
                         break;
                 }
             }

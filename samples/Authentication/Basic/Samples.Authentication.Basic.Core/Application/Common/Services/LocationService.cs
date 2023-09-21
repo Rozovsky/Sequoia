@@ -18,7 +18,7 @@ namespace Samples.Authentication.Basic.Core.Application.Common.Services
             return await _locationRepository.GetLocations(cancellationToken);
         }
 
-        public async Task<PagedWrapper<Location>> GetLocationsPaged(int page, int limit, CancellationToken cancellationToken)
+        public async Task<Paged<Location>> GetLocationsPaged(int page, int limit, CancellationToken cancellationToken)
         {
             return await _locationRepository.GetLocationsPaged(page, limit, cancellationToken);
         }

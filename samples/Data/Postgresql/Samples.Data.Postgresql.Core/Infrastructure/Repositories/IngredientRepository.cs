@@ -14,32 +14,32 @@ namespace Samples.Data.Postgresql.Core.Infrastructure.Repositories
 
         public async Task<Ingredient> CreateIngredientAsync(Ingredient obj, CancellationToken cancellationToken)
         {
-            return await base.CreateAsync(obj, cancellationToken);
+            return await base.Create(obj, cancellationToken);
         }
 
         public async Task<Ingredient> UpdateIngredientAsync(string id, Ingredient obj, CancellationToken cancellationToken)
         {
-            return await base.UpdateAsync(c => c.Id == id, obj, cancellationToken);
+            return await base.Update(c => c.Id == id, obj, cancellationToken);
         }
 
         public async Task DeleteIngredientAsync(string id, CancellationToken cancellationToken)
         {
-            await base.DeleteAsync(c => c.Id == id, cancellationToken);
+            await base.Delete(c => c.Id == id, cancellationToken);
         }
 
         public async Task<IEnumerable<Ingredient>> GetAllIngredientsAsync(CancellationToken cancellationToken)
         {
-            return await base.GetAllAsync(cancellationToken);
+            return await base.GetAll(cancellationToken);
         }
 
         public async Task<Ingredient> GetIngredientAsync(string id, CancellationToken cancellationToken)
         {
-            return await base.GetAsync(c => c.Id == id, cancellationToken);
+            return await base.Get(c => c.Id == id, cancellationToken);
         }
 
-        public async Task<PagedWrapper<Ingredient>> GetIngredientsPagedAsync(int page, int limit, CancellationToken cancellationToken)
+        public async Task<Paged<Ingredient>> GetIngredientsPagedAsync(int page, int limit, CancellationToken cancellationToken)
         {
-            return await base.GetPagedAsync(page, limit, cancellationToken);
+            return await base.GetPaged(page, limit, cancellationToken);
         }
     }
 }

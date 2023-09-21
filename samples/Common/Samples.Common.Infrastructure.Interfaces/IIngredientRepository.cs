@@ -9,7 +9,7 @@ namespace Samples.Common.Infrastructure.Interfaces
         Task<Ingredient> UpdateIngredientAsync(string id, Ingredient obj, CancellationToken cancellationToken);
         Task DeleteIngredientAsync(string id, CancellationToken cancellationToken);
         Task<IEnumerable<Ingredient>> GetAllIngredientsAsync(CancellationToken cancellationToken);
-        Task<PagedWrapper<Ingredient>> GetIngredientsPagedAsync(int page, int limit, CancellationToken cancellationToken);
+        Task<Paged<Ingredient>> GetIngredientsPagedAsync(int page, int limit, CancellationToken cancellationToken);
         Task<Ingredient> GetIngredientAsync(string id, CancellationToken cancellationToken);
     }
 }

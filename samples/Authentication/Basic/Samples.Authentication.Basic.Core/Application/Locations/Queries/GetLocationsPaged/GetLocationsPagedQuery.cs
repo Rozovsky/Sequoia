@@ -4,7 +4,7 @@ using Sequoia.Data.Models;
 
 namespace Samples.Authentication.Basic.Core.Application.Locations.Queries.GetLocationsPaged
 {
-    public class GetLocationsPagedQuery : IRequest<PagedWrapper<LocationVm>>
+    public class GetLocationsPagedQuery : IRequest<Paged<LocationVm>>
     {
         public int Page { get; set; }
         public int Limit { get; set; }

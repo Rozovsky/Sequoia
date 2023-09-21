@@ -4,10 +4,10 @@ namespace Sequoia.Data.Helpers
 {
     public static class PagedListHelper
     {
-        public static PagedWrapper<TSource> GetPagedWrapper<TSource>(int page, int limit, int count) 
+        public static Paged<TSource> GetPagedWrapper<TSource>(int page, int limit, int count) 
             where TSource : class
         {
-            var result = new PagedWrapper<TSource>
+            var result = new Paged<TSource>
             {
                 Page = page,
                 PageSize = limit,
