@@ -10,64 +10,63 @@ using Samples.Common.Application.Categories.ViewModels;
 using Sequoia.Data.Models;
 using Sequoia.Models;
 
-namespace Samples.Data.Postgresql.Api.Controllers
+namespace Samples.Data.Postgresql.Api.Controllers;
+
+[Route("api/postgresql/categories")]
+public class CategoriesController : ApiController
 {
-    [Route("api/postgresql/categories")]
-    public class CategoriesController : ApiController
+    [HttpPost]
+    public async Task<CategoryVm> CreateCategory([FromBody] CategoryToCreateDto dto)
     {
-        [HttpPost]
-        public async Task<CategoryVm> CreateCategory([FromBody] CategoryToCreateDto dto)
+        return await Mediator.Send(new CreateCategoryCommand
         {
-            return await Mediator.Send(new CreateCategoryCommand
-            {
-                Dto = dto
-            });
-        }
+            Dto = dto
+        });
+    }
 
-        [HttpPut]
-        [Route("{id}")]
-        public async Task<CategoryVm> UpdateCategory([FromRoute] string id, [FromBody] CategoryToUpdateDto dto)
+    [HttpPut]
+    [Route("{id}")]
+    public async Task<CategoryVm> UpdateCategory([FromRoute] string id, [FromBody] CategoryToUpdateDto dto)
+    {
+        return await Mediator.Send(new UpdateCategoryCommand
         {
-            return await Mediator.Send(new UpdateCategoryCommand
-            {
-                Id = id,
-                Dto = dto
-            });
-        }
+            Id = id,
+            Dto = dto
+        });
+    }
 
-        [HttpDelete]
-        [Route("{id}")]
-        public async Task<IActionResult> DeleteCategory([FromRoute] string id)
+    [HttpDelete]
+    [Route("{id}")]
+    public async Task<IActionResult> DeleteCategory([FromRoute] string id)
+    {
+        await Mediator.Send(new DeleteCategoryCommand
         {
-            await Mediator.Send(new DeleteCategoryCommand
-            {
-                Id = id
-            });
+            Id = id
+        });
 
-            return Ok();
-        }
+        return Ok();
+    }
 
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<CategoryVm> GetCategory([FromRoute] string id)
+    [HttpGet]
+    [Route("{id}")]
+    public async Task<CategoryVm> GetCategory([FromRoute] string id)
+    {
+        return await Mediator.Send(new GetCategoryQuery
         {
-            return await Mediator.Send(new GetCategoryQuery
-            {
-                Id = id
-            });
-        }
+            Id = id
+        });
+    }
 
-        [HttpGet]
-        public async Task<List<CategoryVm>> GetAllCategories()
-        {
-            return await Mediator.Send(new GetAllCategoriesQuery());
-        }
+    [HttpGet]
+    public async Task<List<CategoryVm>> GetAllCategories()
+    {
+        return await Mediator.Send(new GetAllCategoriesQuery());
+    }
 
-        [HttpGet]
-        [Route("paged")]
-        public async Task<Paged<CategoryVm>> GetCategoriesPaged([FromQuery] GetCategoriesPagedQuery query)
-        {
-            return await Mediator.Send(query);
-        }
+    [HttpGet]
+    [Route("paged")]
+    public async Task<Paged<CategoryVm>> GetCategoriesPaged([FromQuery] GetCategoriesPagedQuery query)
+    {
+        return await Mediator.Send(query);
     }
 }

@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\Exceptions\" />
-    <Folder Include="Ingredients\ViewModels\" />
-  </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Common\Exceptions\"/>
+        <Folder Include="Ingredients\ViewModels\"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Samples.Common.Application.Interfaces\Samples.Common.Application.Interfaces.csproj" />
-    <ProjectReference Include="..\Samples.Common.Infrastructure.Interfaces\Samples.Common.Infrastructure.Interfaces.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Samples.Common.Application.Interfaces\Samples.Common.Application.Interfaces.csproj"/>
+        <ProjectReference Include="..\Samples.Common.Infrastructure.Interfaces\Samples.Common.Infrastructure.Interfaces.csproj"/>
+    </ItemGroup>
 
 </Project>

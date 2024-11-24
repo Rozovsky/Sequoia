@@ -4,31 +4,20 @@ using Samples.Common.Application.Categories.ViewModels;
 using Samples.Common.Application.Interfaces;
 using Samples.Common.Infrastructure.Interfaces;
 
-namespace Samples.Common.Application.Categories.Commands.UpdateCategory
+namespace Samples.Common.Application.Categories.Commands.UpdateCategory;
+
+public class UpdateCategoryCommandHandler(
+    ICategoryRepository categoryRepository,
+    ICategoryService categoryService,
+    IMapper mapper)
+    : IRequestHandler<UpdateCategoryCommand, CategoryVm>
 {
-    public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand, CategoryVm>
+    public async Task<CategoryVm> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
     {
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly ICategoryService _categoryService;
-        private readonly IMapper _mapper;
+        var category = await categoryService.GetCategoryAsync(request.Id, cancellationToken);
+        mapper.Map(request.Dto, category);
+        category = await categoryRepository.UpdateCategoryAsync(request.Id, category, cancellationToken);
 
-        public UpdateCategoryCommandHandler(
-            ICategoryRepository categoryRepository,
-            ICategoryService categoryService,
-            IMapper mapper)
-        {
-            _categoryRepository = categoryRepository;
-            _categoryService = categoryService;
-            _mapper = mapper;
-        }
-
-        public async Task<CategoryVm> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
-        {
-            var category = await _categoryService.GetCategoryAsync(request.Id, cancellationToken);
-            _mapper.Map(request.Dto, category);
-            category = await _categoryRepository.UpdateCategoryAsync(request.Id, category, cancellationToken);
-
-            return _mapper.Map<CategoryVm>(category);
-        }
+        return mapper.Map<CategoryVm>(category);
     }
 }

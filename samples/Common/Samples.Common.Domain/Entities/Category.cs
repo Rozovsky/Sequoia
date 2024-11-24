@@ -1,9 +1,8 @@
-﻿namespace Samples.Common.Domain.Entities
+﻿namespace Samples.Common.Domain.Entities;
+
+public class Category
 {
-    public class Category
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public List<CategoryRecipe> Recipes { get; set; }
-    }
+    public string Id { get; set; }
+    public string Name { get; set; }
+    public List<CategoryRecipe> Recipes { get; set; }
 }

@@ -1,9 +1,8 @@
 ﻿using Samples.Common.Domain.Entities;
 
-namespace Samples.Common.Application.Interfaces
+namespace Samples.Common.Application.Interfaces;
+
+public interface IIngredientService
 {
-    public interface IIngredientService
-    {
-        Task<Ingredient> GetIngredientAsync(string id, CancellationToken cancellationToken);
-    }
+    Task<Ingredient> GetIngredientAsync(string id, CancellationToken cancellationToken);
 }

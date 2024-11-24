@@ -3,25 +3,17 @@ using Samples.Common.Domain.Entities;
 using Samples.Common.Infrastructure.Interfaces;
 using Sequoia.Exceptions;
 
-namespace Samples.Common.Application.Common.Services
+namespace Samples.Common.Application.Common.Services;
+
+public class IngredientService(IIngredientRepository ingredientRepository) : IIngredientService
 {
-    public class IngredientService : IIngredientService
+    public async Task<Ingredient> GetIngredientAsync(string id, CancellationToken cancellationToken)
     {
-        private readonly IIngredientRepository _ingredientRepository;
+        var ingredient = await ingredientRepository.GetIngredientAsync(id, cancellationToken);
 
-        public IngredientService(IIngredientRepository ingredientRepository)
-        {
-            _ingredientRepository = ingredientRepository;
-        }
+        if (ingredient == null)
+            throw new NotFoundException(nameof(Ingredient), id);
 
-        public async Task<Ingredient> GetIngredientAsync(string id, CancellationToken cancellationToken)
-        {
-            var ingredient = await _ingredientRepository.GetIngredientAsync(id, cancellationToken);
-
-            if (ingredient == null)
-                throw new NotFoundException(nameof(Ingredient), id);
-
-            return ingredient;
-        }
+        return ingredient;
     }
 }

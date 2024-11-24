@@ -1,8 +1,7 @@
-﻿namespace Sequoia.Data.Interfaces
+﻿namespace Sequoia.Data.Interfaces;
+
+public interface IBaseEntity
 {
-    public interface IBaseEntity
-    {
-        public string Id { get; set; }
-        public bool IsDeleted { get; set; }
-    }
+    public string Id { get; set; }
+    public bool IsDeleted { get; set; }
 }

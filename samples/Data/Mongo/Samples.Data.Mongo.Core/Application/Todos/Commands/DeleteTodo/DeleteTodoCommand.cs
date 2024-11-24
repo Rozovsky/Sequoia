@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace Samples.Data.Mongo.Core.Application.Todos.Commands.DeleteTodo
+namespace Samples.Data.Mongo.Core.Application.Todos.Commands.DeleteTodo;
+
+public class DeleteTodoCommand : IRequest
 {
-    public class DeleteTodoCommand : IRequest
-    {
-        public string Id { get; set; }
-    }
+    public string Id { get; set; }
 }

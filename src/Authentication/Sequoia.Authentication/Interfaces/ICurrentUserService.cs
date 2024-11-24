@@ -1,9 +1,8 @@
 ﻿using Sequoia.Authentication.Models;
 
-namespace Sequoia.Authentication.Interfaces
+namespace Sequoia.Authentication.Interfaces;
+
+public interface ICurrentUserService
 {
-    public interface ICurrentUserService
-    {
-        public CurrentUser User { get; }
-    }
+    public CurrentUser User { get; }
 }

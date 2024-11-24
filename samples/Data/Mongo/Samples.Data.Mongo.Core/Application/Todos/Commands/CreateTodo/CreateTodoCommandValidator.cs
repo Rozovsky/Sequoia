@@ -1,16 +1,13 @@
 ﻿using FluentValidation;
 
-namespace Samples.Data.Mongo.Core.Application.Todos.Commands.CreateTodo
+namespace Samples.Data.Mongo.Core.Application.Todos.Commands.CreateTodo;
+
+public class CreateTodoCommandValidator : AbstractValidator<CreateTodoCommand>
 {
-    public class CreateTodoCommandValidator : AbstractValidator<CreateTodoCommand>
+    public CreateTodoCommandValidator()
     {
-        public CreateTodoCommandValidator()
-        {
-            RuleFor(x => x.Dto.Title)
-                .NotEmpty()
-                    .WithMessage("Title is required")
-                .NotNull()
-                    .WithMessage("Title is required");
-        }
+        RuleFor(x => x.Dto.Title)
+            .NotEmpty()
+            .WithMessage("Title is required");
     }
 }

@@ -2,10 +2,9 @@
 using Samples.Common.Application.Ingredients.Dtos;
 using Samples.Common.Application.Ingredients.ViewModels;
 
-namespace Samples.Common.Application.Ingredients.Commands.CreateIngredient
+namespace Samples.Common.Application.Ingredients.Commands.CreateIngredient;
+
+public class CreateIngredientCommand : IRequest<IngredientVm>
 {
-    public class CreateIngredientCommand : IRequest<IngredientVm>
-    {
-        public IngredientToCreateDto Dto { get; set; }
-    }
+    public IngredientToCreateDto Dto { get; set; }
 }

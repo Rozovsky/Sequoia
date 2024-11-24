@@ -4,33 +4,29 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Sequoia.Interfaces;
 
-namespace Sequoia.Extensions
+namespace Sequoia.Extensions;
+
+public static class ExceptionMiddlewareExtensions
 {
-    public static class ExceptionMiddlewareExtensions
+    public static void UseSequoiaExceptionHandler(this IApplicationBuilder app)
     {
-        /// <summary>
-        /// Write IKernelExceptions to response
-        /// </summary>
-        public static void UseSequoiaExceptionHandler(this IApplicationBuilder app)
+        app.UseExceptionHandler(appError =>
         {
-            app.UseExceptionHandler(appError =>
+            appError.Run(async context =>
             {
-                appError.Run(async context =>
+                var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
+                if (contextFeature != null)
                 {
-                    var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
-                    if (contextFeature != null)
-                    {
-                        var kernelException = contextFeature.Error as IKernelException;
+                    var kernelException = contextFeature.Error as IKernelException;
 
-                        context.Response.StatusCode = kernelException.Code;
-                        context.Response.ContentType = "application/json";
+                    context.Response.StatusCode = kernelException.Code;
+                    context.Response.ContentType = "application/json";
 
-                        var json = JsonConvert.SerializeObject(kernelException);
+                    var json = JsonConvert.SerializeObject(kernelException);
 
-                        await context.Response.WriteAsync(json);
-                    }
-                });
+                    await context.Response.WriteAsync(json);
+                }
             });
-        }
+        });
     }
 }

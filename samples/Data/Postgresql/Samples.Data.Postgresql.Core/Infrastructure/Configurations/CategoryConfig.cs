@@ -2,21 +2,20 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Samples.Common.Domain.Entities;
 
-namespace Samples.Data.Postgresql.Core.Infrastructure.Configurations
+namespace Samples.Data.Postgresql.Core.Infrastructure.Configurations;
+
+public class CategoryConfig : IEntityTypeConfiguration<Category>
 {
-    public class CategoryConfig : IEntityTypeConfiguration<Category>
+    public void Configure(EntityTypeBuilder<Category> builder)
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
-        {
-            builder.ToTable("categories");
+        builder.ToTable("categories");
 
-            builder.HasIndex(c => c.Name).IsUnique();
+        builder.HasIndex(c => c.Name).IsUnique();
 
-            builder.HasMany(c => c.Recipes);
+        builder.HasMany(c => c.Recipes);
 
-            builder.Property(t => t.Name)
-                .IsRequired()
-                .HasMaxLength(64);
-        }
+        builder.Property(t => t.Name)
+            .IsRequired()
+            .HasMaxLength(64);
     }
 }

@@ -1,8 +1,7 @@
-﻿namespace Sequoia.Data.Models
+﻿namespace Sequoia.Data.Models;
+
+public class Sort
 {
-    public class Sort
-    {
-        public string Field { get; set; }
-        public bool Desc { get; set; }
-    }
+    public string Field { get; set; }
+    public bool Desc { get; set; }
 }

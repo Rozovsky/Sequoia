@@ -4,26 +4,16 @@ using Samples.Data.Mongo.Core.Application.Common.Interfaces;
 using Samples.Data.Mongo.Core.Application.Common.ViewModels;
 using Sequoia.Data.Mongo.ViewModels;
 
-namespace Samples.Data.Mongo.Core.Application.Todos.Queries.GetTodosPaged
+namespace Samples.Data.Mongo.Core.Application.Todos.Queries.GetTodosPaged;
+
+public class GetTodosPagedQueryHandler(
+    ITodoService todoService,
+    IMapper mapper) : IRequestHandler<GetTodosPagedQuery, PagedVm<TodoHeaderVm>>
 {
-    public class GetTodosPagedQueryHandler : IRequestHandler<GetTodosPagedQuery, PagedVm<TodoHeaderVm>>
+    public async Task<PagedVm<TodoHeaderVm>> Handle(GetTodosPagedQuery request, CancellationToken cancellationToken)
     {
-        private readonly ITodoService _todoService;
-        private readonly IMapper _mapper;
+        var result = await todoService.GetTodosPaged(request.Dto, cancellationToken);
 
-        public GetTodosPagedQueryHandler(
-            ITodoService todoService,
-            IMapper mapper)
-        {
-            _todoService = todoService;
-            _mapper = mapper;
-        }
-
-        public async Task<PagedVm<TodoHeaderVm>> Handle(GetTodosPagedQuery request, CancellationToken cancellationToken)
-        {
-            var result = await _todoService.GetTodosPaged(request.Dto, cancellationToken);
-
-            return _mapper.Map<PagedVm<TodoHeaderVm>>(result);
-        }
+        return mapper.Map<PagedVm<TodoHeaderVm>>(result);
     }
 }

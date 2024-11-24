@@ -1,7 +1,6 @@
-﻿namespace Sequoia.Data.Mongo.Interfaces
+﻿namespace Sequoia.Data.Mongo.Interfaces;
+
+public interface IMongoEntityConfig
 {
-    public interface IMongoEntityConfig
-    {
-        void Configure();
-    }
+    void Configure();
 }

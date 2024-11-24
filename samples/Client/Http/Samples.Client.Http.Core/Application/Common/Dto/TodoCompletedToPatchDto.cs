@@ -1,7 +1,6 @@
-﻿namespace Samples.Client.Http.Core.Application.Common.Dto
+﻿namespace Samples.Client.Http.Core.Application.Common.Dto;
+
+public class TodoCompletedToPatchDto
 {
-    public class TodoCompletedToPatchDto
-    {
-        public bool Completed { get; set; }
-    }
+    public bool Completed { get; set; }
 }

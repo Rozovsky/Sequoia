@@ -1,40 +1,40 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>disable</Nullable>
-		<PackageProjectUrl></PackageProjectUrl>
-		<Description>Kernel Data Postgresql provider</Description>
-		<RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
-		<PackageTags>microservices;kernel;data;postgresql</PackageTags>
-		<Authors>Rozovsky</Authors>
-		<Version>0.1.1</Version>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageIcon>logo_128_128_w.png</PackageIcon>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-	</PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <PackageProjectUrl>https://www.nuget.org/packages/Sequoia.Data.Postgresql</PackageProjectUrl>
+        <Description>Kernel Data Postgresql provider</Description>
+        <RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
+        <PackageTags>microservices;kernel;data;postgresql</PackageTags>
+        <Authors>Rozovsky</Authors>
+        <Version>0.8.0</Version>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>logo_128_128_w.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<None Include="..\..\..\assets\logo_128_128_w.png">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
+    <ItemGroup>
+        <None Include="..\..\..\assets\logo_128_128_w.png">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sequoia.Data\Sequoia.Data.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Sequoia.Data\Sequoia.Data.csproj"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Update="README.md">
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <None Update="README.md">
+            <PackagePath>\</PackagePath>
+            <Pack>True</Pack>
+        </None>
+    </ItemGroup>
 
 </Project>

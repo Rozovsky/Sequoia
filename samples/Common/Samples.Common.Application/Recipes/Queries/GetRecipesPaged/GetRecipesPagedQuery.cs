@@ -2,11 +2,10 @@
 using Samples.Common.Application.Recipes.ViewModels;
 using Sequoia.Data.Models;
 
-namespace Samples.Common.Application.Recipes.Queries.GetRecipesPaged
+namespace Samples.Common.Application.Recipes.Queries.GetRecipesPaged;
+
+public class GetRecipesPagedQuery : IRequest<Paged<RecipeVm>>
 {
-    public class GetRecipesPagedQuery : IRequest<Paged<RecipeVm>>
-    {
-        public int Page { get; set; }
-        public int Limit { get; set; }
-    }
+    public int Page { get; set; }
+    public int Limit { get; set; }
 }

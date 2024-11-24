@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sequoia.Jobs\Sequoia.Jobs.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Sequoia.Jobs\Sequoia.Jobs.csproj"/>
+    </ItemGroup>
 
 </Project>

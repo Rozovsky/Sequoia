@@ -1,7 +1,6 @@
-﻿namespace Sequoia.Authentication.Basic
-{
-    public class Class1
-    {
+﻿namespace Sequoia.Authentication.Basic;
 
-    }
+public class Class1
+{
+
 }

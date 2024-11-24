@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sequoia.Client.Http.Configuration;
+using Sequoia.Client.Http.Interfaces;
 using Sequoia.Client.Http.Options;
 
 namespace Sequoia.Client.Http

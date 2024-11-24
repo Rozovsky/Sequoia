@@ -1,32 +1,31 @@
 ﻿using Sequoia.Client.Http.Exceptions;
 
-namespace Sequoia.Client.Http.Configuration
+namespace Sequoia.Client.Http.Configuration;
+
+public class Auth
 {
-    public class Auth
+    public string Token { get; set; }
+    private string CurrentRequestToken { get; set; }
+
+    public Auth(string token)
     {
-        public string Token { get; set; }
-        private string CurrentRequestToken { get; set; }
+        CurrentRequestToken = token;
+    }
 
-        public Auth(string token)
+    protected internal void SetToken(string pattern)
+    {
+        if (pattern.Contains("Bearer") || pattern.Contains("Basic"))
         {
-            CurrentRequestToken = token;
+            Token = pattern;
         }
+        else
+        {
+            throw new InvalidAuthTokenException();
+        }
+    }
 
-        protected internal void SetToken(string pattern)
-        {
-            if (pattern.Contains("Bearer") || pattern.Contains("Basic"))
-            {
-                Token = pattern;
-            }
-            else
-            {
-                throw new InvalidAuthTokenException();
-            }
-        }
-
-        protected internal void SetToken()
-        {
-            Token = CurrentRequestToken;
-        }
+    protected internal void SetToken()
+    {
+        Token = CurrentRequestToken;
     }
 }

@@ -1,7 +1,5 @@
-﻿namespace Sequoia.MessageBroker
-{
-    public class Class1
-    {
+﻿namespace Sequoia.MessageBroker;
 
-    }
+public class Class1
+{
 }

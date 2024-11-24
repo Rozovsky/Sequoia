@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 using Samples.Common.Domain.Entities;
 
-namespace Samples.Common.Application.Ingredients.Dtos
+namespace Samples.Common.Application.Ingredients.Dtos;
+
+[AutoMap(typeof(Ingredient), ReverseMap = true)]
+public class IngredientToCreateDto
 {
-    [AutoMap(typeof(Ingredient), ReverseMap = true)]
-    public class IngredientToCreateDto
-    {
-        public string Name { get; set; }
-        public string ImageUrl { get; set; }
-    }
+    public string Name { get; set; }
+    public string ImageUrl { get; set; }
 }

@@ -1,39 +1,40 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-	<Description>JWT authentication for Sequoia</Description>
-	<RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
-	<PackageTags>cqrs;clean-architecture;auth;identity;jwt;swagger</PackageTags>
-	<Authors>Rozovsky</Authors>
-	<Version>0.0.9</Version>
-	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<PackageIcon>logo_128_128_w.png</PackageIcon>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <Description>Swagger Bearer JWT authentication for Sequoia</Description>
+        <RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
+        <PackageProjectUrl>https://www.nuget.org/packages/Sequoia.Authentication.Bearer.Swagger</PackageProjectUrl>
+        <PackageTags>cqrs;clean-architecture;auth;identity;jwt;swagger</PackageTags>
+        <Authors>Rozovsky</Authors>
+        <Version>0.8.0</Version>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>logo_128_128_w.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\..\assets\logo_128_128_w.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <None Include="..\..\..\assets\logo_128_128_w.png">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
+    <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sequoia.Authentication.Bearer\Sequoia.Authentication.Bearer.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Sequoia.Authentication.Bearer\Sequoia.Authentication.Bearer.csproj"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Update="README.md">
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <None Update="README.md">
+            <PackagePath>\</PackagePath>
+            <Pack>True</Pack>
+        </None>
+    </ItemGroup>
 
 </Project>

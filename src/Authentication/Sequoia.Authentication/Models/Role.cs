@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Sequoia.Authentication.Models
+namespace Sequoia.Authentication.Models;
+
+public class Role : IdentityRole
 {
-    public class Role : IdentityRole
-    {
-    }
 }

@@ -1,11 +1,10 @@
-﻿namespace Samples.Common.Domain.Enums
+﻿namespace Samples.Common.Domain.Enums;
+
+public enum UnitType
 {
-    public enum UnitType
-    {
-        None,
-        Gram,
-        Kilogram,
-        Milliliter,
-        Liter,
-    }
+    None,
+    Gram,
+    Kilogram,
+    Milliliter,
+    Liter,
 }

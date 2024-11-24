@@ -4,27 +4,18 @@ using Samples.Common.Application.Ingredients.ViewModels;
 using Samples.Common.Domain.Entities;
 using Samples.Common.Infrastructure.Interfaces;
 
-namespace Samples.Common.Application.Ingredients.Commands.CreateIngredient
+namespace Samples.Common.Application.Ingredients.Commands.CreateIngredient;
+
+public class CreateIngredientCommandHandler(
+    IIngredientRepository ingredientRepository,
+    IMapper mapper)
+    : IRequestHandler<CreateIngredientCommand, IngredientVm>
 {
-    public class CreateIngredientCommandHandler : IRequestHandler<CreateIngredientCommand, IngredientVm>
+    public async Task<IngredientVm> Handle(CreateIngredientCommand request, CancellationToken cancellationToken)
     {
-        private readonly IIngredientRepository _ingredientRepository;
-        private readonly IMapper _mapper;
+        var ingredient = await ingredientRepository.CreateIngredientAsync(
+            mapper.Map<Ingredient>(request.Dto), cancellationToken);
 
-        public CreateIngredientCommandHandler(
-            IIngredientRepository ingredientRepository,
-            IMapper mapper)
-        {
-            _ingredientRepository = ingredientRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<IngredientVm> Handle(CreateIngredientCommand request, CancellationToken cancellationToken)
-        {
-            var ingredient = await _ingredientRepository.CreateIngredientAsync(
-                _mapper.Map<Ingredient>(request.Dto), cancellationToken);
-
-            return _mapper.Map<IngredientVm>(ingredient);
-        }
+        return mapper.Map<IngredientVm>(ingredient);
     }
 }

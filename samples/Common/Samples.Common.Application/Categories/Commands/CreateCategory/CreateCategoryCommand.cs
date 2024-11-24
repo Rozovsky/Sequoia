@@ -2,10 +2,9 @@
 using Samples.Common.Application.Categories.Dtos;
 using Samples.Common.Application.Categories.ViewModels;
 
-namespace Samples.Common.Application.Categories.Commands.CreateCategory
+namespace Samples.Common.Application.Categories.Commands.CreateCategory;
+
+public class CreateCategoryCommand : IRequest<CategoryVm>
 {
-    public class CreateCategoryCommand : IRequest<CategoryVm>
-    {
-        public CategoryToCreateDto Dto { get; set; }
-    }
+    public CategoryToCreateDto Dto { get; set; }
 }

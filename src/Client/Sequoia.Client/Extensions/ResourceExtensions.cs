@@ -1,37 +1,36 @@
 ﻿using Sequoia.Client.Exceptions;
 using Sequoia.Client.Options;
 
-namespace Sequoia.Client.Extensions
+namespace Sequoia.Client.Extensions;
+
+public static class ResourceExtensions
 {
-    public static class ResourceExtensions
+    public static Resource FindResource(this List<Resource> resources, string pattern)
     {
-        public static Resource FindResource(this List<Resource> resources, string pattern)
-        {
-            var resourcePathSplitted = pattern.Split('/');
+        var resourcePathSplitted = pattern.Split('/');
 
-            if (resourcePathSplitted.Length != 2)
-                throw new PathPatternException(pattern);
+        if (resourcePathSplitted.Length != 2)
+            throw new PathPatternException(pattern);
 
-            // get resource settings
-            var resource = resources.SingleOrDefault(c => c.Name == resourcePathSplitted[0]);
-            if (resource == null)
-                throw new ResourceNotFoundException(resourcePathSplitted[0]);
+        // get resource settings
+        var resource = resources.SingleOrDefault(c => c.Name == resourcePathSplitted[0]);
+        if (resource == null)
+            throw new ResourceNotFoundException(resourcePathSplitted[0]);
 
-            return resource;
-        }
+        return resource;
+    }
 
-        public static Segment FindSegment(this Resource resource, string pattern)
-        {
-            var resourcePathSplitted = pattern.Split('/');
+    public static Segment FindSegment(this Resource resource, string pattern)
+    {
+        var resourcePathSplitted = pattern.Split('/');
 
-            if (resourcePathSplitted.Length != 2)
-                throw new PathPatternException(pattern);
+        if (resourcePathSplitted.Length != 2)
+            throw new PathPatternException(pattern);
 
-            var segment = resource.Segments.SingleOrDefault(c => c.Name == resourcePathSplitted[1]);
-            if (segment == null)
-                throw new SegmentNotFoundException(resourcePathSplitted[1], resourcePathSplitted[0]);
+        var segment = resource.Segments.SingleOrDefault(c => c.Name == resourcePathSplitted[1]);
+        if (segment == null)
+            throw new SegmentNotFoundException(resourcePathSplitted[1], resourcePathSplitted[0]);
 
-            return segment;
-        }
+        return segment;
     }
 }

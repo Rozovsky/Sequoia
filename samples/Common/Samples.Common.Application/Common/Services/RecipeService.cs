@@ -3,25 +3,17 @@ using Samples.Common.Domain.Entities;
 using Samples.Common.Infrastructure.Interfaces;
 using Sequoia.Exceptions;
 
-namespace Samples.Common.Application.Common.Services
+namespace Samples.Common.Application.Common.Services;
+
+public class RecipeService(IRecipeRepository recipeRepository) : IRecipeService
 {
-    public class RecipeService : IRecipeService
+    public async Task<Recipe> GetRecipeAsync(string id, CancellationToken cancellationToken)
     {
-        private readonly IRecipeRepository _recipeRepository;
+        var recipe = await recipeRepository.GetRecipeAsync(id, cancellationToken);
 
-        public RecipeService(IRecipeRepository recipeRepository)
-        {
-            _recipeRepository = recipeRepository;
-        }
+        if (recipe == null)
+            throw new NotFoundException(nameof(Ingredient), id);
 
-        public async Task<Recipe> GetRecipeAsync(string id, CancellationToken cancellationToken)
-        {
-            var recipe = await _recipeRepository.GetRecipeAsync(id, cancellationToken);
-
-            if (recipe == null)
-                throw new NotFoundException(nameof(Ingredient), id);
-
-            return recipe;
-        }
+        return recipe;
     }
 }

@@ -1,9 +1,8 @@
 ﻿using Samples.Common.Domain.Entities;
 
-namespace Samples.Common.Application.Interfaces
+namespace Samples.Common.Application.Interfaces;
+
+public interface ICategoryService
 {
-    public interface ICategoryService
-    {
-        Task<Category> GetCategoryAsync(string id, CancellationToken cancellationToken);
-    }
+    Task<Category> GetCategoryAsync(string id, CancellationToken cancellationToken);
 }

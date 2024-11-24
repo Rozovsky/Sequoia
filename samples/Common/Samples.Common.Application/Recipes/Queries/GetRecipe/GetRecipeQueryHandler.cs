@@ -3,26 +3,16 @@ using MediatR;
 using Samples.Common.Application.Interfaces;
 using Samples.Common.Application.Recipes.ViewModels;
 
-namespace Samples.Common.Application.Recipes.Queries.GetRecipe
+namespace Samples.Common.Application.Recipes.Queries.GetRecipe;
+
+public class GetRecipeQueryHandler(
+    IRecipeService recipeService,
+    IMapper mapper) : IRequestHandler<GetRecipeQuery, RecipeVm>
 {
-    public class GetRecipeQueryHandler : IRequestHandler<GetRecipeQuery, RecipeVm>
+    public async Task<RecipeVm> Handle(GetRecipeQuery request, CancellationToken cancellationToken)
     {
-        private readonly IRecipeService _recipeService;
-        private readonly IMapper _mapper;
+        var recipe = await recipeService.GetRecipeAsync(request.Id, cancellationToken);
 
-        public GetRecipeQueryHandler(
-            IRecipeService recipeService,
-            IMapper mapper)
-        {
-            _recipeService = recipeService;
-            _mapper = mapper;
-        }
-
-        public async Task<RecipeVm> Handle(GetRecipeQuery request, CancellationToken cancellationToken)
-        {
-            var recipe = await _recipeService.GetRecipeAsync(request.Id, cancellationToken);
-
-            return _mapper.Map<RecipeVm>(recipe);
-        }
+        return mapper.Map<RecipeVm>(recipe);
     }
 }

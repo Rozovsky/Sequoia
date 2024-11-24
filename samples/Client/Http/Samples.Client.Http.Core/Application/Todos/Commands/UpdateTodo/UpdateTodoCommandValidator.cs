@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace Samples.Client.Http.Core.Application.Todos.Commands.UpdateTodo
+namespace Samples.Client.Http.Core.Application.Todos.Commands.UpdateTodo;
+
+public class UpdateTodoCommandValidator : AbstractValidator<UpdateTodoCommand>
 {
-    public class UpdateTodoCommandValidator : AbstractValidator<UpdateTodoCommand>
+    public UpdateTodoCommandValidator()
     {
-        public UpdateTodoCommandValidator()
-        {
-            RuleFor(v => v.Dto.Title)
-                .NotEmpty()
-                    .WithMessage("Title is required");
-        }
+        RuleFor(v => v.Dto.Title)
+            .NotEmpty()
+            .WithMessage("Title is required");
     }
 }

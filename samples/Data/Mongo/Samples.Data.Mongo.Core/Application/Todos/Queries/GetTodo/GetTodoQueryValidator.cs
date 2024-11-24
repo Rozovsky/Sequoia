@@ -1,16 +1,13 @@
 ﻿using FluentValidation;
 
-namespace Samples.Data.Mongo.Core.Application.Todos.Queries.GetTodo
+namespace Samples.Data.Mongo.Core.Application.Todos.Queries.GetTodo;
+
+public class GetTodoQueryValidator : AbstractValidator<GetTodoQuery>
 {
-    public class GetTodoQueryValidator : AbstractValidator<GetTodoQuery>
+    public GetTodoQueryValidator()
     {
-        public GetTodoQueryValidator()
-        {
-            RuleFor(x => x.Id)
-                .NotEmpty()
-                    .WithMessage("Id is required")
-                .NotNull()
-                    .WithMessage("Id is required");
-        }
+        RuleFor(x => x.Id)
+            .NotEmpty()
+            .WithMessage("Id is required");
     }
 }

@@ -1,17 +1,16 @@
 ﻿using FluentValidation;
 
-namespace Samples.Common.Application.Recipes.Queries.GetRecipesBatch
+namespace Samples.Common.Application.Recipes.Queries.GetRecipesBatch;
+
+public class GetRecipesBatchQueryValidator : AbstractValidator<GetRecipesBatchQuery>
 {
-    public class GetRecipesBatchQueryValidator : AbstractValidator<GetRecipesBatchQuery>
+    public GetRecipesBatchQueryValidator()
     {
-        public GetRecipesBatchQueryValidator()
-        {
-            RuleFor(v => v.Ids)
-                .NotEmpty()
-                    .WithMessage("Ids must be not empty")
-                .NotNull()
-                    .WithMessage("Ids must be set");
+        RuleFor(v => v.Ids)
+            .NotEmpty()
+            .WithMessage("Ids must be not empty")
+            .NotNull()
+            .WithMessage("Ids must be set");
                 
-        }
     }
 }

@@ -7,27 +7,26 @@ using Sequoia;
 using Sequoia.Attributes;
 using Sequoia.Client.Http;
 
-namespace Samples.Client.Http.Core
+namespace Samples.Client.Http.Core;
+
+[SequoiaMember]
+public static class DependencyInjection
 {
-    [SequoiaMember]
-    public static class DependencyInjection
+    /// <summary>
+    /// Add application services
+    /// </summary>
+    public static IServiceCollection AddAppService(this IServiceCollection services, IConfiguration configuration)
     {
-        /// <summary>
-        /// Add application services
-        /// </summary>
-        public static IServiceCollection AddAppService(this IServiceCollection services, IConfiguration configuration)
-        {
-            // register common components
-            services.AddSequoia();
-            services.AddClientHttp(configuration);
+        // register common components
+        services.AddSequoia();
+        services.AddClientHttp(configuration);
 
-            // add application services
-            services.AddTransient<ITodoService, TodoService>();
+        // add application services
+        services.AddTransient<ITodoService, TodoService>();
 
-            // add application repositories
-            services.AddTransient<ITodoRepository, TodoRepository>();
+        // add application repositories
+        services.AddTransient<ITodoRepository, TodoRepository>();
 
-            return services;
-        }
+        return services;
     }
 }

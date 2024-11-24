@@ -1,9 +1,8 @@
-﻿namespace Sequoia.Client.Options
+﻿namespace Sequoia.Client.Options;
+
+public class Resource
 {
-    public class Resource
-    {
-        public string Name { get; set; }
-        public string Uri { get; set; }
-        public List<Segment> Segments { get; set; }
-    }
+    public string Name { get; set; }
+    public string Uri { get; set; }
+    public List<Segment> Segments { get; set; }
 }

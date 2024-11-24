@@ -1,31 +1,29 @@
 ﻿using Sequoia.Data.Models;
 
-namespace Sequoia.Data.Helpers
+namespace Sequoia.Data.Helpers;
+
+public static class PagedListHelper
 {
-    public static class PagedListHelper
+    public static Paged<TSource> GetPagedWrapper<TSource>(int page, int limit, int count) where TSource : class
     {
-        public static Paged<TSource> GetPagedWrapper<TSource>(int page, int limit, int count) 
-            where TSource : class
+        var result = new Paged<TSource>
         {
-            var result = new Paged<TSource>
-            {
-                Page = page,
-                PageSize = limit,
-                ItemsTotal = count
-            };
+            Page = page,
+            PageSize = limit,
+            ItemsTotal = count
+        };
 
-            // count  total pages
-            var pageCount = (double)result.ItemsTotal / limit;
-            result.PagesTotal = (int)Math.Ceiling(pageCount);
+        // count  total pages
+        var pageCount = (double)result.ItemsTotal / limit;
+        result.PagesTotal = (int)Math.Ceiling(pageCount);
 
-            return result;
-        }
+        return result;
+    }
 
-        public static int CountRowsToSkip(int page, int limit)
-        {
-            var skip = (page - 1) * limit;
+    public static int CountRowsToSkip(int page, int limit)
+    {
+        var skip = (page - 1) * limit;
 
-            return skip;
-        }
+        return skip;
     }
 }

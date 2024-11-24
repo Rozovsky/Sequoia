@@ -2,31 +2,23 @@
 using Samples.Authentication.Basic.Core.Domain.Entities;
 using Sequoia.Data.Models;
 
-namespace Samples.Authentication.Basic.Core.Infrastructure.Repositories
+namespace Samples.Authentication.Basic.Core.Infrastructure.Repositories;
+
+public class LocationRepository : ILocationRepository
 {
-    public class LocationRepository : ILocationRepository
+    private readonly List<Location> _locations = ApplicationDbContextSeed.Seed();
+
+    public async Task<List<Location>> GetLocations(CancellationToken cancellationToken)
     {
-        private readonly List<Location> _locations;
+        await Task.Delay(0, cancellationToken);
 
-        public LocationRepository()
-        {
-            // seed static data
-            _locations = ApplicationDbContextSeed.Seed();
-        }
+        return _locations;
+    }
+    
+    public async Task<Paged<Location>> GetLocationsPaged(int page, int limit, CancellationToken cancellationToken)
+    {
+        await Task.Delay(0, cancellationToken);
 
-        public async Task<List<Location>> GetLocations(CancellationToken cancellationToken)
-        {
-            await Task.Delay(0, cancellationToken);
-
-            return _locations;
-        }
-
-        // TODO: add mapings and paged processing
-        public async Task<Paged<Location>> GetLocationsPaged(int page, int limit, CancellationToken cancellationToken)
-        {
-            await Task.Delay(0, cancellationToken);
-
-            return new Paged<Location>();
-        }
+        return new Paged<Location>();
     }
 }

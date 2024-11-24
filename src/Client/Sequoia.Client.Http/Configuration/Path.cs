@@ -1,31 +1,30 @@
 ﻿using Sequoia.Client.Extensions;
 using Sequoia.Client.Options;
 
-namespace Sequoia.Client.Http.Configuration
+namespace Sequoia.Client.Http.Configuration;
+
+public class Path
 {
-    public class Path
+    public string Uri { get; set; }
+    private List<Resource> Resources { get; set; }
+
+    public Path(List<Resource> resources)
     {
-        public string Uri { get; set; }
-        private List<Resource> Resources { get; set; }
+        Resources = resources;
+    }
 
-        public Path(List<Resource> resources)
+    protected internal void SetUri(string pattern)
+    {
+        if (pattern.Contains("http://") || pattern.Contains("https://"))
         {
-            Resources = resources;
+            Uri = pattern;
         }
-
-        protected internal void SetUri(string pattern)
+        else
         {
-            if (pattern.Contains("http://") || pattern.Contains("https://"))
-            {
-                Uri = pattern;
-            }
-            else
-            {
-                var resource = Resources.FindResource(pattern);
-                var segment = resource.FindSegment(pattern);
+            var resource = Resources.FindResource(pattern);
+            var segment = resource.FindSegment(pattern);
 
-                Uri = resource.Uri + segment.Path;
-            }
+            Uri = resource.Uri + segment.Path;
         }
     }
 }

@@ -8,39 +8,38 @@ using Sequoia.Authentication.Bearer.Services;
 using Sequoia.Authentication.Interfaces;
 using System.Text;
 
-namespace Sequoia.Authentication.Bearer
+namespace Sequoia.Authentication.Bearer;
+
+[SequoiaMember]
+public static class DependencyInjection
 {
-    [SequoiaMember]
-    public static class DependencyInjection
+    /// <summary>
+    /// Add JWT Bearer authentication
+    /// </summary>
+    public static IServiceCollection AddAuthBearer(this IServiceCollection services, IConfiguration configuration)
     {
-        /// <summary>
-        /// Add JWT Bearer authentication
-        /// </summary>
-        public static IServiceCollection AddAuthBearer(this IServiceCollection services, IConfiguration configuration)
-        {
-            var authOptions = configuration.GetSection("AuthBearer").Get<AuthBearerOptions>();
+        var authOptions = configuration.GetSection("AuthBearer").Get<AuthBearerOptions>();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    options.TokenValidationParameters = new TokenValidationParameters()
-                    {
-                        ClockSkew = TimeSpan.Zero,
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = authOptions.Issuer,
-                        ValidAudience = authOptions.Audience,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authOptions.SigningKey)),
-                    };
-                });
+                    ClockSkew = TimeSpan.Zero,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = authOptions.Issuer,
+                    ValidAudience = authOptions.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authOptions.SigningKey)),
+                };
+            });
 
-            // add default current user services
-            services.AddHttpContextAccessor();
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
+        // add default current user services
+        services.AddHttpContextAccessor();
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
 
-            return services;
-        }
+        return services;
     }
 }

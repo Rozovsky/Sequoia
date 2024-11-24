@@ -2,6 +2,7 @@
 using Sequoia.Client.Http.Configuration;
 using Sequoia.Client.Http.Exceptions;
 using Sequoia.Client.Http.Extensions;
+using Sequoia.Client.Http.Interfaces;
 using Sequoia.Client.Http.Models;
 
 namespace Sequoia.Client.Http

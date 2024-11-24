@@ -4,53 +4,52 @@ using Microsoft.OpenApi.Models;
 using Sequoia.Attributes;
 using Sequoia.Authentication.Bearer.Swagger.Options;
 
-namespace Sequoia.Authentication.Bearer.Swagger
+namespace Sequoia.Authentication.Bearer.Swagger;
+
+[SequoiaMember]
+public static class DependencyInjection
 {
-    [SequoiaMember]
-    public static class DependencyInjection
+    /// <summary>
+    /// Add JWT Bearer authentication
+    /// </summary>
+    public static IServiceCollection AddAuthBearerSwagger(this IServiceCollection services, IConfiguration configuration)
     {
-        /// <summary>
-        /// Add JWT Bearer authentication
-        /// </summary>
-        public static IServiceCollection AddAuthBearerSwagger(this IServiceCollection services, IConfiguration configuration)
+        var authOptions = configuration.GetSection("AuthBearer").Get<AuthSwaggerOptions>();
+
+        services.AddSwaggerGen(option =>
         {
-            var authOptions = configuration.GetSection("AuthBearer").Get<AuthSwaggerOptions>();
-
-            services.AddSwaggerGen(option =>
+            option.SwaggerDoc("v1", new OpenApiInfo
             {
-                option.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = authOptions.Swagger.Title,
-                    Version = authOptions.Swagger.Version,
-                });
-
-                option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Enter a valid JWT",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.Http,
-                    BearerFormat = "JWT",
-                    Scheme = "Bearer"
-                });
-
-                option.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        Array.Empty<string>()
-                    }
-                });
+                Title = authOptions.Swagger.Title,
+                Version = authOptions.Swagger.Version,
             });
 
-            return services;
-        }
+            option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Description = "Enter a valid JWT",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                BearerFormat = "JWT",
+                Scheme = "Bearer"
+            });
+
+            option.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    Array.Empty<string>()
+                }
+            });
+        });
+
+        return services;
     }
 }

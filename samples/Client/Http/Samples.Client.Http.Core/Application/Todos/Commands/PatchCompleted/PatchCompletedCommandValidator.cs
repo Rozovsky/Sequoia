@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
 
-namespace Samples.Client.Http.Core.Application.Todos.Commands.PatchCompleted
+namespace Samples.Client.Http.Core.Application.Todos.Commands.PatchCompleted;
+
+public class PatchCompletedCommandValidator : AbstractValidator<PatchCompletedCommand>
 {
-    public class PatchCompletedCommandValidator : AbstractValidator<PatchCompletedCommand>
+    public PatchCompletedCommandValidator()
     {
-        public PatchCompletedCommandValidator()
-        {
-        }
     }
 }

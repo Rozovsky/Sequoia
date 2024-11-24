@@ -1,7 +1,6 @@
-﻿namespace Samples.Common.Infrastructure
+﻿namespace Samples.Common.Infrastructure;
+
+public class ApplicationDbContextSeed
 {
-    public class ApplicationDbContextSeed
-    {
-        // TODO: add seed to nuget
-    }
+    // TODO: add seed to nuget
 }

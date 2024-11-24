@@ -4,35 +4,24 @@ using Samples.Common.Application.CategoryRecipes.ViewModels;
 using Samples.Common.Infrastructure.Interfaces;
 using Sequoia.Data.Models;
 
-namespace Samples.Common.Application.CategoryRecipes.Queries.GetCategoryRecipesPaged
+namespace Samples.Common.Application.CategoryRecipes.Queries.GetCategoryRecipesPaged;
+
+public class GetCategoryRecipesPagedQueryHandler(
+    ICategoryRecipeRepository categoryRecipeRepository,
+    IRecipeRepository recipeRepository,
+    IMapper mapper)
+    : IRequestHandler<GetCategoryRecipesPagedQuery, Paged<CategoryRecipeVm>>
 {
-    public class GetCategoryRecipesPagedQueryHandler : IRequestHandler<GetCategoryRecipesPagedQuery, Paged<CategoryRecipeVm>>
+    public async Task<Paged<CategoryRecipeVm>> Handle(GetCategoryRecipesPagedQuery request, CancellationToken cancellationToken)
     {
-        private readonly ICategoryRecipeRepository _categoryRecipeRepository;
-        private readonly IRecipeRepository _recipeRepository;
-        private readonly IMapper _mapper;
+        var categoryRecipes = await categoryRecipeRepository.GetCategoryRecipesPagedAsync(
+            request.CategoryId, request.Page, request.Limit, cancellationToken);
 
-        public GetCategoryRecipesPagedQueryHandler(
-            ICategoryRecipeRepository categoryRecipeRepository,
-            IRecipeRepository recipeRepository,
-            IMapper mapper)
-        {
-            _categoryRecipeRepository = categoryRecipeRepository;
-            _recipeRepository = recipeRepository;
-            _mapper = mapper;
-        }
+        var recipesIds = categoryRecipes.Items.Select(x => x.RecipeId).ToList();
+        var recipes = await recipeRepository.GetRecipesBatchAsync(recipesIds.ToArray(), cancellationToken);
 
-        public async Task<Paged<CategoryRecipeVm>> Handle(GetCategoryRecipesPagedQuery request, CancellationToken cancellationToken)
-        {
-            var categoryRecipes = await _categoryRecipeRepository.GetCategoryRecipesPagedAsync(
-                request.CategoryId, request.Page, request.Limit, cancellationToken);
+        categoryRecipes.Items.ForEach(c => c.Recipe = recipes.FirstOrDefault(p => p.Id == c.RecipeId));
 
-            var recipesIds = categoryRecipes.Items.Select(x => x.RecipeId).ToList();
-            var recipes = await _recipeRepository.GetRecipesBatchAsync(recipesIds.ToArray(), cancellationToken);
-
-            categoryRecipes.Items.ForEach(c => c.Recipe = recipes.FirstOrDefault(p => p.Id == c.RecipeId));
-
-            return _mapper.Map<Paged<CategoryRecipeVm>>(categoryRecipes);
-        }
+        return mapper.Map<Paged<CategoryRecipeVm>>(categoryRecipes);
     }
 }

@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace Samples.Common.Application.Ingredients.Commands.DeleteIngredient
+namespace Samples.Common.Application.Ingredients.Commands.DeleteIngredient;
+
+public class DeleteIngredientCommandValidator : AbstractValidator<DeleteIngredientCommand>
 {
-    public class DeleteIngredientCommandValidator : AbstractValidator<DeleteIngredientCommand>
+    public DeleteIngredientCommandValidator()
     {
-        public DeleteIngredientCommandValidator()
-        {
-            RuleFor(v => v.Id)
-                .NotNull()
-                    .WithMessage("Id must be set");
-        }
+        RuleFor(v => v.Id)
+            .NotNull()
+            .WithMessage("Id must be set");
     }
 }

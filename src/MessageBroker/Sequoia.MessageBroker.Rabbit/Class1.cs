@@ -1,7 +1,5 @@
-﻿namespace Sequoia.MessageBroker.Rabbit
-{
-    public class Class1
-    {
+﻿namespace Sequoia.MessageBroker.Rabbit;
 
-    }
+public class Class1
+{
 }

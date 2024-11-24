@@ -10,64 +10,63 @@ using Samples.Common.Application.Ingredients.ViewModels;
 using Sequoia.Data.Models;
 using Sequoia.Models;
 
-namespace Samples.Data.Postgresql.Api.Controllers
+namespace Samples.Data.Postgresql.Api.Controllers;
+
+[Route("api/postgresql/ingredients")]
+public class IngredientsController : ApiController
 {
-    [Route("api/postgresql/ingredients")]
-    public class IngredientsController : ApiController
+    [HttpPost]
+    public async Task<IngredientVm> CreateIngredient([FromBody] IngredientToCreateDto dto)
     {
-        [HttpPost]
-        public async Task<IngredientVm> CreateIngredient([FromBody] IngredientToCreateDto dto)
+        return await Mediator.Send(new CreateIngredientCommand
         {
-            return await Mediator.Send(new CreateIngredientCommand
-            {
-                Dto = dto
-            });
-        }
+            Dto = dto
+        });
+    }
 
-        [HttpPut]
-        [Route("{id}")]
-        public async Task<IngredientVm> UpdateIngredient([FromRoute] string id, [FromBody] IngredientToUpdateDto dto)
+    [HttpPut]
+    [Route("{id}")]
+    public async Task<IngredientVm> UpdateIngredient([FromRoute] string id, [FromBody] IngredientToUpdateDto dto)
+    {
+        return await Mediator.Send(new UpdateIngredientCommand
         {
-            return await Mediator.Send(new UpdateIngredientCommand
-            {
-                Id = id,
-                Dto = dto
-            });
-        }
+            Id = id,
+            Dto = dto
+        });
+    }
 
-        [HttpDelete]
-        [Route("{id}")]
-        public async Task<IActionResult> DeleteIngredient([FromRoute] string id)
+    [HttpDelete]
+    [Route("{id}")]
+    public async Task<IActionResult> DeleteIngredient([FromRoute] string id)
+    {
+        await Mediator.Send(new DeleteIngredientCommand
         {
-            await Mediator.Send(new DeleteIngredientCommand
-            {
-                Id = id
-            });
+            Id = id
+        });
 
-            return Ok();
-        }
+        return Ok();
+    }
 
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<IngredientVm> GetIngredient([FromRoute] string id)
+    [HttpGet]
+    [Route("{id}")]
+    public async Task<IngredientVm> GetIngredient([FromRoute] string id)
+    {
+        return await Mediator.Send(new GetIngredientQuery
         {
-            return await Mediator.Send(new GetIngredientQuery
-            {
-                Id = id
-            });
-        }
+            Id = id
+        });
+    }
 
-        [HttpGet]
-        public async Task<List<IngredientVm>> GetAllIngredients()
-        {
-            return await Mediator.Send(new GetAllIngredientsQuery());
-        }
+    [HttpGet]
+    public async Task<List<IngredientVm>> GetAllIngredients()
+    {
+        return await Mediator.Send(new GetAllIngredientsQuery());
+    }
 
-        [HttpGet]
-        [Route("paged")]
-        public async Task<Paged<IngredientVm>> GetIngredientsPaged([FromQuery] GetIngredientsPagedQuery query)
-        {
-            return await Mediator.Send(query);
-        }
+    [HttpGet]
+    [Route("paged")]
+    public async Task<Paged<IngredientVm>> GetIngredientsPaged([FromQuery] GetIngredientsPagedQuery query)
+    {
+        return await Mediator.Send(query);
     }
 }

@@ -3,26 +3,16 @@ using MediatR;
 using Samples.Client.Http.Core.Application.Common.Interfaces;
 using Samples.Client.Http.Core.Application.Common.ViewModels;
 
-namespace Samples.Client.Http.Core.Application.Todos.Commands.UpdateTodo
+namespace Samples.Client.Http.Core.Application.Todos.Commands.UpdateTodo;
+
+public class UpdateTodoCommandHandler(
+    ITodoService todoService,
+    IMapper mapper) : IRequestHandler<UpdateTodoCommand, TodoVm>
 {
-    public class UpdateTodoCommandHandler : IRequestHandler<UpdateTodoCommand, TodoVm>
+    public async Task<TodoVm> Handle(UpdateTodoCommand request, CancellationToken cancellationToken)
     {
-        private readonly ITodoService _todoService;
-        private readonly IMapper _mapper;
+        var result = await todoService.UpdateTodo(request.Id, request.Dto, cancellationToken);
 
-        public UpdateTodoCommandHandler(
-            ITodoService todoService,
-            IMapper mapper)
-        {
-            _todoService = todoService;
-            _mapper = mapper;
-        }
-
-        public async Task<TodoVm> Handle(UpdateTodoCommand request, CancellationToken cancellationToken)
-        {
-            var result = await _todoService.UpdateTodo(request.Id, request.Dto, cancellationToken);
-
-            return _mapper.Map<TodoVm>(result);
-        }
+        return mapper.Map<TodoVm>(result);
     }
 }

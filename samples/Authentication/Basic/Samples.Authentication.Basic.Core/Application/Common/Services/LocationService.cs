@@ -2,25 +2,17 @@
 using Samples.Authentication.Basic.Core.Domain.Entities;
 using Sequoia.Data.Models;
 
-namespace Samples.Authentication.Basic.Core.Application.Common.Services
+namespace Samples.Authentication.Basic.Core.Application.Common.Services;
+
+public class LocationService(ILocationRepository locationRepository) : ILocationService
 {
-    public class LocationService : ILocationService
+    public async Task<List<Location>> GetLocations(CancellationToken cancellationToken)
     {
-        private readonly ILocationRepository _locationRepository;
+        return await locationRepository.GetLocations(cancellationToken);
+    }
 
-        public LocationService(ILocationRepository locationRepository)
-        {
-            _locationRepository = locationRepository;
-        }
-
-        public async Task<List<Location>> GetLocations(CancellationToken cancellationToken)
-        {
-            return await _locationRepository.GetLocations(cancellationToken);
-        }
-
-        public async Task<Paged<Location>> GetLocationsPaged(int page, int limit, CancellationToken cancellationToken)
-        {
-            return await _locationRepository.GetLocationsPaged(page, limit, cancellationToken);
-        }
+    public async Task<Paged<Location>> GetLocationsPaged(int page, int limit, CancellationToken cancellationToken)
+    {
+        return await locationRepository.GetLocationsPaged(page, limit, cancellationToken);
     }
 }

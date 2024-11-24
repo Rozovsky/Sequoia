@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace Samples.Client.Http.Core.Application.Todos.Commands.DeleteTodo
+namespace Samples.Client.Http.Core.Application.Todos.Commands.DeleteTodo;
+
+public class DeleteTodoCommandValidator : AbstractValidator<DeleteTodoCommand>
 {
-    public class DeleteTodoCommandValidator : AbstractValidator<DeleteTodoCommand>
+    public DeleteTodoCommandValidator()
     {
-        public DeleteTodoCommandValidator()
-        {
-            RuleFor(v => v.Id)
-                .GreaterThan(0)
-                    .WithMessage("Id must be greater than 0");
-        }
+        RuleFor(v => v.Id)
+            .GreaterThan(0)
+            .WithMessage("Id must be greater than 0");
     }
 }

@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Samples.Data.Postgresql.Core.Infrastructure;
 
-namespace Samples.Data.Postgresql.Core.Infrastructure
+public class ApplicationDbContextSeed
 {
-    internal class ApplicationDbContextSeed
-    {
-    }
 }

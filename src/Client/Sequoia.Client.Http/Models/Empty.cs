@@ -1,6 +1,5 @@
-﻿namespace Sequoia.Client.Http.Models
+﻿namespace Sequoia.Client.Http.Models;
+
+public class Empty
 {
-    public class Empty
-    {
-    }
 }

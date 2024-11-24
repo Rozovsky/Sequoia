@@ -1,15 +1,14 @@
-﻿namespace Sequoia.Client.Http.Configuration
+﻿namespace Sequoia.Client.Http.Configuration;
+
+public class Headers
 {
-    public class Headers
+    public Dictionary<string, string> HeadersCollection { get; set; } = new();
+
+    protected internal void SetOrReplaceHeader(string key, string value)
     {
-        public Dictionary<string, string> HeadersCollection { get; set; } = new Dictionary<string, string>();
+        if (HeadersCollection.Any(c => c.Key == key))
+            HeadersCollection.Remove(key);
 
-        protected internal void SetOrReplaceHeader(string key, string value)
-        {
-            if (HeadersCollection.Any(c => c.Key == key))
-                HeadersCollection.Remove(key);
-
-            HeadersCollection.Add(key, value);
-        }
+        HeadersCollection.Add(key, value);
     }
 }

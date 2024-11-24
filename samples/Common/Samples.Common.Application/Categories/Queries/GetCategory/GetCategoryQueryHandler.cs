@@ -3,26 +3,16 @@ using MediatR;
 using Samples.Common.Application.Categories.ViewModels;
 using Samples.Common.Application.Interfaces;
 
-namespace Samples.Common.Application.Categories.Queries.GetCategory
+namespace Samples.Common.Application.Categories.Queries.GetCategory;
+
+public class GetCategoryQueryHandler(
+    ICategoryService categoryService,
+    IMapper mapper) : IRequestHandler<GetCategoryQuery, CategoryVm>
 {
-    public class GetCategoryQueryHandler : IRequestHandler<GetCategoryQuery, CategoryVm>
+    public async Task<CategoryVm> Handle(GetCategoryQuery request, CancellationToken cancellationToken)
     {
-        private readonly ICategoryService _categoryService;
-        private readonly IMapper _mapper;
+        var category = await categoryService.GetCategoryAsync(request.Id, cancellationToken);
 
-        public GetCategoryQueryHandler(
-            ICategoryService categoryService,
-            IMapper mapper)
-        {
-            _categoryService = categoryService;
-            _mapper = mapper;
-        }
-
-        public async Task<CategoryVm> Handle(GetCategoryQuery request, CancellationToken cancellationToken)
-        {
-            var category = await _categoryService.GetCategoryAsync(request.Id, cancellationToken);
-
-            return _mapper.Map<CategoryVm>(category);
-        }
+        return mapper.Map<CategoryVm>(category);
     }
 }

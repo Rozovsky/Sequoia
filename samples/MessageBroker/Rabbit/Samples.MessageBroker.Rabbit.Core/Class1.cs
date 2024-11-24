@@ -1,7 +1,5 @@
-﻿namespace Samples.MessageBroker.Rabbit.Core
-{
-    public class Class1
-    {
+﻿namespace Samples.MessageBroker.Rabbit.Core;
 
-    }
+public class Class1
+{
 }

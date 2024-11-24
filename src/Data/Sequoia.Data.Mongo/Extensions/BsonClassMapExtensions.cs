@@ -1,28 +1,27 @@
 ﻿using MongoDB.Bson.Serialization;
 using System.Collections.Concurrent;
 
-namespace Sequoia.Data.Mongo.Extensions
+namespace Sequoia.Data.Mongo.Extensions;
+
+public static class BsonClassMapExtensions
 {
-    public static class BsonClassMapExtensions
+    private static readonly ConcurrentDictionary<Type, string> Cache = new();
+
+    public static string GetCollectionName(this BsonClassMap classMap)
     {
-        private static ConcurrentDictionary<Type, string> _cache = new ConcurrentDictionary<Type, string>();
+        string result = null;
 
-        public static string GetCollectionName(this BsonClassMap classMap)
-        {
-            string result = null;
+        if (Cache.TryGetValue(classMap.ClassType, out result))
+            return result;
+        else
+            return classMap.ClassType.Name;
+    }
 
-            if (_cache.TryGetValue(classMap.ClassType, out result))
-                return result;
-            else
-                return classMap.ClassType.Name;
-        }
+    public static void SetCollectionName(this BsonClassMap classMap, string collectionName)
+    {
+        if (string.IsNullOrEmpty(collectionName))
+            throw new InvalidOperationException("Collection name must be valid string.");
 
-        public static void SetCollectionName(this BsonClassMap classMap, string collectionName)
-        {
-            if (string.IsNullOrEmpty(collectionName))
-                throw new InvalidOperationException("Collection name must be valid string.");
-
-            _cache[classMap.ClassType] = collectionName;
-        }
+        Cache[classMap.ClassType] = collectionName;
     }
 }

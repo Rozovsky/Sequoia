@@ -1,11 +1,10 @@
 ﻿using Samples.Authentication.Basic.Core.Domain.Entities;
 using Sequoia.Data.Models;
 
-namespace Samples.Authentication.Basic.Core.Application.Common.Interfaces
+namespace Samples.Authentication.Basic.Core.Application.Common.Interfaces;
+
+public interface ILocationRepository
 {
-    public interface ILocationRepository
-    {
-        Task<List<Location>> GetLocations(CancellationToken cancellationToken);
-        Task<Paged<Location>> GetLocationsPaged(int page, int limit, CancellationToken cancellationToken);
-    }
+    Task<List<Location>> GetLocations(CancellationToken cancellationToken);
+    Task<Paged<Location>> GetLocationsPaged(int page, int limit, CancellationToken cancellationToken);
 }

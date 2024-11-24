@@ -1,28 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Domain\Constants\**" />
-    <Compile Remove="Domain\Models\**" />
-    <Compile Remove="Infrastructure\Migrations\**" />
-    <EmbeddedResource Remove="Domain\Constants\**" />
-    <EmbeddedResource Remove="Domain\Models\**" />
-    <EmbeddedResource Remove="Infrastructure\Migrations\**" />
-    <None Remove="Domain\Constants\**" />
-    <None Remove="Domain\Models\**" />
-    <None Remove="Infrastructure\Migrations\**" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="Domain\Constants\**"/>
+        <Compile Remove="Domain\Models\**"/>
+        <Compile Remove="Infrastructure\Migrations\**"/>
+        <EmbeddedResource Remove="Domain\Constants\**"/>
+        <EmbeddedResource Remove="Domain\Models\**"/>
+        <EmbeddedResource Remove="Infrastructure\Migrations\**"/>
+        <None Remove="Domain\Constants\**"/>
+        <None Remove="Domain\Models\**"/>
+        <None Remove="Infrastructure\Migrations\**"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\Authentication\Sequoia.Authentication.Bearer\Sequoia.Authentication.Bearer.csproj" />
-    <ProjectReference Include="..\..\..\..\src\Data\Sequoia.Data.Mongo\Sequoia.Data.Mongo.csproj" />
-    <ProjectReference Include="..\..\..\Common\Samples.Common.Application\Samples.Common.Application.csproj" />
-    <ProjectReference Include="..\..\..\Common\Samples.Common.Infrastructure.Interfaces\Samples.Common.Infrastructure.Interfaces.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\src\Authentication\Sequoia.Authentication.Bearer\Sequoia.Authentication.Bearer.csproj"/>
+        <ProjectReference Include="..\..\..\..\src\Data\Sequoia.Data.Mongo\Sequoia.Data.Mongo.csproj"/>
+        <ProjectReference Include="..\..\..\Common\Samples.Common.Application\Samples.Common.Application.csproj"/>
+        <ProjectReference Include="..\..\..\Common\Samples.Common.Infrastructure.Interfaces\Samples.Common.Infrastructure.Interfaces.csproj"/>
+    </ItemGroup>
 
 </Project>

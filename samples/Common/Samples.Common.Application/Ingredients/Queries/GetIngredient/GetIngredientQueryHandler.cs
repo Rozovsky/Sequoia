@@ -3,26 +3,16 @@ using MediatR;
 using Samples.Common.Application.Ingredients.ViewModels;
 using Samples.Common.Application.Interfaces;
 
-namespace Samples.Common.Application.Ingredients.Queries.GetIngredient
+namespace Samples.Common.Application.Ingredients.Queries.GetIngredient;
+
+public class GetIngredientQueryHandler(
+    IIngredientService ingredientService,
+    IMapper mapper) : IRequestHandler<GetIngredientQuery, IngredientVm>
 {
-    public class GetIngredientQueryHandler : IRequestHandler<GetIngredientQuery, IngredientVm>
+    public async Task<IngredientVm> Handle(GetIngredientQuery request, CancellationToken cancellationToken)
     {
-        private readonly IIngredientService _ingredientService;
-        private readonly IMapper _mapper;
+        var ingredient = await ingredientService.GetIngredientAsync(request.Id, cancellationToken);
 
-        public GetIngredientQueryHandler(
-            IIngredientService ingredientService,
-            IMapper mapper)
-        {
-            _ingredientService = ingredientService;
-            _mapper = mapper;
-        }
-
-        public async Task<IngredientVm> Handle(GetIngredientQuery request, CancellationToken cancellationToken)
-        {
-            var ingredient = await _ingredientService.GetIngredientAsync(request.Id, cancellationToken);
-
-            return _mapper.Map<IngredientVm>(ingredient);
-        }
+        return mapper.Map<IngredientVm>(ingredient);
     }
 }

@@ -1,17 +1,13 @@
 ﻿using FluentValidation;
-using MediatR;
 
-namespace Samples.Data.Mongo.Core.Application.Todos.Commands.DeleteTodo
+namespace Samples.Data.Mongo.Core.Application.Todos.Commands.DeleteTodo;
+
+public class DeleteTodoCommandValidator : AbstractValidator<DeleteTodoCommand>
 {
-    public class DeleteTodoCommandValidator : AbstractValidator<DeleteTodoCommand>
+    public DeleteTodoCommandValidator()
     {
-        public DeleteTodoCommandValidator()
-        {
-            RuleFor(x => x.Id)
-                .NotEmpty()
-                    .WithMessage("Id is required")
-                .NotNull()
-                    .WithMessage("Id is required");
-        }
+        RuleFor(x => x.Id)
+            .NotEmpty()
+            .WithMessage("Id is required");
     }
 }

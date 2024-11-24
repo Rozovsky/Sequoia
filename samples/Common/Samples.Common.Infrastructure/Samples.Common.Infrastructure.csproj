@@ -1,19 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Configurations\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Configurations\"/>
+        <Folder Include="Migrations\"/>
+        <Folder Include="Repositories\"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Samples.Common.Infrastructure.Interfaces\Samples.Common.Infrastructure.Interfaces.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Samples.Common.Infrastructure.Interfaces\Samples.Common.Infrastructure.Interfaces.csproj"/>
+    </ItemGroup>
 
 </Project>

@@ -1,14 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Data\Sequoia.Data\Sequoia.Data.csproj" />
-    <ProjectReference Include="..\Samples.Common.Domain\Samples.Common.Domain.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\src\Data\Sequoia.Data\Sequoia.Data.csproj"/>
+        <ProjectReference Include="..\Samples.Common.Domain\Samples.Common.Domain.csproj"/>
+    </ItemGroup>
 
 </Project>

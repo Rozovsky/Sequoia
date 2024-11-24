@@ -1,7 +1,5 @@
-﻿namespace Samples.Logging.Serilog.Core
-{
-    public class Class1
-    {
+﻿namespace Samples.Logging.Serilog.Core;
 
-    }
+public class Class1
+{
 }

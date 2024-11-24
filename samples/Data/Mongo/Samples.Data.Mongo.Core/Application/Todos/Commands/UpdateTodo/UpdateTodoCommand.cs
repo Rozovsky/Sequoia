@@ -2,11 +2,10 @@
 using Samples.Data.Mongo.Core.Application.Common.Dto;
 using Samples.Data.Mongo.Core.Application.Common.ViewModels;
 
-namespace Samples.Data.Mongo.Core.Application.Todos.Commands.UpdateTodo
+namespace Samples.Data.Mongo.Core.Application.Todos.Commands.UpdateTodo;
+
+public class UpdateTodoCommand : IRequest<TodoVm>
 {
-    public class UpdateTodoCommand : IRequest<TodoVm>
-    {
-        public string Id { get; set; }
-        public TodoToUpdateDto Dto { get; set; }
-    }
+    public string Id { get; set; }
+    public TodoToUpdateDto Dto { get; set; }
 }

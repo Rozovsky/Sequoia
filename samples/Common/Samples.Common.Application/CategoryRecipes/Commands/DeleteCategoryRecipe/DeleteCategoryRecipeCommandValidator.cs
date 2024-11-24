@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace Samples.Common.Application.CategoryRecipes.Commands.DeleteCategoryRecipe
+namespace Samples.Common.Application.CategoryRecipes.Commands.DeleteCategoryRecipe;
+
+public class DeleteCategoryRecipeCommandValidator : AbstractValidator<DeleteCategoryRecipeCommand>
 {
-    public class DeleteCategoryRecipeCommandValidator : AbstractValidator<DeleteCategoryRecipeCommand>
+    public DeleteCategoryRecipeCommandValidator()
     {
-        public DeleteCategoryRecipeCommandValidator()
-        {
-            RuleFor(v => v.Id)
-                .NotNull()
-                    .WithMessage("Id must be set");
-        }
+        RuleFor(v => v.Id)
+            .NotNull()
+            .WithMessage("Id must be set");
     }
 }

@@ -3,26 +3,16 @@ using MediatR;
 using Samples.Client.Http.Core.Application.Common.Interfaces;
 using Samples.Client.Http.Core.Application.Common.ViewModels;
 
-namespace Samples.Client.Http.Core.Application.Todos.Queries.GetTodos
+namespace Samples.Client.Http.Core.Application.Todos.Queries.GetTodos;
+
+public class GetTodosQueryHandler(
+    ITodoService todoService,
+    IMapper mapper) : IRequestHandler<GetTodosQuery, List<TodoVm>>
 {
-    public class GetTodosQueryHandler : IRequestHandler<GetTodosQuery, List<TodoVm>>
+    public async Task<List<TodoVm>> Handle(GetTodosQuery request, CancellationToken cancellationToken)
     {
-        private readonly ITodoService _todoService;
-        private readonly IMapper _mapper;
+        var result = await todoService.GetTodos(cancellationToken);
 
-        public GetTodosQueryHandler(
-            ITodoService todoService,
-            IMapper mapper)
-        {
-            _todoService = todoService;
-            _mapper = mapper;
-        }
-
-        public async Task<List<TodoVm>> Handle(GetTodosQuery request, CancellationToken cancellationToken)
-        {
-            var result = await _todoService.GetTodos(cancellationToken);
-
-            return _mapper.Map<List<TodoVm>>(result);
-        }
+        return mapper.Map<List<TodoVm>>(result);
     }
 }

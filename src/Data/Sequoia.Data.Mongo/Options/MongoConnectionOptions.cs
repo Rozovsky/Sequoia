@@ -1,14 +1,7 @@
-﻿namespace Sequoia.Data.Mongo.Options
-{
-    public class MongoConnectionOptions
-    {
-        public string ConnectionString { get; set; }
-        public string Database { get; set; }
+﻿namespace Sequoia.Data.Mongo.Options;
 
-        public MongoConnectionOptions(string connectionString, string database)
-        {
-            ConnectionString = connectionString;
-            Database = database;
-        }
-    }
+public class MongoConnectionOptions(string connectionString, string database)
+{
+    public string ConnectionString { get; set; } = connectionString;
+    public string Database { get; set; } = database;
 }

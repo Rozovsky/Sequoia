@@ -1,7 +1,5 @@
-﻿namespace Samples.Jobs.Quartz.Core
-{
-    public class Class1
-    {
+﻿namespace Samples.Jobs.Quartz.Core;
 
-    }
+public class Class1
+{
 }

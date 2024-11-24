@@ -1,7 +1,5 @@
-﻿namespace Samples.Data.Dapper.Core
-{
-    public class Class1
-    {
+﻿namespace Samples.Data.Dapper.Core;
 
-    }
+public class Class1
+{
 }

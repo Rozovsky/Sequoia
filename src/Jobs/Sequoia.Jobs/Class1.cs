@@ -1,7 +1,6 @@
-﻿namespace Sequoia.Jobs
-{
-    public class Class1
-    {
+﻿namespace Sequoia.Jobs;
 
-    }
+public class Class1
+{
+
 }

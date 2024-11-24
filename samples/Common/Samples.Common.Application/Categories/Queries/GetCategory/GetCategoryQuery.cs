@@ -1,10 +1,9 @@
 ﻿using MediatR;
 using Samples.Common.Application.Categories.ViewModels;
 
-namespace Samples.Common.Application.Categories.Queries.GetCategory
+namespace Samples.Common.Application.Categories.Queries.GetCategory;
+
+public class GetCategoryQuery : IRequest<CategoryVm>
 {
-    public class GetCategoryQuery : IRequest<CategoryVm>
-    {
-        public string Id { get; set; }
-    }
+    public string Id { get; set; }
 }

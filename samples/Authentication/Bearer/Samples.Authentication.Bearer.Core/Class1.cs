@@ -1,7 +1,5 @@
-﻿namespace Samples.Authentication.Bearer.Core
-{
-    public class Class1
-    {
+﻿namespace Samples.Authentication.Bearer.Core;
 
-    }
+public class Class1
+{
 }

@@ -1,7 +1,5 @@
-﻿namespace Sequoia.Jobs.Quartz
-{
-    public class Class1
-    {
+﻿namespace Sequoia.Jobs.Quartz;
 
-    }
+public class Class1
+{
 }

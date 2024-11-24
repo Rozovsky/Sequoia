@@ -1,10 +1,9 @@
 ﻿using MongoDB.Driver;
 
-namespace Sequoia.Data.Mongo.Interfaces
+namespace Sequoia.Data.Mongo.Interfaces;
+
+public interface IMongoContext
 {
-    public interface IMongoContext
-    {
-        IMongoCollection<T> GetCollection<T>(string name);
-        IMongoCollection<T> GetCollection<T>();
-    }
+    IMongoCollection<T> GetCollection<T>(string name);
+    IMongoCollection<T> GetCollection<T>();
 }

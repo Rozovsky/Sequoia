@@ -1,27 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\Common\Exceptions\" />
-    <Folder Include="Application\Common\Extensions\" />
-    <Folder Include="Application\Common\Helpers\" />
-    <Folder Include="Application\Common\Options\" />
-    <Folder Include="Application\Locations\Commands\" />
-    <Folder Include="Application\Locations\Dtos\" />
-    <Folder Include="Domain\Constants\" />
-    <Folder Include="Domain\Models\" />
-    <Folder Include="Infrastructure\Configurations\" />
-    <Folder Include="Infrastructure\Migrations\" />
-  </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Application\Common\Exceptions\"/>
+        <Folder Include="Application\Common\Extensions\"/>
+        <Folder Include="Application\Common\Helpers\"/>
+        <Folder Include="Application\Common\Options\"/>
+        <Folder Include="Application\Locations\Commands\"/>
+        <Folder Include="Application\Locations\Dtos\"/>
+        <Folder Include="Domain\Constants\"/>
+        <Folder Include="Domain\Models\"/>
+        <Folder Include="Infrastructure\Configurations\"/>
+        <Folder Include="Infrastructure\Migrations\"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\Authentication\Sequoia.Authentication\Sequoia.Authentication.csproj" />
-    <ProjectReference Include="..\..\..\..\src\Data\Sequoia.Data\Sequoia.Data.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\src\Authentication\Sequoia.Authentication\Sequoia.Authentication.csproj"/>
+        <ProjectReference Include="..\..\..\..\src\Data\Sequoia.Data\Sequoia.Data.csproj"/>
+    </ItemGroup>
 
 </Project>

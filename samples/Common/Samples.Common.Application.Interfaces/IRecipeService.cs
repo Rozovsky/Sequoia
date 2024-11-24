@@ -1,9 +1,8 @@
 ﻿using Samples.Common.Domain.Entities;
 
-namespace Samples.Common.Application.Interfaces
+namespace Samples.Common.Application.Interfaces;
+
+public interface IRecipeService
 {
-    public interface IRecipeService
-    {
-        Task<Recipe> GetRecipeAsync(string id, CancellationToken cancellationToken);
-    }
+    Task<Recipe> GetRecipeAsync(string id, CancellationToken cancellationToken);
 }

@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace Samples.Common.Application.Recipes.Commands.DeleteRecipe
+namespace Samples.Common.Application.Recipes.Commands.DeleteRecipe;
+
+public class DeleteRecipeCommand : IRequest
 {
-    public class DeleteRecipeCommand : IRequest
-    {
-        public string Id { get; set; }
-    }
+    public string Id { get; set; }
 }

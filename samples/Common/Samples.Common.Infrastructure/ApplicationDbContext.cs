@@ -1,7 +1,6 @@
-﻿namespace Samples.Data.Mongo.Core.Infrastructure
+﻿namespace Samples.Common.Infrastructure;
+
+public class ApplicationDbContext
 {
-    public class ApplicationDbContext
-    {
-        // TODO: for implement
-    }
+    // TODO: for implement
 }

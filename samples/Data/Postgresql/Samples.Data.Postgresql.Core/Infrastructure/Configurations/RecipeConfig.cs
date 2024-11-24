@@ -2,21 +2,20 @@
 using Microsoft.EntityFrameworkCore;
 using Samples.Common.Domain.Entities;
 
-namespace Samples.Data.Postgresql.Core.Infrastructure.Configurations
+namespace Samples.Data.Postgresql.Core.Infrastructure.Configurations;
+
+public class RecipeConfig : IEntityTypeConfiguration<Recipe>
 {
-    public class RecipeConfig : IEntityTypeConfiguration<Recipe>
+    public void Configure(EntityTypeBuilder<Recipe> builder)
     {
-        public void Configure(EntityTypeBuilder<Recipe> builder)
-        {
-            builder.ToTable("recipes");
+        builder.ToTable("recipes");
 
-            builder.HasIndex(c => c.Name);
+        builder.HasIndex(c => c.Name);
 
-            builder.HasMany(c => c.Ingredients);
+        builder.HasMany(c => c.Ingredients);
 
-            builder.Property(t => t.Name)
-                .IsRequired()
-                .HasMaxLength(64);
-        }
+        builder.Property(t => t.Name)
+            .IsRequired()
+            .HasMaxLength(64);
     }
 }

@@ -1,35 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-	<Description>Kernel Client module</Description>
-	<RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
-	<PackageTags>microservices;kernel;client</PackageTags>
-	<Authors>Rozovsky</Authors>
-	<Version>0.1.0</Version>
-	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<PackageIcon>logo_128_128_w.png</PackageIcon>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <Description>Kernel Client module</Description>
+        <RepositoryUrl>https://github.com/Rozovsky/Sequoia</RepositoryUrl>
+        <PackageProjectUrl>https://www.nuget.org/packages/Sequoia.Client</PackageProjectUrl>
+        <PackageTags>microservices;kernel;client</PackageTags>
+        <Authors>Rozovsky</Authors>
+        <Version>0.8.0</Version>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>logo_128_128_w.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\..\assets\logo_128_128_w.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <None Include="..\..\..\assets\logo_128_128_w.png">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Sequoia\Sequoia\Sequoia.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Sequoia\Sequoia\Sequoia.csproj"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Update="README.md">
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <None Update="README.md">
+            <PackagePath>\</PackagePath>
+            <Pack>True</Pack>
+        </None>
+    </ItemGroup>
 
 </Project>

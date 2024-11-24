@@ -1,38 +1,24 @@
 ﻿using FluentValidation;
 using MediatR;
-using Sequoia.Exceptions;
 
-namespace Sequoia.Behaviours
+namespace Sequoia.Behaviours;
+
+public sealed class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
+    : IPipelineBehavior<TRequest, TResponse>
 {
-    public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-        where TRequest : IRequest<TResponse>
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken)
     {
-        private readonly IEnumerable<IValidator<TRequest>> _validators;
+        if (!validators.Any()) return await next();
 
-        public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validators)
-        {
-            _validators = validators;
-        }
+        var context = new ValidationContext<TRequest>(request);
 
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
-        {
-            if (_validators.Any())
-            {
-                var context = new ValidationContext<TRequest>(request);
+        var validationResults = await Task.WhenAll(validators.Select(v => v.ValidateAsync(context, cancellationToken)));
+        var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
 
-                var validationResults = await Task.WhenAll(_validators.Select(
-                    v => v.ValidateAsync(context, cancellationToken)));
+        if (failures.Count != 0)
+            throw new ValidationException(failures);
 
-                var failures = validationResults
-                    .SelectMany(r => r.Errors)
-                    .Where(f => f != null)
-                    .ToList();
-
-                if (failures.Count != 0)
-                    throw new KernelValidationException(failures);
-            }
-
-            return await next();
-        }
+        return await next();
     }
 }

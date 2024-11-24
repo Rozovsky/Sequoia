@@ -3,25 +3,24 @@ using Microsoft.Extensions.DependencyInjection;
 using Sequoia.Attributes;
 using Sequoia.Data.Models;
 
-namespace Sequoia.Data.Postgresql
+namespace Sequoia.Data.Postgresql;
+
+[SequoiaMember]
+public static class DependencyInjection
 {
-    [SequoiaMember]
-    public static class DependencyInjection
+    public static IServiceCollection AddPostgresql<TContextInterface, TContext>(this IServiceCollection services, string connectionString)
+        where TContext : DbContext, TContextInterface
+        where TContextInterface : class
     {
-        public static IServiceCollection AddPostgresql<TContextInterface, TContext>(this IServiceCollection services, string connectionString)
-            where TContext : DbContext, TContextInterface
-            where TContextInterface : class
-        {
-            // add pgsql db
-            services.AddDbContext<TContext>(options =>
-                options.UseNpgsql(connectionString,
-                    b => b.MigrationsAssembly(typeof(TContext).Assembly.FullName)));
+        // add pgsql db
+        services.AddDbContext<TContext>(options =>
+            options.UseNpgsql(connectionString,
+                b => b.MigrationsAssembly(typeof(TContext).Assembly.FullName)));
 
-            services.AddScoped<TContextInterface>(provider => provider.GetService<TContext>());
+        services.AddScoped<TContextInterface>(provider => provider.GetService<TContext>());
 
-            services.AddAutoMapper(typeof(Paged<>));
+        services.AddAutoMapper(typeof(Paged<>));
 
-            return services;
-        }
+        return services;
     }
 }

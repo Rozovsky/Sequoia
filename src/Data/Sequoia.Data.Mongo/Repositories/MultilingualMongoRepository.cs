@@ -7,95 +7,94 @@ using Sequoia.Data.Mongo.Extensions;
 using Sequoia.Data.Mongo.Interfaces;
 using System.Linq.Expressions;
 
-namespace Sequoia.Data.Mongo.Repositories
+namespace Sequoia.Data.Mongo.Repositories;
+
+public abstract class MultilingualMongoRepository<TEntity> : MongoRepository<TEntity>, IMongoRepository<TEntity> 
+    where TEntity : class
 {
-    public abstract class MultilingualMongoRepository<TEntity> : MongoRepository<TEntity>, IMongoRepository<TEntity> 
-        where TEntity : class
+    private string CurrentLanguage { get; set; }
+
+    protected MultilingualMongoRepository(IMongoContext context, string language) : base(context)
     {
-        private string CurrentLanguage { get; set; }
+        CurrentLanguage = language;
+    }
 
-        protected MultilingualMongoRepository(IMongoContext context, string language) : base(context)
-        {
-            CurrentLanguage = language;
-        }
-
-        private IEnumerable<TEntity> SetMultilingualEntityValues(IEnumerable<TEntity> objs)
-        {
-            if (CurrentLanguage == null)
-                return objs;
-
-            var first = objs.FirstOrDefault();
-
-            if (first == null || first is not IMultilingual<Translation>)
-                return objs;
-
-            foreach (var obj in objs)
-            {
-                SetMultilingualEntityValues(obj);
-            }
-
+    private IEnumerable<TEntity> SetMultilingualEntityValues(IEnumerable<TEntity> objs)
+    {
+        if (CurrentLanguage == null)
             return objs;
+
+        var first = objs.FirstOrDefault();
+
+        if (first == null || first is not IMultilingual<Translation>)
+            return objs;
+
+        foreach (var obj in objs)
+        {
+            SetMultilingualEntityValues(obj);
         }
 
-        private TEntity SetMultilingualEntityValues(TEntity obj)
-        {
-            if (CurrentLanguage == null)
-                return obj;
+        return objs;
+    }
 
-            if (obj is not IMultilingual<Translation>)
-                return obj;
-
-            var multilingual = obj as IMultilingual<Translation>;
-            if (multilingual.Translations == null || multilingual.Translations.Count == 0)
-                return obj;
-
-            var properties = obj.GetType().GetProperties();
-            var translations = multilingual.Translations
-                .Where(c => c.Language == CurrentLanguage)
-                .ToList();
-
-            foreach (var translation in translations)
-            {
-                var property = properties.FirstOrDefault(c => c.Name.ToLower() == translation.Field.ToLower());
-                if (property == null)
-                    continue;
-
-                property.SetValue(obj, translation.Value);
-            }
-
+    private TEntity SetMultilingualEntityValues(TEntity obj)
+    {
+        if (CurrentLanguage == null)
             return obj;
-        }
 
-        public override async Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        if (obj is not IMultilingual<Translation>)
+            return obj;
+
+        var multilingual = obj as IMultilingual<Translation>;
+        if (multilingual.Translations == null || multilingual.Translations.Count == 0)
+            return obj;
+
+        var properties = obj.GetType().GetProperties();
+        var translations = multilingual.Translations
+            .Where(c => c.Language == CurrentLanguage)
+            .ToList();
+
+        foreach (var translation in translations)
         {
-            var entity = await MongoCollection
-                .AsQueryable()
-                .SingleOrDefaultAsync(predicate, cancellationToken);
+            var property = properties.FirstOrDefault(c => c.Name.ToLower() == translation.Field.ToLower());
+            if (property == null)
+                continue;
 
-            SetMultilingualEntityValues(entity);
-
-            return entity;
+            property.SetValue(obj, translation.Value);
         }
 
-        public override async Task<IEnumerable<TEntity>> GetAll(CancellationToken cancellationToken)
-        {
-            var entities = await MongoCollection
-                .AsQueryable()
-                .ToListAsync(cancellationToken);
+        return obj;
+    }
 
-            SetMultilingualEntityValues(entities);
+    public override async Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+    {
+        var entity = await MongoCollection
+            .AsQueryable()
+            .SingleOrDefaultAsync(predicate, cancellationToken);
 
-            return entities;
-        }
+        SetMultilingualEntityValues(entity);
 
-        public override async Task<Paged<TEntity>> GetPaged(
-            FilterDefinition<TEntity> filter, SortDefinition<TEntity> sort, int page, int pageSize, CancellationToken cancellationToken = default)
-        {
-            var entities = await MongoCollection.AsPagedResult(filter, sort, page, pageSize);
+        return entity;
+    }
 
-            SetMultilingualEntityValues(entities.Items);
+    public override async Task<IEnumerable<TEntity>> GetAll(CancellationToken cancellationToken)
+    {
+        var entities = await MongoCollection
+            .AsQueryable()
+            .ToListAsync(cancellationToken);
 
-            return entities;
-        }
+        SetMultilingualEntityValues(entities);
+
+        return entities;
+    }
+
+    public override async Task<Paged<TEntity>> GetPaged(
+        FilterDefinition<TEntity> filter, SortDefinition<TEntity> sort, int page, int pageSize, CancellationToken cancellationToken = default)
+    {
+        var entities = await MongoCollection.AsPagedResult(filter, sort, page, pageSize);
+
+        SetMultilingualEntityValues(entities.Items);
+
+        return entities;
     }
 }
